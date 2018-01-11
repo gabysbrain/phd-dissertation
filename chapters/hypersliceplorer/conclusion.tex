@@ -1,0 +1,26 @@
+\section{Conclusion and future work}
+\label{sec:conclusion}
+
+In this paper we have presented Hypersliceplorer, an algorithm to compute
+2D slices of multi-dimensional shapes defined as a simplical mesh. 
+We also discussed an interactive interface we developed to view the slices.
+We evaluated our method in two ways: through three target use case scenarios
+and with measuring the running time.
+
+In the future we will improve the speed of our algorithm by integrating a
+spatial data structure such as a k-d tree or bounding box method. The current
+algorithm needs to try and find an intersection with every simplex in the figure.
+The data structure will help to avoid these extra checks. This should
+improve the speed of our algorithm by avoiding unnecessary intersection tests.
+
+Currently, we have only tested our method with convex hulls of shapes. We
+plan to also examine the visualization possibilities with non-convex hulls
+and with pre-generated hulls. Perhaps our method will lead to new insights
+in mesh generation algorithms.
+
+We will also work closely with target user groups to customize the interface
+for their specific goals. For example, geometry users may more integration with
+the Schlegel diagram while multi-objective optimization users may need better
+support for local neighborhoods.
+
+

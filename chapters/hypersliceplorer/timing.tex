@@ -1,0 +1,76 @@
+\section{Algorithm performance}
+\label{sec:perf}
+
+\renewcommand{\arraystretch}{1.2} % maybe 1.3?
+\begin{table*}[!htb]
+  \centering
+  \caption{%
+    Results of timing the Hypersliceplorer algorithm on a number of different
+    datasets. We ran the algorithm, setting the number of slices to $1,000$.
+    We record the number of simplices created by the quickhull
+    algorithm~\cite{Barber:1996}, the total time for all slices, and the time
+    per simplex. The time per simplex is the total time divided by the number
+    of plots (i.e.\ dimension pairs, the number of simplices, and the number of focus points.
+    The time per simplex is roughly constant.
+  } 
+  \label{tbl:timings}
+  \begin{tabular}[]{@{}lcrrr@{}} \toprule
+    Dataset & Dims & Simplices & Total time (sec) & Time/simplex (ms) \\
+    \midrule
+    %\endhead
+    Cube & 3 & 12 & 48 & 1.345 \\
+    Octahedron & 3 & 8 & 38 & 1.624 \\
+    Sphere & 3 & 596 & 1,243 & 0.696 \\
+    Tesseract & 4 & 58 & 289 & 0.833 \\
+    16-cell & 4 & 16 & 108 & 1.135 \\
+    3-sphere & 4 & 2,567 & 14,283 & 0.927 \\
+    5d-cube & 5 & 316 & 2,378 & 0.753 \\
+    5d-ortho & 5 & 32 & 258 & 0.808 \\
+    4-sphere & 5 & 12,886 & 130,453 & 1.012 \\
+    Klein bottle & 4 & 36,258 & 129,158 & 0.594 \\
+    \bottomrule
+  \end{tabular}
+\end{table*}
+
+\begin{figure}
+  \centering
+  \resizebox{\linewidth}{0.7\linewidth}{%
+    \input{figures/hsp_timing_chart.tikz}
+  }
+  \caption{%
+    Chart showing the number of slicing operations 
+    (simplices $\times$ number of plots) versus timing results from running 
+    our algorithm on a number of different datasets. The axes are on a log-log
+    scale. The points are all clustered around the ``1 ms/simplex'' line 
+    showing that the running time is roughly one millisecond per slicing 
+    operation.
+  }
+  \label{fig:timing}
+\end{figure}
+
+In order to test the running time of our algorithm we ran a number of
+experiments to understand the timing. We tested regular polytopes in 3, 4, and
+5 dimensions as well as hyperspheres. We also tested the four-dimensional
+version of the Klein bottle because it has a large number of simplices in its
+mesh. For each test, we ran the slicing algorithm for all pairs of dimensions
+and for $1,000$ focus points. We recorded the total wall clock time as well as
+the number of simplices given by the quickhull algorithm. The testing machine
+has an 8-core 3.2GHz Intel i7-6900K with 64GB of RAM.
+
+Our results are shown in \autoref{tbl:timings}. The total number of slicing
+checks (\autoref{alg:slicing:single}) is the number of simplices, times the
+number of pairs of dimensions ($d \choose 2$), times the total number of focus
+points ($1,000$). We divide the total time by this number to show the time per
+simplex. 
+
+As we can see, the times are roughly constant between the number of
+dimensions and simplices (see \autoref{fig:timing}). The reason the Klein 
+bottle is faster is because
+many slices do not hit any simplices and the algorithm will exit early
+once this is detected. Right now, this algorithm is not optimized.
+For example, it would be greatly beneficial to pre-compute a spatial data
+structure so that only slices that are likely to intersect simplices are
+evaluated. In our case, the algorithm must check every simplex against every
+focus point for every pair of dimensions. This is a lot of extra work for figures
+such as the Klein bottle with many simplexes.
+

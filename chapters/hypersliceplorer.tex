@@ -1,0 +1,36 @@
+
+\begin{figure}
+  \centering
+  \begin{subfigure}[b]{0.45\linewidth}
+    \includegraphics[width=\textwidth]{hsp_interface-global.png}
+    \caption{Global view}
+    \label{fig:interface:global} 
+  \end{subfigure} 
+  ~
+  \begin{subfigure}[b]{0.45\linewidth}
+    \includegraphics[width=\textwidth]{hsp_interface-local.png}
+    \caption{Local view}
+    \label{fig:interface:local} 
+  \end{subfigure}
+  \caption{%
+    The interface for browsing slices created by the Hypersliceplorer algorithm.
+    We show a plot for each pair of dimensions laid out in the same way as
+    HyperSlice~\cite{Wijk:1993}.
+    The interface has two modes: global and local view.
+    The global view (\subref{fig:interface:global}) 
+    shows the results of sampling over a number of focus points. The views
+    are linked through highlighting a slice. The local view 
+    (\subref{fig:interface:local}) shows a single selected slice and then
+    the user can add additional slices by clicking the ``+ fp'' button.
+  }
+  \label{fig:interface}
+\end{figure}
+
+\input{hypersliceplorer/motivation}
+\input{hypersliceplorer/related_work}
+\input{hypersliceplorer/algorithm}
+\input{hypersliceplorer/interface}
+\input{hypersliceplorer/case_studies}
+\input{hypersliceplorer/timing}
+\input{hypersliceplorer/conclusion}
+

@@ -1,0 +1,39 @@
+
+\section{Discussion}
+
+The above examples illustrated that the technique of 1D slices as presented in
+our paper is quite flexible and useful for various low- and high-level tasks.
+However, we do not intend to claim that it is the only and best method for all
+problems out there. We rather would like to argue that it is a valuable (and
+thus far overlooked) technique in a toolbox of visual inspection methods for
+multi-dimensional functions. We hope that this paper inspires a discussion and
+exploration of guidelines for tasks, proper visual encoding, and interaction
+techniques for various tasks. Along these lines we would like to put forth our
+current experience with various techniques.
+
+\textbf{Topological techniques are helpful for a global overview}: Topological
+techniques allow us to compare \emph{between} optima but are not as good at
+evaluating the area \emph{around} an optimum since these areas are typically
+abstracted away.  Topological spines attempts to compensate for this by showing
+the area covered by a particular optimum as an area around the node. However,
+many of the tasks like ``correlate'' and ``cluster'' are best served by viewing
+the response manifold directly. In a larger system, the topological techniques
+could be used effectively as a global overview of the function with a
+HyperSlice or 1D slice showing local context. Selecting a point in the
+topological view would change the focus point in the local view.
+
+\textbf{HyperSlice is good when you need to show 2D interactions}: HyperSlice
+is the only technique that can display more than one dimension of data
+interaction.  So, if this is a requirement then HyperSlice is the best option.
+However, one can use 1D slices to get a general overview of the dependence of
+the function on each dimension. The dimensions that are not interesting
+because, for example, the function is not sensitive to them could easily be
+eliminated from further consideration. This would reduce the number of subplots
+that we need to view in the HyperSlice plot.
+
+\textbf{1D slices should be used for a ``first pass'' visualization}: 1D slices
+addresses many of the tasks that a user wants to perform. The technique does a
+very good job on a wide variety of tasks. 1D slices are easy to
+implement, easy to understand, and the static view provides a lot of
+information.
+

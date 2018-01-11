@@ -1,0 +1,41 @@
+\section{Limitations and future work}
+%\label{sec:limitations}
+
+Our 1D slice view consists of a projection of many lines. We are showing the
+distribution of slices through direct projection. Techniques like contour
+boxplots~\cite{Whitaker:2013} and curve boxplots~\cite{Mirzargar:2014} build a
+distribution model of curves which could help to address the ``characterize
+distribution'' task in \autoref{tbl:task_list}. However, neither of these or
+any of the other time curve visualization techniques have been applied to
+multi-dimensional functions. Evaluating these techniques for this purpose is an
+exciting topic for future work.
+
+When developing the 1D continuous slicing technique we only considered
+multi-dimensional continuous scalar functions in terms of requirements, 
+tasks, and comparisons. We do not consider multi-field 
+(i.e.\ functions with multiple outputs) or complex-valued functions in our
+analysis. There are multi-field topology techniques to address 
+this~\cite{Duke:2012,Huettenberger:2014,Carr:2015} which we do not consider
+but our technique and analysis would need to be extended to this domain.
+We leave this for future work.
+
+The x-axis of each 1D slice is independent of the x-axes of the other 1D
+slices. This allows each plot to scale individually if the range of inputs have
+different values.  The x-axis and y-axis automatically change to incorporate
+their respective minimum and maximum ranges. While the x-axis scales itself
+independently, the y-axis is the same for each plot.  This is also the default
+behavior in many of-the-shelf plotting packages. The plots will adjust
+automatically to shifts.  For the x-axis we use axis-aligned projections.
+Therefore, the views are sensitive to rotational transformations of the
+function. 
+
+Finally, our technique is also based on sampling, just like the other
+techniques we are comparing to. As with any technique based on sampling one
+must be careful to take an adequate number of samples in order to properly
+capture all desired behavior.
+%\ttwnote{add more about sampling limitations?}
+If the function is not smooth we may see a slice that is an ``outlier,'' i.e.\
+one slice is much higher or lower than all the others. In this case all other
+slices will be compressed into either the top or bottom of the chart. This is
+often a problem with many common visualization techniques like bar graphs or
+scatterplots and can be addressed with log scaled axes, for example.

@@ -1,0 +1,56 @@
+\section{Interface}
+\label{sec:interface}
+
+We developed an interactive viewer to browse and select slices of interest in
+order to build up an understanding of the object we are viewing. Slicing is an
+inherently interactive operation. Depending on what focus point we are
+examining we will see different aspects of the data. In a multi-dimensional
+space, it is easy to get lost navigating freely through the entire space.
+However, if we show all slices at once the user cannot closely examine one
+particular aspect of the data.  Thus, our interactive interface, shown in
+\autoref{fig:interface}, has two modes: a global view and a local view. The
+global view is designed to give an overview of the general shape.  By selecting 
+a slice and corresponding focus point of interest, the user can then
+switch to the local view and gradually add additional slices at new focus
+points.
+%implementation?
+
+\subsection{Global view}
+
+The global view (\autoref{fig:interface:global}) gives an overview of the
+possible cross sections of the object. By default we show slices for the first
+50 focus points sampled using a Sobol sequence~\cite{Sobol:1967}. This has the
+advantage of being both space-filling and easy to add additional sample points
+if required. Since we are slicing hulls of simplicial meshes, each slice is a contiguous
+line plot in the view. We use alpha blending in order to show the distribution
+of hull shapes in each pair of dimensions. 
+%We did this to show not only want to know which shapes are possible but also the frequency. 
+From this the user can get insight into whether or not a shape has a regular 
+structure.
+
+With more than one slice one cannot easily tell how the slices correspond 
+between panels in the layout. We address this by using linked highlighting
+between the plots. If the user mouses over a slice in one plot the slices
+corresponding to that focus point are highlighted in the other plots. In 
+addition, the user can click on a particular slice of interest to focus in 
+on that particular slice. This brings the user into the local view mode.
+
+\subsection{Local view}
+
+The local view mode of the interface allows the user to narrow in on a
+particular focus point and then explore how other slices of the figure relate
+to that one.  The focus point is represented as a dot projected on each sub
+plot. 
+%The user can drag this point to another focus point location which will then show the slice corresponding to that focus point.  
+The user can change the focus point by dragging the
+focus point dot to a new location. Thus, the user can change one or two focus
+point values per dragging interaction.  The user can also add additional focus
+points by clicking the ``+ fp'' button in the upper left of the interface. Each
+focus point is automatically colored based on a discrete color map from
+ColorBrewer~\cite{Harrower:2003}. The slices themselves and the focus points
+are linked through a similar color.  For example, one mode of exploration this
+view supports is examining the faces orthogonal to one of the slices.  The user
+can return to the global view by clicking the ``deselect'' button on the top
+left of the interface.
+
+
