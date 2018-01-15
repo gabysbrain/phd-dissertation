@@ -1,0 +1,280 @@
+
+\section{Problem description}
+
+One method of studying the input/output relationship of computer simulations 
+is known as the 
+\emph{black-box model}. 
+The black-box in this case refers to the simulation code itself.
+The simulation code is complex and expensive to run
+so direct analysis is difficult.
+Under this analysis method one does not make any assumptions as to the
+inner workings of the simulation code.  Instead, we model the simulator as an
+unknown continuous function
+that takes a number
+of numerical inputs and produces a number of numerical outputs.  We know
+the domain of the inputs.  We want to study how varying the inputs
+affects the output. 
+
+While we don't know anything about how the simulation works internally, we can  
+sample it by selecting a particular input setting through the simulation 
+and recording the outputs.  We can then use a continuous reconstruction
+method built from a number of samples in order to estimate the 
+\emph{response surface}.
+This fitted continuous function
+is known as an \emph{emulator} in the
+statistics literature.  We can then study the input/output relationship
+using the emulator instead.  
+
+\subsection{1D analysis example}
+\label{sec:1d_example}
+
+A common choice in the statistics community for this emulator is known as the
+Gaussian process model~\cite{Rasmussen:2006}.  
+One advantage of the Gaussian process model is that the form is very well
+known and easy to analyze.  
+It also allows us to measure the uncertainty of the estimation.
+In order to illustrate the 
+advantages we will go through a 1D example here using a known function
+$f(x) = \sin(x) + \cos(2x)$
+as a stand-in for some simulation code.
+
+We begin by taking a number of discrete samples of the function.  Ideally
+we take as many as possible but this may be limited in terms of time or
+budget.  Since we do not know anything about the behavior of the function 
+in the region we are sampling,
+we sample in some uniform random fashion.
+The function as well as the sample locations are shown in 
+\autoref{fig:reconstruction_sampling}.
+
+\begin{figure}[htb]
+  \centering
+  \include{example_function_sampled}
+  %\includegraphics[width=8cm]{example_function_sampled}
+  \caption{
+    An example of taking 10 uniformly distributed samples of the function
+    $f(x) = sin(x) + cos(2x)$.  The dots show the sampling locations.
+  }
+  \label{fig:reconstruction_sampling}
+\end{figure}
+
+%Signal processing theory~\cite{Oppenheim:1999} gives the relationship between 
+%the
+%number of samples and how much frequency content we can glean from the signal.
+We would prefer to take as many samples as possible in order to identify
+the various peaks and valleys.
+The interpolation method we choose depends on how we expect the values to
+change between the sample points.
+%\ttwnote{in signal processing  it depends on the number of samples taken and the continuity of the reconstruction but I don't quite understand\ldots}.  
+If we expect linear behavior then fitting a
+piecewise linear function would be ideal.  If we expect more complex behavior
+then we should fit higher-order functions.  We show 3 different fitting 
+methods for our function in \autoref{fig:interp_methods}: piecewise linear (blue), 
+cubic spline (green), and Gaussian process model (red) along with the true
+function (black).  In this case the cubic spline and Gaussian process model
+interpolations are very close to the true function, but the true function
+normally would not be known beforehand.
+
+\begin{figure}[htb]
+  \centering
+  \include{example_function_interp}
+  %\includegraphics[width=8cm]{example_function_interp}
+  \caption{
+    Here we show different interpolation methods of the function
+    $f(x) = sin(x) + cos(2x)$ using the same 10 uniformly random distributed
+    sample points.  We show the true function as well as piecewise linear,
+    cubic spline, and Gaussian process interpolations.
+  }
+  \label{fig:interp_methods}
+\end{figure}
+
+The basic assumption of the Gaussian process model, however, is that the
+function behavior between the sample points is random in the sense it could
+take any path as long as it intersects the points and the correlation function
+we select gives the general form of the function between the points.
+The distribution of possible paths follows a multi-variate Gaussian
+distribution through the sample points we've selected.  The mean of this 
+distribution is the most likely path, which is typically what is visualized.
+By modeling the behavior this way we also get a model for the uncertainty
+at any point in the domain.  This uncertainty grows in proportion to the
+distance to the sample points.  In \autoref{fig:gp_example} we show the Gaussian
+process estimation of the above function given the sample points along with
+the standard error of the estimation.  The error grows very quickly when
+extrapolating, for example when $x < 1$.  This is 
+because we are moving away from all sample points.  This is why in real 
+applications it is important to sample near the edge of the domain.
+
+\begin{figure}[htb]
+  \centering
+  \include{gp_example}
+  %\includegraphics[width=8cm]{gp_example}
+  \caption{
+    The Gaussian process interpolation of the function 
+    $f(x) = sin(x) + cos(2x)$ from 10 uniformly distributed samples.  
+    The standard error of estimation from the model is shown in gray.
+    Note that the standard error increases with the distance from the sample
+    points.
+  }
+  \label{fig:gp_example}
+\end{figure}
+
+Parameterizing a Gaussian process model means correctly parameterizing the 
+correlation functions to the data samples.  If the function varies a lot 
+between the sample points then we would expect low correlation between the
+sample points, while if the function is relatively stable between the sample
+points then we would expect high correlation between the points.  
+In the spatial sense, this high and low correlation can be seen as the 
+amount of influence the value of a particular sample point has on the value
+at another location a particular distance away.
+
+\subsection{Applications in multi-D}
+\label{sec:gp_applications}
+
+Gaussian process regression is very common in the statistics community
+to analyze simulations among other types of data.
+There exist a number of examples where Gaussian process regression along
+with a uniformly distributed experimental design is used in order to 
+run an analysis.
+%By looking at commonalities in terms of dimensions and numbers of points
+%for examining these simulations we can determine the order of dimensions
+%and number of sample points we need to build our predictive function on.
+Using uniform sampling with a Gaussian process model 
+has been applied in 
+an optimization scenario, as with
+Couckuyt et al.~\cite{Couckuyt:2010}.  They used a sparse initial sampling
+and then built a GP model to emulate microwave filter and textile antenna
+simulations.  They then incrementally ran additional samples of the simulation
+in order to find optimal parameter settings.  This process of finding 
+additional sample locations can be quite expensive computationally.
+Hutter et al.~\cite{Hutter:2010}
+develop a method to find new sample locations when under a time budget.
+They then applied this method to find optimal parameters for a search
+algorithm for a propositional satisfyability solver.
+This method was also used to perform
+a sensitivity analysis of an arctic sea ice
+prediction model~\cite{Chapman:1994}.  They decomposed the Gaussian process
+model to find ``average'' behavior due to each model parameter.
+Linkletter et al.~\cite{Linkletter:2006} 
+used Gaussian process models to measure the sensitivity of parameters to
+a cylinder deformation simulation to reduce the parameter space from 14 input 
+factors to seven.
+Kaufman et al.~\cite{Kaufman:2011} use compactly supported correlation 
+functions to build Gaussian process models efficiently on
+very large data sets.  This was applied to cosmological data.
+Hensman et al.~\cite{Hensman:2013} used an approach to train 
+a Gaussian process model on $700,000$ data points in an $8$-dimensional space
+to build a model to predict flight delays using a lower rank covariance
+matrix.
+Shepherd and Owenius~\cite{Shepherd:2012} used Gaussian process models 
+as a classification tool in order to classify voxels in dPET images in order
+to find tumor sites.
+
+\begin{table*}[htb]
+\centering
+\caption{
+  A summary of the literature described in \autoref{sec:gp_applications}.  We
+  show the domain of application of each paper, their analysis goal, as
+  well as the number of samples and number of input parameters (dimensions)
+  of the simulation used to train the GP model. 
+}
+\begin{tabular}{|r|lrrl|}
+  \hline
+  Reference & Application & Dimensions & Samples & Goal \\
+  \hline
+  Couckuyt et al.~\cite{Couckuyt:2010} & Microwave filter & 5 & 51 & Optimization \\
+  Couckuyt et al.~\cite{Couckuyt:2010} & Textile antenna & 2 & 14 & Optimization \\
+  Hutter et al.~\cite{Hutter:2010} & Propositional logic satisfyability & 4 & 25 & Optimization \\
+  Chapman et al.~\cite{Chapman:1994} & Sea ice prediction & 13 & 157 & Sensitivity analysis \\
+  Linkletter et al.~\cite{Linkletter:2006} & Cylinder deformation model & 14 & 118 & Sensitivity analysis \\
+  Kaufman et al.~\cite{Kaufman:2011} & Cosmological data  & 4 & 20,000 & Prediction \\
+  Hensman et al.~\cite{Hensman:2013} & Flight delays & 8 & 700,000 & Prediction \\
+  Shepherd and Owenius~\cite{Shepherd:2012} & dPET data in radiation oncology & 4 & 6 patient images & Classification \\
+  \hline
+\end{tabular}
+\label{tb:literature}
+\end{table*}
+
+As one can see, there are a wide variety of application domains.  However, 
+all these analyses share commonalities.
+We show the summary information of these studies in \autoref{tb:literature}.
+The number of inputs is typically on
+the order of 5--15 inputs. Each of these may correspond to a known factor that
+can vary in the real world like wind speed or the velocity of a particle, or
+an unknown fixed-quantity in the real world like Planck's constant or the
+gravitational constant.  The simulation code typically creates a complex
+object like a 3D+time model of the world or a segmented image. On these
+outputs scientists define a number of feature extractors or objective
+functions which reduce the complex output to a set of numerical 
+attributes~\cite{Sedlmair:2014}.
+Therefore, for each simulation run we get a vector of scalar input factors and
+the corresponding vector of scalar outputs.  Each scalar output can be
+considered in a separate analysis so in this paper we assume that there is
+only one scalar output for each input configuration.
+
+The practical number of simulation samples range from a few hundred to hundreds
+of thousands.  This is due to either time or monetary constraints.  Running more
+simulations than this simply takes too long or costs too much.  
+Based on these
+data we test our timing function on dimensions $3$--$8$ and run up to 
+$1,000,000$ sample points.
+
+
+\subsection{Pipeline description}
+
+Despite the wide variety of application areas, all the simulation studies 
+mentioned follow a standard procedure for
+analysis.
+They start with a uniform sampling of the parameter space. This is
+usually done with a space-filling
+design like a Latin 
+hypercube~\cite{Mckay:1979}, Halton
+sequence~\cite{Halton:1964}, or Centroidal Voronoi tesselation~\cite{Du:1999}. 
+Without any knowledge of the relative
+importance of the dimensions they are sampled equally.
+
+The
+simulation is run using each sample and the outputs are recorded. If the
+output is a complex object then feature
+extractors are run on the outputs to generate scalar results.
+We then build an emulator of this
+process. Prediction using this emulator must be fast as we will want to
+evaluate it at many points. Often, a Gaussian process
+model~\cite{Rasmussen:2006} is selected for the emulator. 
+
+\begin{figure}[htb]
+  \centering
+  \includegraphics[width=7cm]{tuner}
+  \caption[Tuner's HyperSlice view]{\
+    Screenshot of Tuner~\cite{Torsney-Weir:2011} demonstrating the
+    HyperSlice~\cite{Wijk:1993} method for rendering an
+    $8$-dimensional parameter space using squared exponential kernel 
+    reconstruction on an image segmentation dataset.
+    Here we show the view using the conditional mean of the Gaussian 
+    process model.
+  } 
+  \label{fig:tuner}
+\end{figure}
+
+With this emulator the user can now analyze the input\slash output
+relationship of the simulation. This can be done in a variety of ways, either by
+looking at static plots~\cite{Chapman:1994} or by interactively exploring the
+response surface~\cite{Torsney-Weir:2011}. We show an example of the
+HyperSlice technique for interactively exploring the response surface
+as implemented in Tuner~\cite{Torsney-Weir:2011} in \autoref{fig:tuner}.  
+In this case we show the conditional mean of the Gaussian process model.
+Tuner can also show the estimation variability if desired.
+
+Interactive 
+exploration of the Gaussian process model is a 
+relatively new technique as it is more complex to implement and the limits
+in terms of the number of points and how the size of the kernels affects 
+interactivity is not yet understood.  
+The rest of this paper will discuss how to address both these questions.
+We present a rendering algorithm which is similar to 
+splatting~\cite{Mueller:1998}
+to render the Gaussian
+process prediction function using HyperSlice.
+We also develop a method to determine when
+the interactivity of the rendering will fail taking into account the geometric 
+interpretation of the Gaussian process model as well as the performance
+of an individual user's machine.
+

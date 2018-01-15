@@ -1,0 +1,88 @@
+\section{Application scenarios}
+\label{sec:application_scenarios}
+
+As was mentioned in \autoref{sec:motivation}, there are a number of ways to apply
+our prediction methodology in a practical visualization system. 
+To this end we show two application scenarios where our method can be
+used to control the number of samples such that we maintain interactive 
+rates.  We show how our method may be used 
+to sample the simulation in order
+to maintain a desired frame rate and to subsample an existing dataset in
+order to attain interactive frame rates.
+
+\subsection{Constrain sampling}
+\label{sec:constrainsampling}
+
+\begin{figure}[h]
+\centering
+\includegraphics[width=7cm]{sampler_fps}
+\caption{A prototypical example use case for our prediction formula,
+ \autoref{eq:calib-acttotal-H}. The user
+ is able to either enter the number of sample points directly in field (a)
+ and the system displays the expected fps in (b) or enter the desired fps
+ in (b) first and the system calculates the number of sample points.
+ %\ttwnote{too many points in this picture}
+}
+\label{fig:sampler}
+\end{figure}
+
+
+\autoref{fig:sampler} is a dialog box for the Tuner~\cite{Torsney-Weir:2011} system. 
+The task is
+to enter the number of sample points to take from the simulation. The dialog
+is driven by \autoref{eq:calib-acttotal-H}. When the user changes the number of
+samples directly (a), the dialog computes the expected frame rate and displays
+that to the user in (b). As an alternative method, the user may value
+interactivity highly and consequently selects the number of sample points to
+take by entering the desired frame rate (b) and letting the system select the
+number of samples.
+
+\subsection{Subsample points}
+\label{sec:subsamplepoints}
+
+The goal of this algorithm, presented as \autoref{algo:subsample} is to reduce the
+sample size, $N$, such that the rendering time reaches an acceptable 30fps.
+We will do this by removing samples from the set.  An issue with simply
+removing points and rebuilding the Gaussian process model is that the
+bandwidth parameters, $\theta$ will change.
+
+In \autoref{fig:30fps_time} we show the trade-off between the radius, $r$, and the
+number of points, $N$, that can be drawn in 30fps.  When subsampling data we
+expect that the radius around each sample point will increase as we reduce
+the number of sample points.  The goal of \autoref{algo:subsample} is to 
+lower the number of sample points until we reach this line.
+
+\begin{algorithm}
+  %\KwData{Calibrated prediction formula $E[t_\text{total}^\text{H}](N, d, r)$,
+           %calibrated GP model parameters $\vec{\theta}$}
+
+  \begin{algorithmic}
+    \State $t_\text{pred} \gets E[t_\text{total}^\text{H}](N, d, r)$\;
+    \While{$t_\text{pred} < 30\text{fps}$}
+      \State $N_\text{30fps} \gets$ Numerically solve $E[t_\text{total}^\text{H}](N, d, r)$ for an $N$ that will give 30fps rendering times\;
+      \State Uniformly remove $N - N_\text{30fps}$ sample points\;
+      \State $r' \gets$ Rebuild the GP model, thereby recomputing $r$\;
+      \State $t_\text{pred} \gets E[t_\text{total}^\text{H}](N_\text{30fps}, d, r')$\;
+    \EndWhile
+  \end{algorithmic}
+  \caption{A proposed algorithm for subsampling data in order to achieve
+           interactive rendering times using the Gaussian process model
+           with the HyperSlice rendering technique.  \label{algo:subsample}}
+\end{algorithm}
+
+In this fashion we can have a progressive rendering setup using 2 GP models, 
+a low-resolution model for fast rendering and a high-resolution one for
+detail views.  The system could dynamically switch between these two when
+interacting.
+
+\begin{figure}[h]
+  \centering
+  \include{30fps_time}
+  %\includegraphics[width=9cm]{30fps_time}
+  \caption{
+    Average number of points that can be rendered in 30 frames per 
+    second for the HyperSlice technique.
+  }
+  \label{fig:30fps_time}
+\end{figure}
+

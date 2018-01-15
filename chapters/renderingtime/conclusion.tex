@@ -1,0 +1,47 @@
+\section{Limitations and future work}
+\label{sec:conclusion}
+
+In this paper we have presented the characteristics of data used for
+analyzing computer simulations under the 
+\emph{design and analysis of computer experiments} 
+framework~\cite{Santner:2003}.  We investigate
+how interactive rendering times may be used in this framework using the
+HyperSlice~\cite{Wijk:1993} rendering technique implemented on the GPU.
+We then describe a method using both the scene geometry and estimates of the
+user's machine capabilities in order to make an accurate prediction of 
+the rendering time.
+We find that timing, especially using wall-clock time, is extremely noisy
+and makes fitting very difficult.  It is much more reliable to use the
+timer on the GPU itself, however one must take into account the time needed
+to return back from the GPU which in our experiments is about 1ms.
+
+In the future, we will investigate how to reduce the number of trials
+needed to properly fit the formula.  Currently each dimension
+takes about 6 hours to complete and requires the machine to be dedicated
+to running the timing code.  Reducing the number of trials will help to
+alleviate this time consuming task.
+
+It would also be interesting to extend our approach to the analysis of
+HyperSlice rendering in general. The basic geometrical operation in our
+mathematical model is slicing multi-dimensional spheres with 2D planes and
+estimating the area. Therefore our method should work directly with any radial
+basis function reconstruction technique like the work by Hong et
+al.~\cite{Hong:2006} although we have not directly tested this.  We would also
+like to extend our mathematical model to take the shape of the reconstruction
+primitive into account. This would allow us to analyze the timing of HyperSlice
+rendering using a much more broad set of reconstruction methods like 
+nearest neighbor or linear regression. 
+The framework can also be used to estimate the rendering time of density
+estimation by setting $f(x_i) = 1$ in \autoref{eq:kernel_regression}. Repeating the
+analysis using box primitives would allow us to estimate the time complexity
+of some of the recent real-time large-data aggregation and visualization 
+methods like imMens~\cite{Liu:2013} and NanoCubes~\cite{Lins:2013}. Both these
+methods use rectangular binning in their density estimation.
+
+We will also implement our subsampling strategy.
+There is a lot of overdrawing occurring which does not contribute at
+all to the final plot as the color channel is effectively maxed out, 
+especially as the value of $N$ and $r$ increases.  By detecting when this 
+occurs and only rendering the first few points we could improve rendering
+efficiency.
+

@@ -1,0 +1,195 @@
+\section{Timing results}
+\label{sec:timingresults}
+
+\begin{figure*}[t]
+  \centering
+  \include{figures/raw_times}
+  %\includegraphics[width=\textwidth]{raw_times}
+  \caption{
+    Scatterplots of the time to render using the HyperSlice method.
+    Each dimension is analyzed separately.  The x-axis is the number of
+    fragments drawn on screen and the y-axis is the number of seconds
+    recorded by the GPU timer for the frame to draw.
+    The blue line is the predicted rendering time using our fitted 
+    formula. 
+    %The colours represent different values for the number of sample points. 
+    %The hockey stick shape is due to whether the filtering time 
+    %or drawing time is dominant.
+  }
+  \label{fig:hs_draw_times}
+\end{figure*}
+
+We now present the results of running our timing experiments.  Our test
+machine is a Macbook Pro with Retina display with a 2.6GHz Intel Core i7, 16GB
+of RAM, and an NVIDIA GeForce GT 650M graphics card with 1GB of graphics
+memory.  In order to produce consistent results we disabled the GPU power
+management extension.  With it enabled the system varies the clock speed of
+the GPU while the experiments are running, producing inconsistent results.
+
+\subsection{Data fitting}
+\label{sec:datafitting}
+
+We plot the rendering time as a function of number of fragments
+drawn in \autoref{fig:hs_draw_times} for different values of $N$, $d$, and $r$. 
+Each dimension is treated separately as our estimation procedure is volume-based
+and volumes are not readily comparable between dimensions.  
+In particular, the units of volume depend on the dimensionality and the 
+relationship between radius and volume,
+for example, a $3$-dimensional ball is very different from a
+$5$-dimensional ball.
+Furthermore, the dimensionality of the data is usually given and not 
+variable while one can vary the number of sample points.
+The x-axis in the figure is
+the actual number of fragments drawn on screen and the y-axis is the 
+time, in seconds, to draw the frame.  As predicted by \autoref{eq:exptotal},
+the rendering time remains constant while the GPU is primarily filtering 
+points and then increases linearly with the number of fragments once the 
+drawing stage dominates.
+
+To fit these data we first computed the fragments and rendering time per 
+sample by dividing the recorded fragments and time by $N {d \choose 2}$
+since our prediction function, \autoref{eq:calib-acttotal-H}, is linear in $N {d
+\choose 2}$.  We also filtered out any experiments where the rendering time was
+greater than $1$ second since this would extend the sampling time and we
+are primarily concerned with finding interactive times.  We then fit a basic 
+linear model and a 2-segment
+regression model using the \texttt{segmented} package~\cite{Muggeo:2008} in R.
+If the slope of the two segments did not differ significantly then we simply
+used the linear model and set the break-point to $0$.  For these dimensions
+the rendering time always dominates.  We found that if the ratio between slopes
+of the $2$-segment regression was greater than $10$ then we got a better fit
+with the $2$-segment regression than with a single linear fit.
+
+The blue line shown in \autoref{fig:hs_draw_times} is the predicted rendering time
+versus the number of fragments drawn.  Here the blue line goes directly through
+the cloud of timing points.  The multiple horizontal lines within each dimension
+correspond to the different values of $N$ we used in our experiments.
+We can also see as the dimensionality increases,
+the filtering time begins to dominate.  This is because for each subplot of the
+HyperSlice we must filter all $N$ points and the number of subplots increases
+as $O(d^2)$.  We can also see how the slope of the rendering time line
+($t_\text{H}$ in \autoref{eq:calib-acttotal-H} and \autoref{tbl:model_fits}) decreases as
+the dimensions increase. This is because the screen size for running the
+experiments is fixed so as the number of dimensions increase the area of each
+individual plot becomes smaller since we have $d \choose 2$ HyperSlices.
+Therefore, in higher dimensions we have fewer pixels to process. 
+%Our
+%``fragments drawn'' measure in \autoref{fig:hs_draw_times} is based on calculating
+%the size of the geometry to be rendered \emph{before} rasterization by the GPU.
+
+The table of parameters by dimension for our reference system is
+listed in \autoref{tbl:model_fits}. Here the relationship
+between the number of dimensions and the fitted parameters is more apparent.
+For lower numbers of dimensions ($3$--$5$), it is difficult to directly measure
+the filtering time ($t_f$) as the rendering time always dominates. In this
+case $t_f$ is just the y-intercept of the fit line for the rendering time.
+For higher values of $d$ ($d>5$), we can directly measure the filtering time.
+The reason $t_f$ increases between dimensions $8$ and $9$ is because in the
+filtering code we parallelize the distance computations in OpenGL using the
+\texttt{vec4} type for every group of dimensions. So, an additional group
+of \texttt{vec4}s is required for dimensions $9$--$12$ and computing distances with these additional \texttt{vec4}s takes slightly more time.
+
+\begin{table}[h]
+%\begin{table}[htb]
+\centering
+\caption{
+  Table showing the calibrated parameters, $a$, $t_f$, and $t_\text{H}$,
+  as a result of running a segmented regression fit using the data we gathered
+  from our timing experiments and \autoref{eq:expanded-regression}.
+  The factors $t_f$ and $t_\text{H}$ are in nanoseconds and $a$ is defined
+  in terms of fragments per sample.
+}
+\include{figures/model_fits}
+\label{tbl:model_fits}
+\end{table}
+
+\subsection{Accuracy}
+ 
+\begin{figure*}[t]
+  \centering
+  \begin{subfigure}{0.5\textwidth}
+    %\includegraphics[width=\textwidth]{act_err_histo}
+    \include{figures/act_err_histo}
+    \caption{Actual prediction error}
+    \label{fig:hs_abs_error}
+  \end{subfigure}%
+  \begin{subfigure}{0.5\textwidth}
+    %\includegraphics[width=\textwidth]{rel_err_histo}
+    \include{figures/rel_err_histo}
+    \caption{Relative prediction error}
+    \label{fig:hs_rel_error}
+  \end{subfigure}
+  \caption{%
+    Histograms showing actual (a) and relative (b) error rates
+    for the HyperSlice method
+    comparing predictions using \autoref{eq:calib-acttotal-H} to empirical 
+    results.  We show (b) as a scatterplot in order to demonstrate that
+    the largest relative errors occur when the drawing times are 
+    smallest.
+    Each dimension is treated separately since the units of volume differ
+    for each dimension and we have computed the filtering time, $t_f$,
+    and drawing time, $t_\text{H}$, separately for each dimension.
+  }
+  \label{fig:hs_accuracy}
+\end{figure*}
+
+As with the filtered scatterplot, we compared our predicted running time
+against new timing data using the same experimental conditions.  We do this
+in order to test new values of $r$.  We then compared the predicted 
+rendering time against the empirically recorded ones. 
+\autoref{fig:hs_accuracy} shows the absolute and relative
+errors for prediction using the HyperSlice method and squared exponential 
+kernel regression.
+
+Many of the largest relative errors occur for the smallest total rendering
+times so \emph{any} miscalculation will result in a large relative error.  The
+actual difference, is shown as a histogram in \autoref{fig:hs_abs_error}.  Each
+sub-plot is a separate dimension.  We show the difference between the
+predicted and measured rendering times, in seconds, on the x-axis.  Every
+dimension has a strong spike at $0$ indicating that most of our predictions
+are off by a very small amount with only a few being very inaccurate.  We also
+show the relative error as a hexagonal-binned plot in \autoref{fig:hs_rel_error}.
+A hexagonal-binned plot~\cite{Carr:1987} is a $2$d density plot using a
+hexagonal grid as the binning primitive.  The x-axis is the percent error
+between the predicted time and the measured time relative to the recorded time
+and the y-axis is the measured time to render the frame.  Many of the
+rendering times are very small so any error in the prediction results in a
+very high relative error.
+
+In order to check the predictive ability of our procedure we also performed a 
+5-fold cross validation.  For each dimension, we split the data so that
+$20\%$ is used for building the model and the remaining $80\%$ used for 
+testing.  We then use the testing set to compute the difference between the 
+predicted and expected rendering times.  We then repeat this procedure four
+more times using the next $20\%$ partition for training.  We then compute
+the root-mean squared error and maximum absolute
+error between the prediction and the recorded values.  The results are 
+shown in \autoref{tb:cv_results}.  While the relative errors may
+seem high these occur when we are trying to predict very small
+times so any error will be high on a relative basis.
+We also show the
+Nash-Sutcliffe efficiency~\cite{Nash:1970} for each dimension, which is the 
+ratio of variance explained by our model to the total variance.  This ranges
+from $-\infty$ to $1$ where values close to $1$ mean that the model explains 
+most of the total variance.  A value over $0$ is considered an acceptable
+level of performance~\cite{Moriasi:2007}.
+All of the values in \autoref{tb:cv_results} are 
+very close to one so our model contains a great deal of information from
+the data.
+
+\begin{table}[htb]
+\centering
+\caption{
+  Results of the cross-validation procedure.  For each dimension we compute
+  the root-mean squared error of prediction as well as the Nash-Sutcliffe
+  efficiency~\cite{Nash:1970}, and the relative maximum error.  The 
+  Nash-Sutcliffe
+  efficiency is the ratio of the variance explained by our prediction
+  model to the total variance.
+  All errors are in terms of seconds.
+  }
+\include{figures/cv_results}
+\label{tb:cv_results}
+\end{table}
+
+

@@ -224,7 +224,7 @@ on the screen (\autoref{fig:slicing:plane}).
       \State $\lambda_x x + \lambda_y y + \lambda_c \gets T^{-1} r$ \Comment{convert to barycentric coordinates}
       \State $\textrm{rng}_x \gets [-\infty,\infty]$
       \State $\textrm{rng}_y \gets [-\infty,\infty]$
-      \For {$i\gets 1 \textrm{ to } d+1$} \Comment{each face of the simplex} 
+      \For {$i\gets 1 \textrm{ to } d+1$} \Comment{each face of the simplex}
         \State $(\textrm{rng}'_x,\textrm{rng}'_y) \gets$ \Call{solve}{$\lambda_{x,i} x + \lambda_{y,i} y + \lambda_{c,i} = 0, \textrm{s.t.} \forall j \ne i, 0 \le \lambda_{x,j} x + \lambda_{y,j} y + \lambda_{c,j} \le 1$}
         \State $\textrm{rng}_x \gets \textrm{rng}_x \cap \textrm{rng}'_x$
         \State $\textrm{rng}_y \gets \textrm{rng}_y \cap \textrm{rng}'_y$

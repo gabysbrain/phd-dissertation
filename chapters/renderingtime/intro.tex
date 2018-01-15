@@ -1,0 +1,121 @@
+
+\section{Motivation}
+
+Many scientific studies investigate the relationship between
+several explanatory variables (inputs) and one or more system response
+variables (outputs), thereby leading to multi-dimensional data sets.  Such data
+can arise in exploration of the input-output map for applications ranging from
+weather, physics and biological processes to image segmentation systems.  
+In these cases, the output
+is actually a complex object such as a segmented image or 3D+time weather data.
+A key step towards learning about the mechanisms that are present in a
+computational model or laws that govern natural phenomena is to study how
+changes in the input variables affect the output.  Visual inspection of
+individual outputs is suitable in small multiples, but does not scale well with
+increasing numbers of parameters, because of the large number of runs that are
+required to adequately represent model behavior in the region of interest.  To
+more comprehensively compare outputs, automation can be taken a step further,
+for instance, by processing the outputs with feature extractors or fitness
+functions that are relevant to the driving questions.  An interactive, visual
+investigation of the resulting feature density distribution or fitness
+landscape then becomes
+possible~\cite{Feiner:1990,Muhlbacher:2013,Piringer:2010}, but is subject to 
+some fundamental numerical
+challenges that are topic of this paper.
+
+The general approach to
+study deterministic computer models is known in the statistics community as
+\emph{the design and analysis of computer experiments}~\cite{Santner:2003}.
+This method involves reconstructing a continuous functional representation of
+the relationships among variables of the system from a discrete set of 
+samples and then investigating the
+input/output relationship of the function.  Numerical methods for
+this purpose include local derivative computation, global sensitivity
+indices~\cite{Saltelli:2008}, and response surface
+exploration~\cite{Box:2007}.  However, these derived computations have to be
+set up carefully to yield meaningful results. 
+
+The most well known example of non-interactive visualizations of the 
+relationships is the scatterplot 
+matrix for viewing discrete samples.
+Another example are continuous plots of ``average'' behavior over the 
+range of each
+dimension, as exemplified in Chapman et al.~\cite{Chapman:1994}.
+However, any 2D or 3D view of a multi-dimensional space necessarily requires
+aggregation of that space.
+We can only ``see'' a subsection of the parameter
+space at one time.
+Therefore, one must create multiple static views, each looking at 
+the data from a different perspective.  A scatterplot matrix, for example,
+shows a 2D projection of the data for each pair of dimensions.
+
+By allowing for user interaction one is not limited to a
+predetermined set of views.  
+When the view selection changes then a new view of the data must be built
+on the fly.
+However, if the visualization system does not respond quickly to 
+the user's interaction then the cognitive connection with the visualization
+is lost~\cite{Shneiderman:1987} along with the advantage of adding 
+interaction in the first place.
+Arguments about what exact
+response time makes a visualization \emph{interactive} vary.  However,
+view updates somewhere between 10fps to 60fps are typically deemed acceptable.
+
+One interactive, multi-dimensional, continuous
+visualization method
+is HyperSlice~\cite{Wijk:1993}, which presents the user
+with a matrix of 2D slices of a multi-dimensional continuous function
+around a particular viewpoint in space.
+HyperSlice allows the user to change the
+location of the viewpoint around which they are inspecting.
+Given this method, it would be ideal to know if the number of
+points or the dimensionality of the dataset will overwhelm the
+graphics capabilities of the user's machine and slow the frame rate. 
+Hence, we need a way to evaluate a priori what the frame rate will be
+given our data. The main aim of this paper is developing a methodology to 
+estimate the rendering time of a multi-dimensional
+visualization system in the form of a predictive formula.
+We can even invert this formula so that, given a desired frame rate, 
+we can compute the number of points 
+possible to render in the given time.
+This inversion can be used, for example, 
+to automatically sub-sample the dataset when the predicted rendering 
+time will be too slow.  
+
+In order to be able to \emph{predict} the rendering time we must come up with a
+function for the average rendering time based on the size of the $N \times d$
+multi-dimensional dataset as well as the search distance, $r$, over all possible view
+points.  The advantage
+of a predictive formula is that, once fit, one can estimate the rendering time
+for all unknown values of $N$, $d$, and $r$.
+In addition, we can use this function to examine the time and accuracy
+trade-off in terms of point spread versus number of samples.
+
+A proper prediction function should describe the number
+of pixels that will need to be drawn based on the scene geometry.
+In order to adapt this function
+to each user's
+hardware platform, we require a universal methodology that can be run on
+each user's environment to make accurate predictions.
+Combining this strong theoretical foundation with a fitting step makes our
+method robust to further developments in GPU technology and algorithm 
+development. We can simply recompute the time it takes the GPU to filter and
+draw the points without having to worry about hardware-specific optimizations.
+
+The contributions of this paper are:
+
+\begin{itemize}
+
+\item An evaluation of how to render multi-dimensional slices on the GPU 
+      and how we can use that to predict the number of pixels drawn on screen.
+
+\item A fitting procedure for predicting rendering times on an
+ individual user's hardware.
+
+\item An application of the prediction formula where we show an algorithm
+	  for subsampling data until we can render interactively.  We also 
+	  show a UI dialog box for selecting the number of samples based on
+	  the predicted rendering time.
+
+
+\end{itemize}
