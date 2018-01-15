@@ -17,7 +17,7 @@ refs:
 	bibtool /home/tom/Dropbox/Papers/all.bib -x $(MAINTEX).aux > $(MAINTEX).bib
 
 clean:
-	rm -f *.aux *.bbl *.blg *.brf *.fls *.fdb_latexmk *.lbl *.log \
+	rm -f *.aux *.bbl *.blg *.brf *.fls *.fdb_latexmk *.lbl *.log *.toc \
 	$(MAINTEX).pdf 
 
 
