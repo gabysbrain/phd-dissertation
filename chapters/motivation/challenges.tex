@@ -1,27 +1,58 @@
-\section{Challenges with multi-dimensional
-spaces}\label{challenges-with-multi-dimensional-spaces}
+
+\section{Challenges with multi-dimensional spaces}
+\label{sec:multi-d-challenges}
 
 Given the importantance of multi-dimensional data analysis, a number of
 projects from the visualization community, as well as others, have worked on
 this problem. 
 
-\begin{itemize}
-\tightlist
-\item
-  understandability of \textgreater{}3D
-\item
-  how visualization can help
-\item
-  options for putting things on a 2D screen
-\item
-  linked views
-\item
-  projections
-\item
-  dimension reduction
-\item
-  diagram methods
-\item
-  slices
-\end{itemize}
+\ttwnote{challenges in general}\ttwnote{understandability of more than 3D}
+%\item understandability of \textgreater{}3D
+
+Understanding multi-dimensional space is difficult. As humans, we simply do 
+not have the spatial analogs in more than three dimensions. A number of methods
+have been developed to extract specific features from the multi-dimensional
+object. For example, \ttwnote{something about polytopes}, \ttwnote{others}.
+However, these only produce an answer without sufficient context. They do not 
+necessarily give any intuition as to how to transfer our three-dimensional
+knowledge to multi-dimensional spaces.
+
+\ttwnote{how visualization can help}
+%\item how visualization can help
+
+\ttwnote{some sort of insight generation from context?}
+
+The difficulty of visualizing a continuous multi-dimensional space on a
+two-dimensional screen brings a number of challenges. We treat each dimension
+separately, thus, we need several different visual channels. The ranking of
+effectiveness of visual channels was proposed by Bertin~\cite{Bertin:1967} and
+confirmed through experiments by Mackinlay~\cite{Mackinlay:1986} and
+Heer~\cite{Heer} \ttwnote{others?}. We are also limited in how many channels we
+can use simulataneously. According to Ware~\cite{Ware}, many channels, such as
+red and green are not visually seperable. Furthermore, each dimension of the
+multi-dimensional object under study is often treated equally. For example, no
+particular axis of a polytope is more important than any other.  We should
+encode each dimension using equally weighted effectiveness channels.  With
+fewer channels available than data dimensions we either need to reduce the data
+or use multiple views to properly visualize the data.
+
+%\item diagram methods
+
+Purely data-driven methods are commonly known as feature selection or dimension
+reduction. The goal is to find a subset of dimensions that are critical to
+understanding the dataset. \ttwnote{issues of understanding the mapping}
+\ttwnote{topology throws away the parameters} Projections also synthesize the
+dataset into new dimensions to show using visual channels. \ttwnote{example}
+\ttwnote{also figure out where to put projection}
+
+View-based methods try and produce multiple linked views of a multi-dimensional
+dataset from different angles. Each view shows a subset of the dimensions.
+This way we can use a proper set of visual channels for each view.  We use
+interaction to link these different views. These multiple, coordinated, linked
+views have been one of the biggest success stories from the visualization
+community~\cite{ref}. The traditional HyperSlice~\cite{Wijk:1993} technique
+falls into this category. Each panel of the HyperSlice view shows two of the
+input dimensions and the value is encoded with color.
+
+\ttwnote{conclude and transition}
 
