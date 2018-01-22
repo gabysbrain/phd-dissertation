@@ -25,11 +25,43 @@ Slice views use the horizontal and vertical axes for showing the effects due to
 the input parameters. These axes are the most perceptually uniform~\cite{ref}
 and are considered the most effective (\autoref{tbl:enc_effectiveness}).
 \ttwnote{expand}
+One- or two-dimensional plots are replicated for each combination of dimensions
+in order to show more than two dimensions at once. This promotes familiarity
+of the visualization. Once the user has learned to read a single panel, they
+can apply this knowledge to the remaining panels. This approach follows the
+principal of small multiples~\cite{ref}.
 
-\ttwnote{issues of interaction}
+In order to produce a slice plot one needs to first pick a particular
+\emph{focus point} in the multi-dimensional space. This focus point determines
+which slices are being viewed. Selecting a good focus point a-priori is
+difficult. It either requires a great deal of luck or careful analysis of the
+dataset. This is not always possible. Slice-based views require some sort of
+interactive focus point selection. Interactively browsing through the slices
+requires interaction controls to give the user control over the focus point.
+Furthermore, we need some kind of navigation map to show which focus points the
+user has selected so that they do not become lost. Neither of these navigation
+aids are well developed at this point. This need for interaction is likely one
+of the reasons that slice-based views have not developed as much as projection
+or topological techniques. Static views are much easier to include in papers
+and don't require explanation prior to use.
 
+The other implementation issue of slice-based views is ensuring that the
+visualization can remain interactive. In this case, interactive is defined as
+the rate at which the user can maintain their \ttwnote{mental
+focus}~\cite{Shneiderman:????}. This is often defined at 10 frames per second.
+It can be difficult to compute a 2D slice of an arbitrary complex
+multi-dimensional object. 
 
-\ttwnote{also talk about shapes vs manifolds}
+In my own work, I address these two critical issues. The navigation issue can
+be solved with sampling. With both Sliceplorer (\autoref{chp:sliceplorer}) and
+HyperSliceplorer (\autoref{chp:hypersliceplorer}), I sample over a number of
+focus points and display them all at once. In \autoref{chp:rendering}, I
+discuss how we can take advantage of the multi-dimensional geometry to allow
+interactive-speed browsing of the focus points. My goal is to highlight the
+advantages of slice-based methods for multi-dimensional data analysis. At the
+same time I want to address the limitations. The end goal is to bring
+slice-based views into the standard toolbox of visualizations.
+
 
 
 
