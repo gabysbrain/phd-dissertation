@@ -48,18 +48,38 @@ Thus, these can all be analyzed with similar visualizations.
 \subsection{Shapes}
 \label{sec:shapes}
 
+One may also want to understand the relationship or correlation between
+multiple continuous values. This is in contrast to studying the relationship
+between independent and dependent variables in the manifold case. In this case
+we want to study the relationship of all variables. Careful study of the shape
+of the dataset can give insight into the overall shape of the object. For
+example, one may want to know if the multi-dimensional object is shaped like a
+sphere, donut, or box.
+In addition one may be interested in any kinks or cusps in the dataset.
+\ttwnote{why?} These do not necessarily need to be true cusps. Changes in
+the gradient and curvature of the shape are also of great interest.
+%Detecting these changes can be difficult to do numerically so 
 
+These analysis tasks of multi-dimensional shapes can be applied to a number of
+different areas. The study of polytopes is one such area and perhaps the most
+direct application of understanding multi-dimensional continuous shapes.
+Polytopes are the multi-dimensional generalization of polyhedra and polygons.
+The tasks are to understand the symmetries and patterns making up the
+polytopes~\cite{Ziegler}. Perhaps a less obvious connection is the analysis of
+the tradeoff curves in multi-objective optimization. Since we are performing
+optimization we are interested in the tradeoffs amongst all the non-dominated
+points~\cite{nondominated}. This is also known as the Pareto front. In this
+case, the user wants to understand what are the costs of reducing one or more
+parameters in order to increase the value of others. Cusps or large changes in
+curvature in these datasets are important since they show fundamental changes
+in the rate of tradeoff.  With a proper view of a multi-dimensional object we
+can also view differences betweeen two objects directly. With 1-, 2-, or 3-D
+objects we show these differences directly and can understand them.
+\ttwnote{showing a difference object is hard enough} However, the two-stage
+processing of showing a difference object and then performing dimension
+reduction makes it difficult to view difference objects with dimension
+reduction. Slicing, as a direct visualization technique, does not have this
+problem.
 
-\begin{itemize}
-\item
-  geometry
-\item
-  Pareto analysis
-\item
-  spaces of polynomials
-\item
-  isosurfaces
-\item
-  spheres
-\end{itemize}
+\ttwnote{conclude, move on}
 
