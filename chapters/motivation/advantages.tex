@@ -2,34 +2,35 @@
 \label{sec:slicing-advantages}
 
 Slicing offers a number of advantages over other multi-dimensional
-visualization techniques. 
-
-Slicing is a direct visualization of the multi-dimensional object. In contrast
-to methods like projection or feature synthesis, slicing does not distort the
-dimensions in order to display them on a two-dimensional screen. Since there is
-no distortion, distances in the visual representation are directly proportional
-to distances in the object. This is one of the reasons that slicing is popular
-in the medical imaging community. Sizes of organs or tumors can be measured
-visually on screen. Additionally, relative sizes correspond to what a doctor
-would expect to see in the body. Multi-dimensional data is abstract. It lacks
-the correspondence to real-world objects that the medical community uses to
-understand their two- and three-dimensional datasets.  Nevertheless, it is
-still important in multi-dimensional data analysis to properly estimate
-distances and relative sizes. \ttwnote{why?}
+visualization techniques. Slicing is a direct visualization of the
+multi-dimensional object. In contrast to methods like projection or feature
+synthesis, slicing does not distort the dimensions in order to display them on
+a two-dimensional screen. Since there is no distortion, distances in the visual
+representation are directly proportional to distances in the object. This is
+one of the reasons that slicing is popular in the medical imaging community.
+Sizes of organs or tumors can be measured visually on screen. Additionally,
+relative sizes correspond to what a doctor would expect to see in the body.
+Multi-dimensional data is abstract. It lacks the correspondence to real-world
+objects that the medical community uses to understand their two- and
+three-dimensional datasets. Nevertheless, it is still important in
+multi-dimensional data analysis to properly estimate distances and relative
+sizes. 
 
 Another benefit of the direct visualization is that users do not require
-extensive training to understand the visualization. \ttwnote{example?} 
-\ttwnote{more}
+extensive training to understand the visualization. The concept of slicing
+through a three-dimensional object is a familiar one. Humans are used to this
+even from cooking. This concept of slicing can be extended from this 
+well-known metaphor to cover multiple slices of multi-dimensional objects.
 
 Slice views use the horizontal and vertical axes for showing the effects due to
-the input parameters. These axes are the most perceptually uniform~\cite{ref}
-and are considered the most effective (\autoref{tbl:enc_effectiveness}).
-\ttwnote{expand}
-One- or two-dimensional plots are replicated for each combination of dimensions
-in order to show more than two dimensions at once. This promotes familiarity
-of the visualization. Once the user has learned to read a single panel, they
-can apply this knowledge to the remaining panels. This approach follows the
-principal of small multiples~\cite{ref}.
+the input parameters. These axes are the most perceptually
+uniform~\cite{Stevens:1957} and are considered the most effective
+(\autoref{tbl:enc_effectiveness}). One- or two-dimensional
+plots are replicated for each combination of dimensions in order to show more
+than two dimensions at once. This promotes familiarity of the visualization.
+Once the user has learned to read a single panel, they can apply this knowledge
+to the remaining panels. This approach follows the principal of small
+multiples~\cite{Archambault:2011}.
 
 In order to produce a slice plot one needs to first pick a particular
 \emph{focus point} in the multi-dimensional space. This focus point determines
@@ -47,9 +48,9 @@ and don't require explanation prior to use.
 
 The other implementation issue of slice-based views is ensuring that the
 visualization can remain interactive. In this case, interactive is defined as
-the rate at which the user can maintain their \ttwnote{mental
-focus}~\cite{Shneiderman:1987}. This is often defined at 10 frames per second.
-It can be difficult to compute a 2D slice of an arbitrary complex
+the rate at which the user can maintain their
+concentration~\cite{Shneiderman:1987}. This is often defined at 10 frames per
+second. It can be difficult to compute a 2D slice of an arbitrary complex
 multi-dimensional object. 
 
 In my own work, I address these two critical issues. The navigation issue can

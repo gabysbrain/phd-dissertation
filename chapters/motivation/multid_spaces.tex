@@ -3,8 +3,11 @@
 \label{sec:motivation:multi-d}
 
 There are a number of varied domains where one can apply the analysis of
-continuous multi-dimensional data.
-\ttwnote{contribution: taxonomy of domains}
+continuous multi-dimensional data.  As of yet, there has not been a
+comprehensive data and task analysis for multi-dimensional continuous data
+analysis. Work in this area has traditionally focused on developing a specific
+visualization for a specific task. For example, topological spines extracts
+critical points from a scalar field~\cite{Correa:2011}.
 
 %Often work on continuous multi-dimensional data analysis is done in the context
 %of design studies~\cite{Sedlmair:2012}. The issue is transferability, while
@@ -19,7 +22,7 @@ relationship between inputs and outputs. This is a functional relationship.
 The user wants to inspect how changes in the inputs (independent variables)
 affect the outputs (dependent variables). One can also perform \emph{shape}
 analysis. Here, in terms of the analysis goals, there is no identification of
-independent and depdendent variables. \ttwnote{expand this a bit}
+independent and depdendent variables. We look at each of these in turn.
 
 \subsection{Manifolds}
 \label{sec:manifolds}
@@ -28,22 +31,35 @@ Studying manifolds means studying functional relationships. The critical issue
 is understanding the relationship between independent and dependent factors.
 \ttwnote{subtasks}. Analyzing functions is of course within the realm of
 manifold analysis. \ttwnote{examples of work} Another area where understanding
-the manifold is important is analyzing optimization surfaces and functions.
-\ttwnote{want to see number and relative depth of bowls/peaks same as sens
-analysis} \ttwnote{algo can get stuck}
+the manifold is important is analyzing optimization surfaces and functions.  In
+this case, the identification of extrema is important for understanding how
+many and the relative location of local optima. In addition, we want to
+understand the degree to which these are extrema. These can result in global
+optimization algorithms ``getting stuck'' in local optima rather than
+continuing to search for the global optimum. Optimization algorithms need to be
+carefully tuned to properly detect these features and ignore them where
+necessary.
 
-\ttwnote{example} Simulation analysis is another area where the analysis tasks,
-in the abstract, is examining functions. \ttwnote{latex equation here?} If we
-look back at the weather simulation from before, the inputs to the function are
-things like the temperature and pressure. The output is, for example, the
-likelihood of rain the next day. The function is the simulation itself.
-Computer simulations are deterministic. Stochastic simulations can be converted
-to deterministic by treating the random number generator seed as another
-parameter.  A deterministic simulation has a mapping from each unique input
-parameter configuration to an output value. This is the same as a functional
-relationship. The sensitivity, extrema, and \ttwnote{something} are also
-important to simulation analysis. \ttwnote{what is the goal?}
-Thus, these can all be analyzed with similar visualizations.
+Simulation analysis is another area where the analysis tasks, in the abstract,
+is examining functions. If we look back at the weather simulation from before,
+the inputs to the function are things like the temperature and pressure
+(\autoref{eqn:simfunc}). The output is, for example, the likelihood of rain the
+next day. The function is the simulation itself. Computer simulations are
+deterministic. Stochastic simulations can be converted to deterministic by
+treating the random number generator seed as another parameter.  A
+deterministic simulation has a mapping from each unique input parameter
+configuration to an output value. This is the same as a functional
+relationship. The sensitivity and extrema are also important to simulation
+analysis. Simulations can be used to run experiments that are impractical or
+impossible in the real world. Thus, these can all be analyzed with similar
+visualizations.
+
+%\begin{equation}
+\begin{eqnarray}
+  P(\textrm{rain}) = f(\textrm{temperature}, \textrm{pressure}, \ldots)
+  \label{eqn:simfunc}
+\end{eqnarray}
+%\end{equation}
 
 \subsection{Shapes}
 \label{sec:shapes}
@@ -75,7 +91,8 @@ or large changes in curvature in these datasets are important since they show
 fundamental changes in the rate of tradeoff.  With a proper view of a
 multi-dimensional object we can also view differences betweeen two objects
 directly. With 1-, 2-, or 3-D objects we show these differences directly and
-can understand them.  \ttwnote{showing a difference object is hard enough}
+can understand them.  Showing a difference object requires the user to reconstruct
+the two objects at once. This requires quite a lot of mental processing.
 However, the two-stage processing of showing a difference object and then
 performing dimension reduction makes it difficult to view difference objects
 with dimension reduction. Slicing, as a direct visualization technique, does

@@ -6,16 +6,14 @@ Given the importantance of multi-dimensional data analysis, a number of
 projects from the visualization community, as well as others, have worked on
 this problem. 
 
-\ttwnote{challenges in general}\ttwnote{understandability of more than 3D}
-%\item understandability of \textgreater{}3D
-
-Understanding multi-dimensional space is difficult. As humans, we simply do 
-not have the spatial analogs in more than three dimensions. A number of methods
+Understanding multi-dimensional space is difficult. As humans, we simply do not
+have the spatial analogs in more than three dimensions. A number of methods
 have been developed to extract specific features from the multi-dimensional
-object. For example, \ttwnote{something about polytopes}, \ttwnote{others}.
-However, these only produce an answer without sufficient context. They do not 
-necessarily give any intuition as to how to transfer our three-dimensional
-knowledge to multi-dimensional spaces.
+object. For example, when studying polytopes, the number of faces and
+symmetries is very important~\cite{Ziegler:2012}. However, these only produce
+an answer without sufficient context. They do not necessarily give any
+intuition as to how to transfer our three-dimensional knowledge to
+multi-dimensional spaces.
 
 \ttwnote{how visualization can help}
 %\item how visualization can help
@@ -25,35 +23,61 @@ knowledge to multi-dimensional spaces.
 The difficulty of visualizing a continuous multi-dimensional space on a
 two-dimensional screen brings a number of challenges. We treat each dimension
 separately, thus, we need several different visual channels. The ranking of
-effectiveness of visual channels was proposed by Bertin~\cite{Bertin:1967} and
-confirmed through experiments by Mackinlay~\cite{Mackinlay:1986} and
-Heer~\cite{Heer} \ttwnote{others?}. We are also limited in how many channels we
-can use simulataneously. According to Ware~\cite{Ware:2004}, many channels, such as
-red and green are not visually seperable. Furthermore, each dimension of the
-multi-dimensional object under study is often treated equally. For example, no
-particular axis of a polytope is more important than any other.  We should
-encode each dimension using equally weighted effectiveness channels.  With
-fewer channels available than data dimensions we either need to reduce the data
-or use multiple views to properly visualize the data.
+effectiveness of visual channels (shown in \autoref{tbl:visual_encodings}) was
+proposed by Bertin~\cite{Bertin:1967} and confirmed through experiments by
+Cleveland and McGill~\cite{Cleveland:1984}, Mackinlay~\cite{Mackinlay:1986},
+and Heer and Bostock~\cite{Heer:2010}.  Munzner~\cite{Munzner:2014} provides a
+summary of the results. In addition, there are many others. We are also limited
+in how many channels we can use simulataneously. According to
+Ware~\cite{Ware:2004}, many channels, such as red and green are not visually
+seperable. Furthermore, each dimension of the multi-dimensional object under
+study is often treated equally. For example, no particular axis of a polytope
+is more important than any other.  We should encode each dimension using
+equally weighted effectiveness channels.  With fewer channels available than
+data dimensions we either need to reduce the data or use multiple views to
+properly visualize the data.
 
-\ttwnote{table/image of visual encoding effectiveness}
-%\item diagram methods
+\begin{table}
+  \caption{Rankings of visual encodings of quantiative data}
+  \label{tbl:visual_encodings}
+  \begin{tabular}{llll}
+    \cite{Bertin:1967} & \cite{Cleveland:1984} & \cite{Mackinlay:1986} & \cite{Munzner:2014} \\
+     Position & Position along a common scale & Position & Position on common scale \\
+     Size & Position along identical, nonaligned scales & Length & Position on unaligned scale \\
+     (Grey) Value & Length & Angle & Length (1D size) \\
+     Texture & Direction & Slope & Tilt/angle \\
+     Color & Angle & Area & Area (2D size) \\
+     Orientation & Area & Volume & Depth (3D position) \\
+     Shape & Volume & Density & Color luminance\\
+     & Curvature & Color saturation & Color saturation \\
+     & Densities & Color hue & Curvature \\
+     & Shading & & Volume (3D size) \\
+     & Color saturation &           & 
+  \end{tabular}
+\end{table}
 
 Purely data-driven methods are commonly known as feature selection or dimension
 reduction. The goal is to find a subset of dimensions that are critical to
-understanding the dataset. \ttwnote{issues of understanding the mapping}
-\ttwnote{topology throws away the parameters} Projections also synthesize the
-dataset into new dimensions to show using visual channels. \ttwnote{example}
-\ttwnote{also figure out where to put projection}
+understanding the dataset. Topological techniques take this a step further.
+They discard all spatial information about the dataset and only concentrate on
+the difference in function value, as in the Morse-Smale
+complex~\cite{Gyulassy:2012a}, or evolution of contours, as in the contour
+tree~\cite{Carr:2003a}.  Projections also synthesize the dataset into new
+dimensions to show using visual channels. Principal component
+analysis~\cite{PCA} is a popular choice in this area. This rotates the space
+and thus produces new set of dimensions that are a linear combination of the
+input dimensions. Even this relatively simple operation (a rotation) can be
+difficult to understand. For example, iPCA~\cite{Jeong:2009a} was a tool to
+help users understand the effects of the dimensional transformation.
 
 View-based methods try and produce multiple linked views of a multi-dimensional
 dataset from different angles. Each view shows a subset of the dimensions.
 This way we can use a proper set of visual channels for each view.  We use
 interaction to link these different views. These multiple, coordinated, linked
 views have been one of the biggest success stories from the visualization
-community~\cite{ref}. The traditional HyperSlice~\cite{Wijk:1993} technique
-falls into this category. Each panel of the HyperSlice view shows two of the
-input dimensions and the value is encoded with color.
+community~\cite{Rao:1994}. The traditional HyperSlice~\cite{Wijk:1993}
+technique falls into this category. Each panel of the HyperSlice view shows two
+of the input dimensions and the value is encoded with color.
 
 \ttwnote{conclude and transition}
 

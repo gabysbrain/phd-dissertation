@@ -1,22 +1,21 @@
 %Thesis: Multi-dimensional spaces are better visualized through slice based views
 
-We live in a three-dimensional world. This is a relatively
-uncontroversial statement. Some argue that time also behaves as a
-dimension but we do not have control over it thus giving the universe
-3.5 dimensions~\cite{cite}. Nevertheless, ourselves and what we can
-interact with are in three dimensions.
+We live in a three-dimensional world. This is a relatively uncontroversial
+statement. Some argue that time also behaves as a dimension but we do not have
+control over it thus giving the universe 3.5 dimensions~\cite{Minkowski:1908}.
+Nevertheless, ourselves and what we can interact with are in three dimensions.
 
 However, we interact with many phenomena around us that are essentially
-multi-dimensional in nature. For example, the weather in a certain
-location is determined by the temperature, pressure, humidity, dew
-point, wind velocity, wind direction, among others. A change in any of
-these factors results in a change in the weather. Each of these factors
-can be viewed as a dimension of some space\ttwnote{spatial embedding}.
-By ``walking'' or navigating through this space we can observe the
-effect on the weather due to changes in these parameters. By exploring
-the relationship between input factors (temperature, pressure, et
-cetera) and outputs (the weather) we can build an understanding on how
-these factors infuence the weather.
+multi-dimensional in nature. For example, the weather in a certain location is
+determined by the temperature, pressure, humidity, dew point, wind velocity,
+wind direction, among others. A change in any of these factors results in a
+change in the weather. Each of these factors can be given a ``spatial
+embedding.'' Then, they can be viewed as a dimension of some space.  By
+``walking'' or navigating through this space we can observe the effect on the
+weather due to changes in these parameters. By exploring the relationship
+between input factors (temperature, pressure, et cetera) and outputs (the
+weather) we can build an understanding on how these factors infuence the
+weather.
 
 Understanding multi-dimensional continuous spaces is difficult. As
 three-dimensional beings we have real-world analogs for measurement,
@@ -28,19 +27,39 @@ than three dimensions on a two-dimensional screen. There are several
 techniques to do this: dimension reduction, projection, slicing,
 topology, linked views, and slicing.
 
-Slice-based views of multi-dimensional continuous spaces have not been
-explored as extensively as other options. 
-This work began with HyperSlice~\cite{Wijk:1993}. HyperSlice provides the
-framework for visualizing multi-dimensional continuous objects as a set of
-two-dimensional slices. \ttwnote{more description, reference diagram}
-In my own work, I aim to explore the possibilities of
-\ttwnote{I aim for work covering all possible data types}
+Slice-based views of multi-dimensional continuous spaces have not been explored
+as extensively as other options.  This work began with
+HyperSlice~\cite{Wijk:1993}. HyperSlice provides the framework for visualizing
+multi-dimensional continuous objects as a set of two-dimensional slices
+(\autoref{fig:slicing_overview}). HyperSlice extends the idea of slicing
+from medical imaging to any number of dimensions. There are $d \choose 2$
+subpanels, one for each pair of dimensions. Each panel shows a 2D slice
+of the object. The horizontal axis shows one dimension and the vertical 
+axis shows another dimension. With 2D slices of solid multi-dimensional objects
+color is often used to encode value. 
+
+My work is inspired by the HyperSlice technique. Van Wijk and van Liere
+introduced the idea of using slice-based views of multi-dimensional data.
+However, they did not expand on what data types and tasks are involved in
+multi-dimensional continuous data analysis.  I build on their work,
+investigating the usefulness of slice-based views of continuous
+multi-dimensional datasets. I also identified tasks involved in
+multi-dimensional data analysis. These tasks informed the development of one-
+and two-dimensional slice-based views.
+
 In this thesis I will explore
 the possibilities of these slice-based views. Through a number of case
 study examples, I will demonstrate the power of these views and ways to
 address their shortcomings.
 
-\ttwnote{abstract slicing diagram}
+\begin{figure}
+  \centering
+  %\includegraphics{slicing_overview}
+  \label{fig:slicing_overview}
+  \caption{
+    \ttwnote[nomarginclue]{diagram of slicing}
+  }
+\end{figure}
 
 \input{motivation/multid_spaces}
 \input{motivation/challenges}
