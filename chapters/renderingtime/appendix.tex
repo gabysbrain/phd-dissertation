@@ -1,27 +1,22 @@
 
-\providecommand{\vu}[0]{\vect{u}}
-\providecommand{\vv}[0]{\vect{v}}
-\providecommand{\vbv}[0]{\vect{\bar{v}}}
-\providecommand{\vw}[0]{\vect{w}}
-\providecommand{\vx}[0]{\vect{x}}
-\providecommand{\vs}[0]{\vect{s}}
-\providecommand{\vp}[0]{\vect{p}}
+\providecommand{\vu}[0]{\vec{u}}
+\providecommand{\vv}[0]{\vec{v}}
+\providecommand{\vbv}[0]{\vec{\bar{v}}}
+\providecommand{\vw}[0]{\vec{w}}
+\providecommand{\vx}[0]{\vec{x}}
+\providecommand{\vs}[0]{\vec{s}}
+\providecommand{\vp}[0]{\vec{p}}
 
-\providecommand{\vsigma}[0]{\vect{\sigma}}
-\providecommand{\vvarphi}[0]{\vect{\varphi}}
-\providecommand{\vbvarphi}[0]{\vect{\bar{\varphi}}}
-\providecommand{\vPhi}[0]{\vect{\Phi}}
+\providecommand{\vsigma}[0]{\vec{\sigma}}
+\providecommand{\vvarphi}[0]{\vec{\varphi}}
+\providecommand{\vbvarphi}[0]{\vec{\bar{\varphi}}}
+\providecommand{\vPhi}[0]{\vec{\Phi}}
 \providecommand{\btau}[0]{\bar{\tau}}
-
-\appendix{}
-
-\section{The expected number of points in a \mbox{parameter} space}
-\label{sec:app:exppts}
 
 
 For this derivation, we are assuming a $d$-dimensional centred unit cube\footnote{Note, that in the paper we had specified a non-centred unit cube $[0, 1]^d$. However, the centering does not impact the result, but is mathematically easier to deal with.} $[-0.5, 0.5]^d$ with coordinate axes $x_1, x_2, \ldots, x_d$. Without loss of generality, we will specify a 2D slice by a $(d-2)$-dimensional (focus) point $\vs$ and are assuming that the two additional coordinates are the coordinates within the slice.
 
-As explained in \SC{sec:expectedtotaltime}, $\exppts{r}$ is the expected percentage of points within distance $r$ from a single 2D slice in $d$ dimensions. In the case of a uniform point distribution, this essentially measures the volume of a slab with thickness $2r$ around the slice. The extent of this slab in the $d$th and $d-1$ dimensions is one, since we are examining a $d$-dimensional unit cube. Hence, the volume of the slab is the $(d-2)$-dimensional volume $V(\vs)$ around the $(d-2)$-dimensional point $\vs$ multiplied by one for each direction $(d-1)$ and $d$:
+As explained in \autoref{sec:expectedtotaltime}, $\exppts{r}$ is the expected percentage of points within distance $r$ from a single 2D slice in $d$ dimensions. In the case of a uniform point distribution, this essentially measures the volume of a slab with thickness $2r$ around the slice. The extent of this slab in the $d$th and $d-1$ dimensions is one, since we are examining a $d$-dimensional unit cube. Hence, the volume of the slab is the $(d-2)$-dimensional volume $V(\vs)$ around the $(d-2)$-dimensional point $\vs$ multiplied by one for each direction $(d-1)$ and $d$:
 \begin{equation}
   V(\vs) = 1 \cdot 1 \cdot \int_{[-0.5,0.5]^{d-2}} B_r(\vs-\vx) d\vx \text{,}
    \label{eq:vs}
@@ -38,7 +33,7 @@ where, $B_r$ is the constant $(d-2)$-ball with radius $r$:
 %Here we should note, that the shape of the ball $B_r$ depends on the distance metric we are using. If this distance metric is the Euclidean norm, we essentially are dealing with the HyperSlice technique. 
 %If, instead, we are dealing with the infinity-norm, we are dealing with the filtered scatterplot technique.
 
-Considering the $(d-2)$-dimensional centred unit box $\Pi(\vx)$, we can express \EQ{eq:vs} as a convolution:
+Considering the $(d-2)$-dimensional centred unit box $\Pi(\vx)$, we can express \autoref{eq:vs} as a convolution:
 \begin{align*}
   V(\vs) &= \int_{[-0.5,0.5]^{d-2}} B_r(\vs-\vx) d\vx\\
           &= \int_{[-\infty,\infty]^{d-2}} \Pi(\vx) B_r(\vs-\vx) d\vx \\
@@ -48,8 +43,8 @@ Considering the $(d-2)$-dimensional centred unit box $\Pi(\vx)$, we can express 
 Since $\exppts{r}$ is the average volume over all possible slice positions within the $(d-2)$-dimensional unit cube, we conclude:
 \begin{align*}
   \exppts{r} &= \int_{[-0.5,0.5]^{d-2}} V(\vs) d\vs \\
-  	&= \int_{[-\infty,\infty]^{d-2}} \Pi(\vect{0}-\vs) \Pi * B_r(\vs) d\vs \\
-  \exppts{r} &= \left( \Pi * \Pi * B_r \right) \left(\vect{0}\right) \text{.}
+  	&= \int_{[-\infty,\infty]^{d-2}} \Pi(\vec{0}-\vs) \Pi * B_r(\vs) d\vs \\
+  \exppts{r} &= \left( \Pi * \Pi * B_r \right) \left(\vec{0}\right) \text{.}
 \end{align*}
 
 The beauty of this last expression is, that it is a convolution of three different piecewise-constant (the constant being one) functions evaluated at zero. This allows us to reinterpret this expression as an integral of the convolution of two of these functions over the domain of the third function:
@@ -64,8 +59,8 @@ where $T(\vx) = \Pi * \Pi (\vx)$ is the convolution of two unit-cubes or the $(d
 where $\vx = (x_1, x_2, ..., x_n)$ and, in general, $f^{+}(\vx)$ shall denote the positive orthant of some function $f(\vx)$.
 
 
-In the remainder of this appendix we will evaluate the integral in \EQ{eq:Erd} for the case of HyperSlice. Since this is an integral in a $(d-2)$-dimensional space, we will, for brevity, be using $n$ to equal $(d-2)$ in the remainder of this appendix.
-In the case of the HyperSlice the distance metric is the $L^2$ norm and the volume $B_r$ is an $n$-dimensional sphere of radius $r$. Hence, \EQ{eq:Erd} becomes:
+In the remainder of this appendix we will evaluate the integral in \autoref{eq:Erd} for the case of HyperSlice. Since this is an integral in a $(d-2)$-dimensional space, we will, for brevity, be using $n$ to equal $(d-2)$ in the remainder of this appendix.
+In the case of the HyperSlice the distance metric is the $L^2$ norm and the volume $B_r$ is an $n$-dimensional sphere of radius $r$. Hence, \autoref{eq:Erd} becomes:
 \begin{equation}
   \exppts{r} = 2^n \int_{B^{+}_r} T^{+}(\vx) d\vx \text{.}
   \label{eq:ErdConvH}
@@ -88,7 +83,7 @@ x_n &= R \sin(\phi_1) \cdots \sin(\phi_{n-2}) \sin(\phi_{n-1}) \text{,}
 \end{align*}
 where $\phi_i \in [0, \pi]$ for $i = 1, \dotsc, n-2$ and $\phi_{n-1} \in [0, 2\pi]$.
 
-The Jacobian, needed to properly substitute the integration variables in \EQ{eq:ErdConvH} of the transformation from spatial coordinates $\vx$ to polar coordinates $\vvarphi$ can be computed as follows:
+The Jacobian, needed to properly substitute the integration variables in \autoref{eq:ErdConvH} of the transformation from spatial coordinates $\vx$ to polar coordinates $\vvarphi$ can be computed as follows:
 \begin{align*}
   \frac{d\vx}{d\vvarphi} &= R^{n-1} \prod_{i=1}^{n-1}\sin^{n-1-i}(\phi_i) \\
   d\vx &= R^{n-1} dR \prod_{i=1}^{n-1}\sin^{n-1-i}(\phi_i) d\phi_i
@@ -100,7 +95,7 @@ The Jacobian, needed to properly substitute the integration variables in \EQ{eq:
 
 \subsection{Derivation}
 
-In this section, we will assume that our radius $r$ never grows above one. This is a reasonable assumption, which holds for the experiments performed in our paper. We can now simplify \EQ{eq:ErdConvH} as follows:
+In this section, we will assume that our radius $r$ never grows above one. This is a reasonable assumption, which holds for the experiments performed in our paper. We can now simplify \autoref{eq:ErdConvH} as follows:
 \begin{align*}
 \exppts{r} &= 2^n \int_{B^{+}_r} \prod_{i=1}^{n} \max(0,(1-x_i)) d\vx \\
   &= 2^n\int_{B^{+}_r} \prod_{i=1}^{n} (1-x_i) d\vx \\
@@ -122,7 +117,7 @@ Because of symmetry in the first orthant around any axis $x_i = x_j$ of the hype
 \begin{align*}
 \int_{B^{+}_r}  x_j x_k d\vx &= \int_{B^{+}_r}  x_1 x_k d\vx = \int_{B^{+}_r}  x_1 x_2 d\vx \text{,}
 \end{align*}
-which holds for any product of arbitrary terms. Hence, we can simplify \EQ{eq:ti} in the following way:
+which holds for any product of arbitrary terms. Hence, we can simplify \autoref{eq:ti} in the following way:
 \begin{align*}
 \exppts{r} &= 2^n \sum_{i=0}^{n} (-1)^{i} \int_{B^{+}_r}  t_i(\vx) d\vx \\
   &= 2^n \sum_{i=1}^{n} (-1)^{i} {n \choose i} \int_{B^{+}_r} \prod_{k=1}^i x_k  d\vx + 2^n  \int_{B^{+}_r}  d\vx \\
@@ -134,7 +129,7 @@ $B$ is the volume of an $n$-dimensional sphere of radius $r$:
 B &= 2^n  \int_{B^{+}_r}  d\vx =  \int_{B_r}  d\vx = \frac{\pi^\frac{n}{2} r^n}{\Gamma(\frac{n}{2}+1)} \text{.}
 \end{align*}
 
-We are left to compute the product integrals $A_i$, for which we use polar coordinates. For $i \le n$, we have (using \EQ{eq:spherical}):
+We are left to compute the product integrals $A_i$, for which we use polar coordinates. For $i \le n$, we have (using \autoref{eq:spherical}):
 \begin{align*}
 A_i &= \int_{B^{+}_r} \prod_{k=1}^i x_k  d\vx \\
   &= \int_{\vvarphi^{+}} \prod_{k=1}^i x_k(\vvarphi)  R^{n-1} dR \prod_{j=1}^{n-1}\sin^{n-1-j}(\phi_j) d\phi_j \\ 
@@ -173,7 +168,7 @@ as well as
        \text{,}
 \end{align*}
 where $F_1$ is the hypergeometric function and $\Gamma$ is the gamma function.
-Putting this all together (for $i \le n$) into \EQ{eq:threeAs}, we get:
+Putting this all together (for $i \le n$) into \autoref{eq:threeAs}, we get:
 \begin{align*}
   A_i &= A^R_i \prod_{k=1}^i A^c_{i,k}  \prod_{j=i+1}^{n-1} A^s_{i,j} \\
   	&=  \frac{1}{n+i} r^{n+i} \prod_{k=1}^i \frac{1}{n+i-2k}  \prod_{j=i+1}^{n-1} \frac{\pi^{1/2}}{2}\frac{\Gamma((n-j)/2)}{\Gamma((n-j+1)/2)} \\
@@ -215,7 +210,7 @@ we can write,
   \frac{1}{2^{i+1}\Gamma((n+i)/2)}
   \text{.}
 \end{align*}
-Therefore, we can simplify \EQ{eq:PreAi} as,
+Therefore, we can simplify \autoref{eq:PreAi} as,
 \begin{align*}
   A_i &= \frac{\pi^\frac{n-i}{2}}{2^{n-1-i}}\frac{r^{n+i}}{\Gamma((n-i)/2)} \prod_{k=0}^i \frac{1}{n+i-2k} \\
       &= \frac{\pi^\frac{n-i}{2}}{2^{n-1-i}}\frac{r^{n+i}}{2^{i+1}\Gamma(\frac{n+i}{2} + 1)} \\
@@ -255,8 +250,8 @@ Now we note that if $i=0$,
       \numberthis \label{eq:exppts_0}
 \end{align*}
 Which is the $n$-dimensional volume of the ball.
-If we include $i=0$ in the summation and substitute \EQ{eq:exppts_0} 
-into \EQ{eq:pre_exppts} then we can write $\exppts{r}$ as,
+If we include $i=0$ in the summation and substitute \autoref{eq:exppts_0} 
+into \autoref{eq:pre_exppts} then we can write $\exppts{r}$ as,
 \begin{align*}
 \exppts{r} 
   &= \sum_{i=0}^{n} (-1)^{i} {n \choose i}
@@ -291,20 +286,20 @@ an impact in terms of number of fragments does it make on the 2D slice. As the
 distance from a sample point to the slice, $t$, increases the area of the 
 quad, $q$, decreases. This is due to the slice passing through a smaller area 
 of the
-hyperspherical kernel surrounding the data point. \FG{fig:circle} shows the
+hyperspherical kernel surrounding the data point. \autoref{fig:circle} shows the
 relationship between $t$ and the half-length of one of the sides of the 
-quad $u$.  In \FG{fig:circle}, (as usual) $r$ is the maximum search distance.
+quad $u$.  In \autoref{fig:circle}, (as usual) $r$ is the maximum search distance.
 
 \begin{figure}[htb]
 \centering
 \begin{subfigure}{0.4\textwidth}
-  \includegraphics[width=\textwidth]{images/circle_diagram}
+  \includegraphics[width=\textwidth]{circle_diagram}
   \caption{
   }
   \label{fig:circle}
 \end{subfigure}%
 \begin{subfigure}{0.4\textwidth}
-  \includegraphics[width=\textwidth]{images/box_probs}
+  \includegraphics[width=\textwidth]{box_probs}
   \caption{
   }
   \label{fig:quad_size}
@@ -333,7 +328,7 @@ and the
 maximum area of the quad is $4u^2$.  However, the quad size is not always
 $4u^2$.   If the center of the quad is within $u$ of the edge of the slice
 then the quad will be clipped and it will be smaller than $4u^2$.
-This ``maximum size'' area is the inner square in \FG{fig:quad_size}.
+This ``maximum size'' area is the inner square in \autoref{fig:quad_size}.
 We can formulate the expected quad size as a function of $u$: $E[q](u)$.
 To find $E[q](u)$ we must integrate the quad size given a location on 
 the slice $(x,y)$ over all possible positions of sample points,
@@ -347,11 +342,11 @@ the probability of the point falling into each region is a direct result
 of the area of each region:
 
 \begin{itemize}
-\item {\bf corner:} where the quad size ranges from $u^2$ to $4u^2$
+\item \textbf{corner:} where the quad size ranges from $u^2$ to $4u^2$
                     with probability $P = 4u^2$
-\item {\bf side:}   where the quad size ranges from $2u^2$ to $4u^2$ 
+\item \textbf{side:}   where the quad size ranges from $2u^2$ to $4u^2$ 
                     with probability $P = 4u(1-2u)$
-\item {\bf center:} where the quad size is $4u^2$
+\item \textbf{center:} where the quad size is $4u^2$
                     with probability $P = (1-2u)^2$
 \end{itemize}
 
@@ -430,7 +425,7 @@ $E[q](u)$ over all $t$:
 \expfrags 
      &= \int_{0}^r E[q] (u) P_t \, dt \\
      &= \int_{0}^r (4u^2 - 4u^3 + u^4) 2 \, dt \text{.}\\
-\intertext{We can rewrite the formula in terms of $t$ by using \EQ{eq:u_to_t}}
+\intertext{We can rewrite the formula in terms of $t$ by using \autoref{eq:u_to_t}}
      &= 2 \int_{0}^r 
           4(\sqrt{r^2-t^2})^2 - 4(\sqrt{r^2-t^2})^3 + (\sqrt{r^2-t^2})^4 \, dt
           \text{.}
@@ -509,7 +504,7 @@ Therefore, we can view all points at distance $t$ as lying along the surface
 of a hyperball.  However, this hyperball may be clipped by the edges of the
 parameter space so the likelihood of a point lying at distance $t$ is given
 by the surface area of the clipped hypersphere at $t$.  Similar to a sphere,
-this can be found by taking the derivative of \EQ{eq:exppts} with 
+this can be found by taking the derivative of \autoref{eq:exppts} with 
 respect to $r$:
 \begin{align*}
  S(t,d) 
@@ -525,7 +520,7 @@ respect to $r$:
          \text{.}
 \end{align*}
 We then integrate this
-together with the expected area of a quad (\EQ{eq:expfrags}) over
+together with the expected area of a quad (\autoref{eq:expfrags}) over
 all $0 \le t \le r$ to find $\expfrags$:
 \begin{align*}
 \expfrags &= \int_0^r E[q](u) P_t \, dt \\
@@ -601,7 +596,7 @@ algebra to integrate so we handle each one as a separate derviation below.
 \subsubsection{Identities}
 
 During the derivation we will need the following trigonometric identities
-to solve our derivations in \SC{sec:app:4d_derivation}.
+to solve our derivations in \autoref{sec:app:4d_derivation}.
 First, some basic identities used during the computation of $I_1(m)$, $I_2(m)$,
 and $I_3(m)$ below,
 \begin{align*}
@@ -618,7 +613,7 @@ and $I_3(m)$ below,
            {2 \Gamma\left(\frac{m}{2} + 1\right)} \text{.}
      \numberthis \label{eq:sinpow} 
 \end{align*}
-Each of the derivations in \SC{sec:app:4d_derivation} will make use of one of
+Each of the derivations in \autoref{sec:app:4d_derivation} will make use of one of
 the following identities based on the value of $n$ in the 
 $\cos^n(\theta)$ term:
 \begin{align*}
@@ -686,7 +681,7 @@ viewing:
                             \frac{2\pi^{(n-i)/2} r^{n+i+2}}
                                  {\Gamma((n+i)/2)}
            \int_{0}^{\pi/2} \cos^3 \sin^{n+i-1} \, d\theta \text{.} \\
-\intertext{We can replace the integral with $I_1(n+i-1)$ from \EQ{eq:i1}}
+\intertext{We can replace the integral with $I_1(n+i-1)$ from \autoref{eq:i1}}
   \qquad & 4 \sum_{i=0}^{n} (-1)^i {n \choose i}
                             \frac{2\pi^{(n-i)/2} r^{n+i+2}}
                                  {\Gamma((n+i)/2)}
@@ -724,7 +719,7 @@ viewing:
   \qquad & 8 \sum_{i=0}^{n} (-1)^i {n \choose i}
                  \frac{\pi^{(n-i)/2} r^{n+i+3}}{\Gamma((n+i)/2)} 
            \int_{0}^{\pi/2} \cos^4 \theta \sin^{n+i-1} \theta \, d\theta \text{.} \\
-\intertext{We can replace the integral with $I_2(n+i-1)$ from \EQ{eq:i2}}
+\intertext{We can replace the integral with $I_2(n+i-1)$ from \autoref{eq:i2}}
   \qquad & 8 \sum_{i=0}^{n} (-1)^i {n \choose i}
                  \frac{\pi^{(n-i)/2} r^{n+i+3}}{\Gamma((n+i)/2)} 
            I_2(n+i-1) \\
@@ -759,7 +754,7 @@ viewing:
                             \frac{\pi^{(n-i)/2} r^{n+i+4}}
                                  {\Gamma((n+i)/2)} 
            \int_{0}^{\pi/2} \cos^5 \theta \sin^{n+i-1} \theta \, d\theta \text{.}\\
-\intertext{We can replace the integral with $I_3(n+i-1)$ from \EQ{eq:i3}}
+\intertext{We can replace the integral with $I_3(n+i-1)$ from \autoref{eq:i3}}
   \qquad & 2 \sum_{i=0}^{n} (-1)^i {n \choose i}
                             \frac{\pi^{(n-i)/2} r^{n+i+4}}
                                  {\Gamma((n+i)/2)} 
