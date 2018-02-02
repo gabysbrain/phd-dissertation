@@ -1,267 +1,4 @@
 
-\providecommand{\vu}[0]{\vec{u}}
-\providecommand{\vv}[0]{\vec{v}}
-\providecommand{\vbv}[0]{\vec{\bar{v}}}
-\providecommand{\vw}[0]{\vec{w}}
-\providecommand{\vx}[0]{\vec{x}}
-\providecommand{\vs}[0]{\vec{s}}
-\providecommand{\vp}[0]{\vec{p}}
-
-\providecommand{\vsigma}[0]{\vec{\sigma}}
-\providecommand{\vvarphi}[0]{\vec{\varphi}}
-\providecommand{\vbvarphi}[0]{\vec{\bar{\varphi}}}
-\providecommand{\vPhi}[0]{\vec{\Phi}}
-\providecommand{\btau}[0]{\bar{\tau}}
-
-
-For this derivation, we are assuming a $d$-dimensional centred unit cube\footnote{Note, that in the paper we had specified a non-centred unit cube $[0, 1]^d$. However, the centering does not impact the result, but is mathematically easier to deal with.} $[-0.5, 0.5]^d$ with coordinate axes $x_1, x_2, \ldots, x_d$. Without loss of generality, we will specify a 2D slice by a $(d-2)$-dimensional (focus) point $\vs$ and are assuming that the two additional coordinates are the coordinates within the slice.
-
-As explained in \autoref{sec:expectedtotaltime}, $\exppts{r}$ is the expected percentage of points within distance $r$ from a single 2D slice in $d$ dimensions. In the case of a uniform point distribution, this essentially measures the volume of a slab with thickness $2r$ around the slice. The extent of this slab in the $d$th and $d-1$ dimensions is one, since we are examining a $d$-dimensional unit cube. Hence, the volume of the slab is the $(d-2)$-dimensional volume $V(\vs)$ around the $(d-2)$-dimensional point $\vs$ multiplied by one for each direction $(d-1)$ and $d$:
-\begin{equation}
-  V(\vs) = 1 \cdot 1 \cdot \int_{[-0.5,0.5]^{d-2}} B_r(\vs-\vx) d\vx \text{,}
-   \label{eq:vs}
-\end{equation}
-where, $B_r$ is the constant $(d-2)$-ball with radius $r$:
-\begin{align*}
-  B_r(\vx) &= \left\{ 
-  \begin{array}{l l}
-    1 & \quad \text{if $||\vx||<r$}\\
-    0 & \quad \text{otherwise} \text{.}\\
-  \end{array} \right. 
-\end{align*}
-
-%Here we should note, that the shape of the ball $B_r$ depends on the distance metric we are using. If this distance metric is the Euclidean norm, we essentially are dealing with the HyperSlice technique. 
-%If, instead, we are dealing with the infinity-norm, we are dealing with the filtered scatterplot technique.
-
-Considering the $(d-2)$-dimensional centred unit box $\Pi(\vx)$, we can express \autoref{eq:vs} as a convolution:
-\begin{align*}
-  V(\vs) &= \int_{[-0.5,0.5]^{d-2}} B_r(\vs-\vx) d\vx\\
-          &= \int_{[-\infty,\infty]^{d-2}} \Pi(\vx) B_r(\vs-\vx) d\vx \\
-          &= \Pi * B_r(\vs) \text{.}
-\end{align*}
-
-Since $\exppts{r}$ is the average volume over all possible slice positions within the $(d-2)$-dimensional unit cube, we conclude:
-\begin{align*}
-  \exppts{r} &= \int_{[-0.5,0.5]^{d-2}} V(\vs) d\vs \\
-  	&= \int_{[-\infty,\infty]^{d-2}} \Pi(\vec{0}-\vs) \Pi * B_r(\vs) d\vs \\
-  \exppts{r} &= \left( \Pi * \Pi * B_r \right) \left(\vec{0}\right) \text{.}
-\end{align*}
-
-The beauty of this last expression is, that it is a convolution of three different piecewise-constant (the constant being one) functions evaluated at zero. This allows us to reinterpret this expression as an integral of the convolution of two of these functions over the domain of the third function:
-\begin{equation}
-  \exppts{r} = \int_{B_r} T(\vx) d\vx \text{,}
-  \label{eq:Erd}
-\end{equation}
-where $T(\vx) = \Pi * \Pi (\vx)$ is the convolution of two unit-cubes or the $(d-2)$-dimensional triangle function\footnote{Also known as the tensor-product of the linear B-spline or the $(d-2)$-linear interpolator}. Hence, in the positive orthant, we can write:
-\begin{align*}
-  T^{+}(\vx) &= \prod_{i=1}^{d-2} \max(0,(1-x_i)) \text{,}
-\end{align*}
-where $\vx = (x_1, x_2, ..., x_n)$ and, in general, $f^{+}(\vx)$ shall denote the positive orthant of some function $f(\vx)$.
-
-
-In the remainder of this appendix we will evaluate the integral in \autoref{eq:Erd} for the case of HyperSlice. Since this is an integral in a $(d-2)$-dimensional space, we will, for brevity, be using $n$ to equal $(d-2)$ in the remainder of this appendix.
-In the case of the HyperSlice the distance metric is the $L^2$ norm and the volume $B_r$ is an $n$-dimensional sphere of radius $r$. Hence, \autoref{eq:Erd} becomes:
-\begin{equation}
-  \exppts{r} = 2^n \int_{B^{+}_r} T^{+}(\vx) d\vx \text{.}
-  \label{eq:ErdConvH}
-\end{equation}
-We will solve this integral using polar coordinates.
-
-\subsection{Polar coordinates in $n$ dimensions}
-
-%This section is derived from
-%\url{http://en.wikipedia.org/wiki/N-sphere#Hyperspherical_coordinates}.
-
-Expressing $\vx = (x_1, x_2, ..., x_n)$ in polar coordinates $\vvarphi = (R, \phi_1, \phi_2, \dotsc, \phi_{n-1})$ can be done as follows:
-\begin{align*}
-x_1 &= R \cos(\phi_1)\\
-x_2 &= R \sin(\phi_1) \cos(\phi_2)\\
-x_3 &= R \sin(\phi_1) \sin(\phi_2) \cos(\phi_3)\\
-\vdots\\
-x_{n-1} &= R \sin(\phi_1) \cdots \sin(\phi_{n-2}) \cos(\phi_{n-1})\\
-x_n &= R \sin(\phi_1) \cdots \sin(\phi_{n-2}) \sin(\phi_{n-1}) \text{,}
-\end{align*}
-where $\phi_i \in [0, \pi]$ for $i = 1, \dotsc, n-2$ and $\phi_{n-1} \in [0, 2\pi]$.
-
-The Jacobian, needed to properly substitute the integration variables in \autoref{eq:ErdConvH} of the transformation from spatial coordinates $\vx$ to polar coordinates $\vvarphi$ can be computed as follows:
-\begin{align*}
-  \frac{d\vx}{d\vvarphi} &= R^{n-1} \prod_{i=1}^{n-1}\sin^{n-1-i}(\phi_i) \\
-  d\vx &= R^{n-1} dR \prod_{i=1}^{n-1}\sin^{n-1-i}(\phi_i) d\phi_i
-  \text{.}
-\numberthis \label{eq:spherical}
-\end{align*}
-
-%Note, that the product is going all the way to $(n-1)$ and it still works fine!
-
-\subsection{Derivation}
-
-In this section, we will assume that our radius $r$ never grows above one. This is a reasonable assumption, which holds for the experiments performed in our paper. We can now simplify \autoref{eq:ErdConvH} as follows:
-\begin{align*}
-\exppts{r} &= 2^n \int_{B^{+}_r} \prod_{i=1}^{n} \max(0,(1-x_i)) d\vx \\
-  &= 2^n\int_{B^{+}_r} \prod_{i=1}^{n} (1-x_i) d\vx \\
-  &= 2^n \int_{B^{+}_r} \sum_{i=0}^{n} (-1)^{i} t_i(\vx) d\vx \\
-  &= 2^n \sum_{i=0}^{n} (-1)^{i} \int_{B^{+}_r}  t_i(\vx) d\vx
-     \text{,}
-\numberthis \label{eq:ti}
-\end{align*}
-where $t_i(\vx)$ is the sum of all products of $i$ distinct coordinates. 
-In other words,
-\begin{align*}
-t_0(\vx) &= 1 \\
-t_1(\vx) &= \sum_{j=1}^n x_j \\
-t_2(\vx) &= \sum_{j,k=1; j\ne k}^n x_j x_k \\
-\vdots
-\end{align*}
-
-Because of symmetry in the first orthant around any axis $x_i = x_j$ of the hypersphere, we have:
-\begin{align*}
-\int_{B^{+}_r}  x_j x_k d\vx &= \int_{B^{+}_r}  x_1 x_k d\vx = \int_{B^{+}_r}  x_1 x_2 d\vx \text{,}
-\end{align*}
-which holds for any product of arbitrary terms. Hence, we can simplify \autoref{eq:ti} in the following way:
-\begin{align*}
-\exppts{r} &= 2^n \sum_{i=0}^{n} (-1)^{i} \int_{B^{+}_r}  t_i(\vx) d\vx \\
-  &= 2^n \sum_{i=1}^{n} (-1)^{i} {n \choose i} \int_{B^{+}_r} \prod_{k=1}^i x_k  d\vx + 2^n  \int_{B^{+}_r}  d\vx \\
-  &= 2^n \sum_{i=1}^{n} (-1)^{i} {n \choose i} A_i + B \text{.}
-\end{align*}
-
-$B$ is the volume of an $n$-dimensional sphere of radius $r$:
-\begin{align*}
-B &= 2^n  \int_{B^{+}_r}  d\vx =  \int_{B_r}  d\vx = \frac{\pi^\frac{n}{2} r^n}{\Gamma(\frac{n}{2}+1)} \text{.}
-\end{align*}
-
-We are left to compute the product integrals $A_i$, for which we use polar coordinates. For $i \le n$, we have (using \autoref{eq:spherical}):
-\begin{align*}
-A_i &= \int_{B^{+}_r} \prod_{k=1}^i x_k  d\vx \\
-  &= \int_{\vvarphi^{+}} \prod_{k=1}^i x_k(\vvarphi)  R^{n-1} dR \prod_{j=1}^{n-1}\sin^{n-1-j}(\phi_j) d\phi_j \\ 
-  &= \int_{\vvarphi^{+}}  R^i \prod_{k=1}^i \cos(\phi_k)\sin^{i-k}(\phi_k)  R^{n-1} dR \prod_{j=1}^{n-1}\sin^{n-1-j}(\phi_j) d\phi_j \\ 
-  &=  \int_{\vvarphi^{+}} R^{n+i-1} dR \prod_{k=1}^i \cos(\phi_k)\sin^{i-k}(\phi_k) \prod_{j=1}^{n-1}\sin^{n-1-j}(\phi_j) d\phi_j \\
-  &=  \int_{\vvarphi^{+}} R^{n+i-1} dR \prod_{k=1}^i \cos(\phi_k)\sin^{n-1+i-2k}(\phi_k) \prod_{j=i+1}^{n-1}\sin^{n-1-j}(\phi_j) d\phi_j \quad\quad \\
-  &=  A^R_i \prod_{k=1}^i A^c_{i,k}  \prod_{j=i+1}^{n-1} A^s_{i,j}
-      \text{,}
-  \numberthis \label{eq:threeAs}
-\end{align*}
-where
-\begin{align*}
-  A^R_i &=  \int_0^r R^{n+i-1} dR \\
-  A^c_{i,k} &= \int_0^{\pi/2} \cos(\phi_k)\sin^{n-1+i-2k}(\phi_k)  \\
-  A^s_{i,j} &= \int_0^{\pi/2} \sin^{n-1-j}(\phi_j) d\phi_j
-      \text{,}
-\end{align*}
-where we used the fact that the proper positive orthant integration bounds by $\vvarphi^{+} = [0,R]\times[0,\pi/2]^{n-1}$.
-
-Solving for these three types of integrals yields:
-\begin{align*}
-A^R_i &= \int_0^r R^{n+i-1} dR = \frac{1}{n+i} r^{n+i} \text{,}
-\end{align*}
-\begin{align*}
-  A^c_{i,k} &= \int_0^{\pi/2} \cos(\phi_k)\sin^{n-1+i-2k}(\phi_k) \\
-  	&= \frac{1}{n+i-2k} \left. \sin^{n+i-2k}(\phi_k)\right|_0^{\pi/2} \\
-	&= \frac{1}{n+i-2k}  \text{,}
-\end{align*}
-as well as
-\begin{align*}
-  A^s_{i,j} &= \int_0^{\pi/2} \sin^{n-1-j}(\phi_j) d\phi_j \\
-  	&= \left. -\cos(\phi_j)F_1(0.5,(j-n+2)/2, 1.5, \cos^2(\phi_j))\right|_0^{\pi/2} \\
-	&= F_1(0.5,(j-n+2)/2, 1.5, 1) \\
-	&= \frac{\Gamma(3/2)\Gamma((n-j)/2)}{\Gamma(1)\Gamma(0.5+(n-j)/2)}\\
-	&= \frac{\pi^{1/2}}{2} \frac{\Gamma((n-j)/2)}{\Gamma((n-j+1)/2)}
-       \text{,}
-\end{align*}
-where $F_1$ is the hypergeometric function and $\Gamma$ is the gamma function.
-Putting this all together (for $i \le n$) into \autoref{eq:threeAs}, we get:
-\begin{align*}
-  A_i &= A^R_i \prod_{k=1}^i A^c_{i,k}  \prod_{j=i+1}^{n-1} A^s_{i,j} \\
-  	&=  \frac{1}{n+i} r^{n+i} \prod_{k=1}^i \frac{1}{n+i-2k}  \prod_{j=i+1}^{n-1} \frac{\pi^{1/2}}{2}\frac{\Gamma((n-j)/2)}{\Gamma((n-j+1)/2)} \\
-	&=  r^{n+i} \prod_{k=0}^i \frac{1}{n+i-2k}  \frac{\pi^{\frac{n-1-i}{2}}}{2^{n-1-i}}\frac{\Gamma(1/2)}{\Gamma((n-i)/2)} \\
-	&=  r^{n+i} \frac{\pi^\frac{n-1-i}{2}}{2^{n-1-i}}\frac{\pi^{1/2}}{\Gamma((n-i)/2)} \prod_{k=0}^i \frac{1}{n+i-2k} \\
-	&=   \frac{\pi^\frac{n-i}{2}}{2^{n-1-i}}\frac{r^{n+i}}{\Gamma((n-i)/2)} \prod_{k=0}^i \frac{1}{n+i-2k}
-    \text{.}
-    \numberthis \label{eq:PreAi}
-\end{align*}
-
-This formula can be further simplified by noting that if we expand out 
-the product we get,
-\begin{align*}
-  \prod_{k=0}^i \frac{1}{n+i-2k} 
-    &= \frac{1}{(n+i)(n+i-2)(n+i-4)\cdots(n+i-2i)} \\
-    &= \frac{1}{\frac{2^{i+1}}{2^{i+1}}
-                (n+i)(n+i-2)(n+i-4)\cdots(n+i-2i)} \\
-    &= \frac{1}{2^{i+1}
-                \left(\frac{n+i}{2}\right)
-                \left(\frac{n+i}{2} - 1\right)
-                \left(\frac{n+i}{2} - 2\right)
-                \cdots
-                \left(\frac{n+i}{2} - i\right)} \\
-    &= \frac{1}{2^{i+1}
-                \left(\frac{n+i}{2}\right)
-                \left(\frac{n+i}{2} - 1\right)
-                \left(\frac{n+i}{2} - 2\right)
-                \cdots
-                \left(\frac{n-i}{2}\right)} \text{.}
-\end{align*}
-This expansion combined with $\frac{1}{\Gamma((n-i)/2)}$ means that instead
-of,
-\begin{align*}
-  \frac{1}{\Gamma((n-i)/2)} \prod_{k=0}^i \frac{1}{n+i-2k}
-  \text{,}
-\end{align*}
-we can write,
-\begin{align*}
-  \frac{1}{2^{i+1}\Gamma((n+i)/2)}
-  \text{.}
-\end{align*}
-Therefore, we can simplify \autoref{eq:PreAi} as,
-\begin{align*}
-  A_i &= \frac{\pi^\frac{n-i}{2}}{2^{n-1-i}}\frac{r^{n+i}}{\Gamma((n-i)/2)} \prod_{k=0}^i \frac{1}{n+i-2k} \\
-      &= \frac{\pi^\frac{n-i}{2}}{2^{n-1-i}}\frac{r^{n+i}}{2^{i+1}\Gamma(\frac{n+i}{2} + 1)} \\
-      &= \frac{\pi^\frac{n-i}{2}}{2^{n}}\frac{r^{n+i}}{\Gamma(\frac{n+i}{2} + 1)}
-           \text{.}
-           \numberthis \label{eq:Ai}
-\end{align*}
-
-Intuitively, $A_i$ measures the expected area of a hypersphere that is clipped
-by the edges of the parameter space for all possible combinations of the
-$i$-dimensional subspaces.
-
-Finally, we can put everything together:
-\begin{align*}
-\exppts{r} &= 2^n \sum_{i=1}^{n} (-1)^{i} {n \choose i} A_i + B \\
-  &= 2^n \sum_{i=1}^{n} (-1)^{i} {n \choose i} A_i + B \\
-  &= 2^n \sum_{i=1}^{n} (-1)^{i} {n \choose i}\left[ 
-       \frac{\pi^\frac{n-i}{2}}{2^{n}}\frac{r^{n+i}}{\Gamma(\frac{n+i}{2} + 1)}
-     \right] + B \\
-  &= \sum_{i=1}^{n} (-1)^{i} {n \choose i}\left[ 
-       \frac{\pi^\frac{n-i}{2}r^{n+i}}{\Gamma(\frac{n+i}{2} + 1)} 
-     \right] 
-     + \frac{\pi^\frac{n}{2} r^n}{\Gamma(\frac{n}{2}+1)}
-        \text{.}
-  \numberthis \label{eq:pre_exppts}
-\end{align*}
-Now we note that if $i=0$,
-\begin{align*}
-  (-1)^{i} {n \choose i}\left[ 
-       \frac{\pi^\frac{n-i}{2}r^{n+i}}{\Gamma(\frac{n+i}{2} + 1)} 
-     \right] 
-    &= (-1)^{0} {n \choose 0}\left[ 
-       \frac{\pi^\frac{n-0}{2}r^{n+0}}{\Gamma(\frac{n+0}{2} + 1)} 
-     \right] \\
-    &= \frac{\pi^\frac{n}{2}r^{n}}{\Gamma(\frac{n}{2} + 1)} 
-       \text{.}
-      \numberthis \label{eq:exppts_0}
-\end{align*}
-Which is the $n$-dimensional volume of the ball.
-If we include $i=0$ in the summation and substitute \autoref{eq:exppts_0} 
-into \autoref{eq:pre_exppts} then we can write $\exppts{r}$ as,
-\begin{align*}
-\exppts{r} 
-  &= \sum_{i=0}^{n} (-1)^{i} {n \choose i}
-         \frac{\pi^\frac{n-i}{2}r^{n+i}}{\Gamma(\frac{n+i}{2} + 1)} 
-            \text{.}
-  \numberthis \label{eq:exppts}
-\end{align*}
-
-\section{Derivation of $\expfrags$}
-\label{sec:app:expfrags}
 
 With our formulation for the expected percentage of points appearing on a
 slice, $\exppts{r}$, we now turn to the derivation of the expected
@@ -279,7 +16,7 @@ quad of area $0$.
 %the functional notation, $\expfrags$ in favor of the more compact
 %$E[q]$.
 
-\subsection{Expected number of fragments}
+\section{Expected number of fragments}
 
 Given that we need to draw a particular data point, the question is how large
 an impact in terms of number of fragments does it make on the 2D slice. As the
@@ -400,7 +137,7 @@ Substituting $A$, $B$, and $C$ back into the formula we get,
   E[q](u) &= 4u^2 - 4u^3 + u^4 \numberthis \label{eq:expfrags} \text{.}
 \end{align*}
 
-\subsection{Expected 3D quad size}
+\section{Expected 3D quad size}
 
 Now we can turn to a formulation of $\expfrags$ which is the expected quad
 size over all $0 \le t \le r$.  We also need to take into account the
@@ -492,7 +229,7 @@ which leads to
 \end{align*}
 
 
-\subsection{Expected quad size for the $d>3$ case}
+\section{Expected quad size for the $d>3$ case}
 
 %\subsubsubsection{Identities}
 
@@ -593,7 +330,7 @@ Expanding this out gives us 3 terms which are the three possible ways a
 sample point will show up on the slice.  Each one requires some complex
 algebra to integrate so we handle each one as a separate derviation below.
 
-\subsubsection{Identities}
+\subsection{Identities}
 
 During the derivation we will need the following trigonometric identities
 to solve our derivations in \autoref{sec:app:4d_derivation}.
@@ -661,7 +398,7 @@ I_3(m) &= \frac{8}{(m+1)(m+3)(m+5)}  \text{.}
 \numberthis \label{eq:i3}
 \end{align*}
 
-\subsubsection{Component derivation}
+\subsection{Component derivation}
 \label{sec:app:4d_derivation}
 
 \begin{lem}
@@ -778,7 +515,7 @@ viewing:
 \end{align*}
 \end{lem}
 
-\subsubsection{Final derivation}
+\subsection{Final derivation}
 
 Putting together derivations 1--3
 yields the final form for $\expfrags$ for the $d>3$ case:
