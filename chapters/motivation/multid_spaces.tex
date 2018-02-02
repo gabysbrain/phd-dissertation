@@ -2,12 +2,13 @@
 \section{Multi-dimensional spaces}
 \label{sec:motivation:multi-d}
 
-There are a number of varied domains where one can apply the analysis of
+There are a number of domains where one can apply the analysis of
 continuous multi-dimensional data.  As of yet, there has not been a
 comprehensive data and task analysis for multi-dimensional continuous data
 analysis. Work in this area has traditionally focused on developing a specific
 visualization for a specific task. For example, topological spines extracts
 critical points from a scalar field~\cite{Correa:2011}.
+\ttwnote{talk about why multi-D discrete data is so popular}
 
 %Often work on continuous multi-dimensional data analysis is done in the context
 %of design studies~\cite{Sedlmair:2012}. The issue is transferability, while
@@ -28,7 +29,7 @@ independent and depdendent variables. We look at each of these in turn.
 \label{sec:manifolds}
 
 Studying manifolds means studying functional relationships. The critical issue
-is understanding the relationship between independent and dependent factors.
+is understanding the relationship between independent and dependent variables.
 \ttwnote{subtasks}. Analyzing functions is of course within the realm of
 manifold analysis. \ttwnote{examples of work} Another area where understanding
 the manifold is important is analyzing optimization surfaces and functions.  In
@@ -42,8 +43,8 @@ necessary.
 
 Simulation analysis is another area where the analysis tasks, in the abstract,
 is examining functions. If we look back at the weather simulation from before,
-the inputs to the function are things like the temperature and pressure
-(\autoref{eqn:simfunc}). The output is, for example, the likelihood of rain the
+the inputs to the function are things like the temperature and pressure.
+The output is, for example, the likelihood of rain the
 next day. The function is the simulation itself. Computer simulations are
 deterministic. Stochastic simulations can be converted to deterministic by
 treating the random number generator seed as another parameter.  A
@@ -54,12 +55,12 @@ analysis. Simulations can be used to run experiments that are impractical or
 impossible in the real world. Thus, these can all be analyzed with similar
 visualizations.
 
-%\begin{equation}
-\begin{eqnarray}
-  P(\textrm{rain}) = f(\textrm{temperature}, \textrm{pressure}, \ldots)
-  \label{eqn:simfunc}
-\end{eqnarray}
-%\end{equation}
+\ttwnote{para on why this isn't enough, what is missing, and what I contribute}
+
+%\begin{eqnarray}
+  %P(\textrm{rain}) = f(\textrm{temperature}, \textrm{pressure}, \ldots)
+  %\label{eqn:simfunc}
+%\end{eqnarray}
 
 \subsection{Shapes}
 \label{sec:shapes}
@@ -68,7 +69,7 @@ One may also want to understand the relationship or correlation between
 multiple continuous values. This is in contrast to studying the relationship
 between independent and dependent variables in the manifold case. In this case
 we want to study the relationship of all variables. Careful study of the shape
-of the dataset can give insight into the overall shape of the object. For
+of the dataset can give insight into the overall shape\ttwnote{use a different, more specific work than shape} of the object. For
 example, one may want to know if the multi-dimensional object is shaped like a
 sphere, donut, or box.
 In addition one may be interested in any kinks or cusps in the dataset.
@@ -96,7 +97,7 @@ the two objects at once. This requires quite a lot of mental processing.
 However, the two-stage processing of showing a difference object and then
 performing dimension reduction makes it difficult to view difference objects
 with dimension reduction. Slicing, as a direct visualization technique, does
-not have this problem.
+not have this problem. \ttwnote{confusing, use images/diagrams to explain?}
 
 \ttwnote{conclude, move on}
 

@@ -15,6 +15,7 @@ objects that the medical community uses to understand their two- and
 three-dimensional datasets. Nevertheless, it is still important in
 multi-dimensional data analysis to properly estimate distances and relative
 sizes. 
+\ttwnote{example}
 
 Another benefit of the direct visualization is that users do not require
 extensive training to understand the visualization. The concept of slicing
@@ -30,12 +31,15 @@ plots are replicated for each combination of dimensions in order to show more
 than two dimensions at once. This promotes familiarity of the visualization.
 Once the user has learned to read a single panel, they can apply this knowledge
 to the remaining panels. This approach follows the principal of small
-multiples~\cite{Archambault:2011}.
+multiples~\cite{Archambault:2011}. \ttwnote{maybe move this to a section on
+general vis techniques}
 
 In order to produce a slice plot one needs to first pick a particular
 \emph{focus point} in the multi-dimensional space. This focus point determines
 which slices are being viewed. Selecting a good focus point a-priori is
-difficult. It either requires a great deal of luck or careful analysis of the
+difficult. 
+\ttwnote{from michael: this is a challenge again. imho it might be clearer to list all challenges in the same spot. I always liked the spectrum between toplogical approaches and Hyperslices. Then you can say that your goal is to combine their benefits and reduce their weaknesses and how you address these challenges.}
+It either requires a great deal of luck or careful analysis of the
 dataset. This is not always possible. Slice-based views require some sort of
 interactive focus point selection. Interactively browsing through the slices
 requires interaction controls to give the user control over the focus point.
@@ -53,6 +57,7 @@ concentration~\cite{Shneiderman:1987}. This is often defined at 10 frames per
 second. It can be difficult to compute a 2D slice of an arbitrary complex
 multi-dimensional object. 
 
+\ttwnote{move to its own section and expand}
 In my own work, I address these two critical issues. The navigation issue can
 be solved with sampling. With both Sliceplorer (\autoref{chp:sliceplorer}) and
 HyperSliceplorer (\autoref{chp:hypersliceplorer}), I sample over a number of
