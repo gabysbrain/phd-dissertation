@@ -7,15 +7,15 @@ HyperSlice). Projection techniques generally show all of the data and,
 therefore, represent a more global view. On the other hand, slicing techniques
 present more of a local view around a point of interest (which we call focus
 point). The lion's share of previous work is concerned with projection
-approaches of discrete data. In contrast, we are focusing on continuous
+approaches of discrete data. In contrast, I focus on continuous
 multi-dimensional scalar functions and seek to combine the strengths of
-projection and slicing. Given our focus on continuous data, our options for a
+projection and slicing. Given the focus on continuous data, the options for a
 visual exploration are limited and could be categorized into three areas (a)
 discretization, (b) local methods, (c) global methods.
 
 \subsection{Discretization}
 
-There is a number of different approaches to display discretized
+There are a number of different approaches to display discretized
 multi-dimensional functions. The typical approaches are scatterplot
 matrices~\cite{Hartigan:1975}, parallel coordinates~\cite{Inselberg:1985}, star
 coordinates~\cite{Kandogan:2000}, and RadVis~\cite{Hoffman:1997}. 
@@ -48,7 +48,7 @@ Interaction is used to explore other parts of the function. One of the oldest
 approaches here is the HyperSlice technique by van Wijk and van
 Liere~\cite{Wijk:1993}.  HyperSlice is a technique where the function is shown
 directly but in multiple 2D slices laid out similar to a scatterplot matrix. In
-many ways, our work was inspired by this work. One of the drawbacks of
+many ways, Sliceplorer was inspired by this work. One of the drawbacks of
 HyperSlice is that one has to choose a focus point --- a point common to all 2D
 slices. Exploring the full data set then shifts over to exploring all possible
 focus points. Although not created for HyperSlice specifically,  techniques
@@ -95,10 +95,10 @@ parameter space.
 %topology~\cite{Duke:2012,Huettenberger:2014,Carr:2015} which we do not consider
 %in this paper since we are concerned only with \emph{scalar} functions\ttwnote{is this definition clear? i.e. scalar means 1D range}.
 
-In our case, we use line plots
+With Sliceplorer, we use line plots
 %which
 %any student of high school algebra has had to study. We use the
-together with the widely-used technique of projection to overdraw 1D slices. This approach is similar to the work by Hall et al.~\cite{Hall:2014} but differs in two major ways. (1) They showed 2 primary dimensions with slices and then used the third for color limiting their view to three dimensions and (2) they were concerned with isosurface extraction. Our technique can scale to any number of dimensions and we evaluate based on a much broader set of tasks and applications, such as parameter space analysis. 
+together with the widely-used technique of projection to overdraw 1D slices. This approach is similar to the work by Hall et al.~\cite{Hall:2014} but differs in two major ways. (1) They showed 2 primary dimensions with slices and then used the third for color limiting their view to three dimensions and (2) they were concerned with isosurface extraction. This technique can scale to any number of dimensions and the evaluation is based on a much broader set of tasks and applications, such as parameter space analysis. 
 %We also compare our technique to curve boxplots~\cite{Mirzargar:2014}, an extension of contour 
 %boxplots~\cite{Whitaker:2013} to arbitrary curves. In our evaluation (see
 %\autoref{sec:task-eval}) we find that only showing the distribution can hide

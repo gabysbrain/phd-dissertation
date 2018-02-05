@@ -1,23 +1,23 @@
 
 \section{Usage scenarios}\label{sec:usage-scenarios}
 
-In addition to evaluating 1D slices with a low-level task hierarchy, we also
+In addition to evaluating 1D slices with a low-level task hierarchy, I also
 provide usage scenarios to understand their value in real-world applications.
-We begin with an illustrative example using the 2D sinc
+First, I begin with an illustrative example using the 2D sinc
 function.
 %\ttwnote{cite?}.  TM: No need to cite!
-We then use our 1D slices approach to illustrate how
+I then use our 1D slices approach to illustrate how
 it can help better understand neural network architectures for a regression
-problem. Finally, we use 1D slices to investigate the effect of initial
+problem. Finally, I use 1D slices to investigate the effect of initial
 position on optimization algorithm performance.
 
 The purpose of these evaluations is a proof of concept that 1D slices can be
 used for real-world problems. In particular, it is not meant as a comparative
-evaluation as provided in the previous section. To the best of our knowledge,
+evaluation as provided in the previous section. To the best of my knowledge,
 neither HyperSlices nor topological techniques have been applied to
 understanding neural networks nor optimization algorithms so far. A full
 adaption of, and comparison to, these techniques for the provided use cases are
-beyond the scope of this paper, and are left for future work. 
+beyond the scope of this thesis, and are left for future work. 
 
 \subsection{2D sinc function}
 
@@ -63,10 +63,10 @@ beyond the scope of this paper, and are left for future work.
     \label{fig:sinc:ms_3}
   \end{subfigure}
   \caption{
-    Different views of the 2D sinc function. We show the surface plot
-    in (\subref{fig:sinc:3d}) for reference. Our 1D slice view is shown
+    Different views of the 2D sinc function. I show the surface plot
+    in (\subref{fig:sinc:3d}) for reference. My 1D slice view is shown
     in (\subref{fig:sinc:sp}). The central peak as well as the sub peaks
-    are prominent. For comparison we show the method of Gerber et 
+    are prominent. For comparison I show the method of Gerber et 
     al.~\cite{Gerber:2010} in 
     (\subref{fig:sinc:ms_1})--(\subref{fig:sinc:ms_3}) at different levels 
     of persistence filtering. 
@@ -82,26 +82,27 @@ Imagining how a function in more than 3-dimensions looks is difficult if not
 impossible. In order to illustrate how Sliceplorer visualizes functions we show
 the 2D sinc function. 
 %\tmnote{The sinc function is a the perfect reconstruction function in the band limited case.}
-We are using the formulation where 
+I am using the formulation where 
 $y(x_1,x_2) = \frac{sin(\pi x_1)}{\pi x_1} \frac{sin(\pi x_2)}{\pi x_2}$.
-In \autoref{fig:sinc:3d} we show a 3D surface plot of this function. The 
+For reference, \autoref{fig:sinc:3d} shows a 3D surface plot of this function. The 
 global maximum is at $x_1,x_2 = 0,0$ where $y=1$. There are a number of local
 maxima and minima of decreasing value radiating out from the origin.
 
-We show the 1D slice view using Sliceplorer in \autoref{fig:sinc:sp}.
-We are showing 50 slices in each of the 2 plots. We can clearly see that
+\autoref{fig:sinc:sp} shows the 1D slice view using Sliceplorer with
+50 slices in each of the 2 plots. We can clearly see that
 the maximum value occurs when $x_1,x_2 = 0,0$ in the graph at around $y=1$.
-We can also see the decreasing extrema radiating out from the origin. We can
-also precisely measure the height and x-location of the extrema. If we want
+We can also see the decreasing extrema radiating out from the origin. 
+In addition, we can
+precisely measure the height and x-location of the extrema. If we want
 to examine a particular trace then we can highlight it in the view and see
 the full slice highlighted on screen.
 
-For comparison, we show visualizations of the 2D sinc function rendered using
+For comparison, I show several visualizations of the 2D sinc function rendered using
 the \texttt{msr} package~\cite{Gerber:2012} in R. This package implements the
 visualization of the Morse-Smale complex from Gerber et al.~\cite{Gerber:2010}.
-We sampled the function with $2000$ sample points using a Sobol sequence. The
-1D slices view is showing $50$ focus points with $21$ samples for each slice so
-this was done to use a similar sampling method and number of samples to the
+I sampled the function with $2000$ sample points using a Sobol sequence. The
+1D slices view is showing $50$ focus points with $21$ samples for each slice. 
+I chose $2000$ sample points in order to use a similar sampling method and number of samples to the
 Sliceplorer method. The function can do persistence-based filtering of the
 graph before rendering.  This is controlled by the \texttt{pLevel} parameter
 which filters all persistences less than a certain value. In
@@ -179,11 +180,12 @@ parameterization.
   \caption{
     Two different views of the predictions of four different machine learning
     regression models on the Boston housing dataset. The top row (a -- d) shows
-    predictions by each model compressed to two dimensions with t-SNE. We
-    colored the points on a continuous color scale with dark blue being 0 and
+    predictions by each model compressed to two dimensions with t-SNE. The
+    point color indicates the function value on a
+    continuous color scale with dark blue being 0 and
     light blue the highest value. The bottom row (e -- h) shows a 1D slice view
     of the first dimension of the dataset, crime rate. We show the slices of
-    the remaining dimensions in the supplemental material. 
+    the remaining dimensions in \autoref{app:sliceplorer_ml}.
     The 1D slices reveal interesting information about how the models perform and
     can assist with model selection. We may not want to use the SVM with
     polynomial kernel (f), for example, since it predicts that home price will go
@@ -220,10 +222,10 @@ have known guarantees on error rate with the number of training samples. With
 this comparison we may be able to get some better insight about how the neural
 network learning algorithms are performing.
 
-To compare, we chose the Boston housing dataset~\cite{Lichman:2013} from the
+To compare, I chose the Boston housing dataset~\cite{Lichman:2013} from the
 UCI repository. This dataset contains median home prices
 given 13 factors including crime rate, age of the house, and proximity to
-highways. We then trained a neural network with a single hidden layer of 26
+highways. I then trained a neural network with a single hidden layer of 26
 nodes, a neural network with 2 hidden layers: one of 5 and one of 3 nodes, a
 support vector machine with a polynomial kernel, and a support vector machine
 with a radial (Gaussian) kernel.
@@ -244,18 +246,18 @@ with a radial (Gaussian) kernel.
 %ML expert. Needs re-writing; happy to discuss to give some ideas on what a
 %good level of information would be here.}
 
-We compare 1D slices with an adaption of the common way of viewing
+I compare 1D slices with an adaption of the common way of viewing
 classification algorithms to continuous data.
 % to maintain \ttwnote{ecological validity?}. 
 The results of \emph{classification} models are commonly visualized
 by using MDS~\cite{Kruskal:1964} or t-SNE~\cite{Maaten:2008} to reduce the input
 dimensions to two and then present a scatterplot with the predictions colored
-by class. We extended this by sampling the prediction model with \(1,000\)
-samples from a Latin hypercube~\cite{Tang:1993} (a space-filling design)
-converting the points to two dimensions with t-SNE and then coloring the points
-on a continuous scale which we show in \autoref{fig:nn_comp} (top row).  The
+by class. I extended this by sampling the prediction model with \(1,000\)
+samples from a Latin hypercube~\cite{Tang:1993} (a space-filling design),
+converting the points to two dimensions with t-SNE, and then coloring the points
+on a continuous scale which shown in \autoref{fig:nn_comp} (top row).  The
 bottom row of the figure shows the 1D slice view of the same four prediction
-models. We only show the first dimension due to space reasons. The full 13
+models. Only the first dimension is shown due to space reasons. The full 13
 dimension slice view image in \autoref{app:sliceplorer_ml} 
 \ttwnote{move image here?}.
 
@@ -285,7 +287,7 @@ optimization algorithms such as Nelder-Mead~\cite{Nelder:1965} work by starting
 at a particular parameter setting and evaluating the ``shape'' of the function
 around that point.  The algorithm then determines where the function is
 decreasing the greatest, and ``jumps'' a certain distance in that direction.
-The ``jump'', starting position, and termination tolerance parameters are
+The ``jump,'' starting position, and termination tolerance parameters are
 user-settable parameters. Depending on how they are set, the algorithm can get
 stuck in a local minima or take unreasonably long to finish.
 
@@ -307,14 +309,14 @@ minimum.
 %the local minimum found?}
 %\msnote{TO DISCUSS: also, how would the other alternatives perform here?}
 
-We compare 1D slices with HyperSlice~\cite{Wijk:1993} as this is the only
-technique that also directly visualizes the parameter space.  We ran the
+I compare 1D slices with HyperSlice~\cite{Wijk:1993} as this is the only
+technique that also directly visualizes the parameter space.  I ran the
 Nelder-Mead optimization algorithm on the 5D Ackley
 function~\cite{Ackley:1987}, a popular optimization algorithm testing function.
-To examine the effect of starting position, we tried different starting
-positions: \(x=(1,1,1,1,1)\) and \(x=(2,2,2,2,2)\).  We overlay the
-optimization trace on top of both 1D slices and HyperSlice and the results are
-shown in \autoref{fig:optim_trace}.
+To examine the effect of starting position, I tried different starting
+positions: \(x=(1,1,1,1,1)\) and \(x=(2,2,2,2,2)\).  \autoref{fig:optim_trace}
+shows the trace of the optimization algorithm overlaid on both 1D slices and
+HyperSlice.
 
 \begin{figure}
   \centering

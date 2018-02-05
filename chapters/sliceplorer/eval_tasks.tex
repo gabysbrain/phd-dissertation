@@ -11,19 +11,19 @@
 \begin{table*}[t]
   \centering
   \caption{
-    We summarize our task-based evaluation here. We extended the discrete 
+    This table shows the summary of the task-based evaluation. I extended the discrete 
     data-focused tasks of Amar, Eagan, and Stasko~\cite{Amar:2005} to directly address
     continuous data, with the exception of ``sort'' (see \autoref{sec:task-eval}). 
-    We show the scores from our qualitative results inspection as well as
-    our expert study on a scale from
+    The table shows the scores from our qualitative results inspection as well as
+    the expert study on a scale from
     ``none''~\crule{key0}, ``partially''~\crule{key1}, ``mostly''~\crule{key2},
     to ``fully''~\crule{key3}
     where
     ``none'' means that the task is not addressed at all and ``fully'' means 
     that this
-    task is directly supported by this view. We provide quotes of
+    task is directly supported by this view. There are quotes of
     the general description from Amar, Eagan, and Stasko's paper in the ``discrete''
-    column for convenience. 
+    column for reference. 
     \tmnote[nomarginclue]{If there is time left, center the text in the cells properly.}
   }
   \label{tbl:task_list}
@@ -33,19 +33,19 @@
 \begin{figure}[tb]
   \centering
   \subcaptionbox{HyperSlice~\cite{Wijk:1993}\label{fig:compare:hs}}
-    [0.2\textwidth]
+    [0.48\textwidth]
     {\includegraphics[width=0.17\textwidth]{ackley_5d_hs.pdf}}
   \hfill
   \subcaptionbox{Topological spine~\cite{Correa:2011}\label{fig:compare:ts}}
-    [0.2\textwidth]
+    [0.48\textwidth]
     {\includegraphics[width=0.17\textwidth]{topo_spine.pdf}}
   \\
   \subcaptionbox{Contour tree~\cite{Carr:2003}\label{fig:compare:ct}}
-    [0.2\textwidth]
+    [0.48\textwidth]
     {\includegraphics[width=0.17\textwidth]{contour_tree.pdf}}
   \hfill
   \subcaptionbox{Gerber et al.~\cite{Gerber:2010}\label{fig:compare:gerber}}
-    [0.2\textwidth]
+    [0.48\textwidth]
     {\includegraphics[width=0.17\textwidth]{gerber_ms.pdf}}
   %~
   %\subcaptionbox{1D slices\label{fig:compare:slices}}
@@ -58,7 +58,7 @@
   \label{fig:compare}
 \end{figure}
 
-We first evaluate 1D slices in terms of their flexibility to deal with a broad
+I first evaluate 1D slices in terms of their flexibility to deal with a broad
 set of different low-level tasks.  Task taxonomies give a basis for comparing
 visualization techniques to each other~\cite{Munzner:2014}.
 %~\cite{brehmer:2014}. \tmnote{I would cite Brehmer and Munzner here, or, even
@@ -66,15 +66,15 @@ visualization techniques to each other~\cite{Munzner:2014}.
 If a technique addresses a large number of tasks, that is usually a good
 indicator of its flexibility.  Over the last years, many different taxonomies
 have been proposed~\cite{Amar:2005,brehmer:2013,Heer:2012,Sedlmair:2014}.
-However, to the best of our knowledge none of these taxonomies thus far had a
+However, to the best of my knowledge, none of these taxonomies thus far had a
 dedicated focus on the visual analysis of multi-dimensional \textit{continuous}
-data. We thus took a popular taxonomy for tasks on discrete data, by Amar,
+data. I thus took a popular taxonomy for tasks on discrete data, by Amar,
 Eagan, and Stasko~\cite{Amar:2005}, and extended each of their task categories
-to directly address continuous data. We see this as an initial step towards
+to directly address continuous data. This is an initial step towards
 more consideration of multi-dimensional continuous data as a first class
 citizen when developing task hierarchies.
 
-Using this list of tasks, we compare 1D slices to other state of the art
+Using this list of tasks, I compare 1D slices to other state of the art
 techniques for multi-dimensional continuous data: HyperSlice~\cite{Wijk:1993},
 topological spines~\cite{Correa:2011}, contour trees~\cite{Carr:2003}, and the
 technique by Gerber et al.~\cite{Gerber:2010} (see \autoref{fig:compare}).  We
@@ -82,8 +82,8 @@ refer to topological spines, contour trees, and the work by Gerber et al.\ as
 topological techniques when it makes sense to compare them as a group.
 %These are the current state of the art visualization techniques that can be
 %applied to multi-dimensional continuous data. 
-We evaluate based on all tasks, except for ``sort'', for which we could not
-find a suitable extension to continuous functions.  The guiding theme in our
+We evaluate based on all tasks, except for ``sort'', for which I could not
+find a suitable extension to continuous functions.  The guiding theme in the
 extensions is that users want to view the relationship of independent variables
 to the dependent variable and to see how the dependent variable changes with
 respect to the independent values.  The extensions are shown in
@@ -162,13 +162,13 @@ conducted based on them, as detailed in the following section.
 
 \subsection{Study design}
 
-To perform a task-based evaluation, we investigated the different techniques in two different ways.
-First, we used a \textit{qualitative result inspection}
+To perform a task-based evaluation, I investigated the different techniques in two different ways.
+First, I used a \textit{qualitative result inspection}
 approach~\cite{Isenberg:2013}. 
 %\msnote{if we do the 5 people judgment, we should take this out again, then it is not a QRI anymore}
 %Since there are existing state-of-the art
 %methods employed to address these tasks we adopt a comparative strategy. 
-We (the authors) iteratively analyzed the techniques with different datasets and summarized
+I iteratively analyzed the techniques with different datasets and summarized
 our discussion and analysis on a four point scale:
 ``None'' means that it is not possible to perform the task with the technique,
 ``partly'' means that it requires major interaction with the view to accomplish
@@ -176,19 +176,19 @@ the task, ``mostly'' means that one can accomplish the task with little
 interaction, and ``fully'' means that this task is directly addressed by the
 technique. 
 
-Second, in order to get a more objective judgment we also asked 
+Second, in order to get a more objective judgment I also asked 
 \textit{four visualization experts} familiar with examining multi-dimensional spaces like
 parameter space exploration to examine the eight datasets with different
 techniques and rate how well each task can be accomplished with each technique
-on the same scale. We averaged these results and show them along with the
-results of our qualitative result inspection in \autoref{fig:compare}.
+on the same scale. \autoref{fig:compare} shows the averaged results along with the
+results of the qualitative result inspection in \autoref{fig:compare}.
 
-For the techniques, we use our own implementation of HyperSlice and topological
-spines since no code was available. We used the \texttt{msr} R
+For the techniques, I use my own implementation of HyperSlice and topological
+spines since no code was available. I used the \texttt{msr} R
 package~\cite{Gerber:2012} which implements the algorithm of Gerber et
-al.~\cite{Gerber:2010}. For the contour tree we used the \texttt{libtourtre}
+al.~\cite{Gerber:2010}. For the contour tree I used the \texttt{libtourtre}
 library and then rendered the trees using GraphViz using the
-Sugiyama~\cite{Gansner:1993} layout.  As datasets we chose the 2D sinc
+Sugiyama~\cite{Gansner:1993} layout.  As datasets, I chose the 2D sinc
 function, 5D Rosenbrock~\cite{Rosenbrock:1960} function, 6D Ackley function, a
 26 node hidden layer neural network built on the Boston housing
 dataset~\cite{Lichman:2013}, a support vector machine with Gaussian kernel
@@ -198,14 +198,11 @@ Not all datasets could be rendered with all techniques due to software errors.
 
 \subsection{Results}\label{sec:task-solutions}
 
-In this section, we summarize our discussion about the strengths and weaknesses
-of each technique in terms of performing the task.  For more details, we also
-include as supplemental material a website that contains details of how each
-visualization technique can solve each task. The website is available at
+In this section, I summarize our discussion about the strengths and weaknesses
+of each technique in terms of performing the task.  For more details, there is
+also a website that contains details of how each visualization technique can
+solve each task. The website is available at
 \url{http://sliceplorer.cs.univie.ac.at}.
-%\ttwnote{link?} \msnote{for now,
-%include in supplemental material, and add a footnote saying that the webpage
-%will be put on our university server upon final acceptance}
 
 %\msnote{TO-DISCUSS why is extending tasks from discrete to continuous domain a valid approach?}
 
@@ -270,7 +267,7 @@ maxima.
 
 \textbf{Determine range}:\label{determine-range}
 Amar, Eagan, and Stasko describe this as finding the range of possible values
-for a particular attribute. We really have only one attribute of interest: the
+for a particular attribute. There is really only one attribute of interest: the
 values of the multi-dimensional scalar function. Any view from which we can
 read the global minimum or the global maximum allows us to do this. Contour
 trees, Gerber et al., and 1D slices all allow us to read these off the view.
@@ -344,7 +341,7 @@ parameters.
 
 From the summary in \autoref{tbl:task_list} we can see that the 1D slices
 technique addresses more of the tasks than any other technique.  It is not
-always the highest performing view though.  HyperSlice is the only technique we
+always the highest performing view though.  HyperSlice is the only technique 
 evaluated that could show more than one-dimensional interactions but it does
 not do well on global tasks like extrema detection. The various topological
 techniques directly address tasks related to extrema detection and comparison
@@ -355,6 +352,6 @@ what exactly the topological techniques were doing in order to interpret
 the results. Thus, the ratings for these techniques may be artificially low.
 %\ttwnote{However, given the difficulty that experts had with the technique,
 %this does not bode well for the general public.}
-We conclude that 1D slices are a
+I conclude that 1D slices are a
 very flexible technique indeed.  
 

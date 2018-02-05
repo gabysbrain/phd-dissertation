@@ -11,14 +11,14 @@ is currently no established way to inspect these multi-dimensional manifolds. %W
 %multi-dimensional response surface 
 In case of an optimization algorithm, a good visualization of response manifolds could, for instance, help to see where possible
 ``holes'' (local extrema) are that the algorithm may get trapped in and fail to find the
-global optimum. By visually examining the functions that we are trying to
-optimize, one can develop new insights on how to improve the optimization
-algorithm. Our work is based on the assumption that visual analyses of these functions will help to increase
+global optimum. By visually examining the optimization functions,
+one can develop new insights on how to improve the optimization
+algorithm. This work is based on the assumption that visual analyses of these functions will help to increase
 understanding of what they are doing, 
 %(or improving comprehensibility 
 as argued by Gleicher~\cite{gleicher:2016}.
 
-To examine these functions visually we must reduce them to be
+To examine these functions visually they must be reduced to be
 displayed on a 2D screen. 
 %There are a number of techniques that we will discuss
 %in more detail in the background section (\autoref{sec:background}). 
@@ -49,18 +49,18 @@ local detail.
 %  \label{fig:scale}
 %\end{figure}
 
-In this paper, we explore the idea of 1D slices to fill this gap. We focus on 
-multi-dimensional continuous scalar functions which we define as functions that take two or more
+In this chapter, I explore the idea of 1D slices to fill this gap. I focus on 
+multi-dimensional continuous scalar functions. I define these as functions that take two or more
 scalar parameters as input and produce a single scalar as output.
-Towards illustrating the benefits, we propose a concrete technique using projections of 1D slices, which we call Sliceplorer (\autoref{fig:walkthrough}). 
+Towards illustrating the benefits, I propose a concrete technique using projections of 1D slices, called Sliceplorer (\autoref{fig:walkthrough}). 
 1D slices are traditional function line plots familiar to anyone with
 basic mathematics knowledge: one dimensional curves with respect to
 changes in a single parameter. 
-Like HyperSlice, we show a separate subplot
+Like HyperSlice, they show a separate subplot
 for each input dimension. For 1D slices, the number of
-subplots scales linearly with the number of dimensions, not quadratically as with 2D slices. We address the issue of having to choose a focus
+subplots scales linearly with the number of dimensions, not quadratically as with 2D slices. I address the issue of having to choose a focus
 point by sampling focus points and then showing all slices as a
-projection. Therefore, our 1D approach can be seen as a hybrid method of slicing
+projection. Therefore, my 1D approach can be seen as a hybrid method of slicing
 and projection techniques. %Classical projections (scatterplots), which would equal ``0D slices'' in the above terminology, have been hugely successful in the discrete data realm. What we are proposing here are 1D projections for the continuous data realm.
 
 %Naturally, our technique fits into the currently developed techniques for
@@ -69,18 +69,24 @@ In order to evaluate any new technique, we need to
 consider what data characteristics and tasks each method is good for. As of yet, there has not been a comprehensive
 listing of the tasks a user would want to perform when looking at
 multi-dimensional continuous functions. To this
-end, we begin development of this task summary by extending the task classification of Amar, Eagan, and Stasko~\cite{Amar:2005}. We use this classification to evaluate our 1D approach and compare it to 2D slices and different topological approaches. This comparison allows us to characterize what technique is best for which tasks and reveals that 1D slices is the most flexible of the current approaches. That is, it supports the broadest range of different tasks.
+end, I begin development of this task summary by extending the task
+classification of Amar, Eagan, and Stasko~\cite{Amar:2005}. I use this
+classification to evaluate Sliceplorer and compare it to 2D slices and
+different topological approaches. This comparison characterizes
+which technique is best for which tasks and reveals that 1D slices is the most
+flexible of the current approaches. That is, it supports the broadest range of
+different tasks.
 
-We also provide three usage scenarios comparing our technique with other state of the art techniques. These scenarios illustrate that 1D
+I also provide three usage scenarios comparing Sliceplorer with other state of the art techniques. These scenarios illustrate that 1D
 slices can reveal structure in the functions that could not
-have been seen before. For example, we discuss how one can use our
+have been seen before. For example, I discuss how one can use my
 method to compare the \emph{global} prediction manifold of a neural
 network algorithm against a support vector machine to guide and better understand the architecture of a neural network. This is currently an open research question in the machine learning community.
 
 %Although 2D and 3D scalar functions are also multi-dimensional functions, our
 %technique is focused on functions with domains of \emph{4D and higher}. 
 
-In summary our contributions are: 
+In summary my contributions are: 
 \begin{itemize}
 \item exploring the idea of 1D slices with a concrete software prototype called Sliceplorer,
 \item a task-based analysis of multi-dimensional functions, comparing 1D slices to 2D HyperSlices and topological techniques, and
