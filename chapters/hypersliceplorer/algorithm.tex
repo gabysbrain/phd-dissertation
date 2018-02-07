@@ -29,12 +29,13 @@
     \label{fig:slicing:plane}
   \end{subfigure}
   \caption{%
-    An overview of how our algorithm functions. The goal is to compute the
+    An overview of how the algorithm functions. The goal is to compute the
     intersection of a slice with a polytope defined as a simplical mesh
     (\subref{fig:slicing:mesh}). The slice is defined by selecting a focus
-    point and then extending it in two directions. We 
-    (\subref{fig:slicing:simplex}) treat each simplex in the mesh 
-    independently and compute the intersection of the simplex with the slice
+    point and then extending it in two directions. Each simplex in the mesh
+    (\subref{fig:slicing:simplex}) is treated
+    independently in order to compute the intersection of the simplex with 
+    the slice
     (see \autoref{alg:slicing:single}). The collection of all intersections
     for a particular plane is shown as a line plot 
     (\subref{fig:slicing:plane}). This process is repeated over a number of 
@@ -49,10 +50,10 @@ There are a several ready-made solutions to creating a number of uniformly
 distributed multi-dimensional samples (e.g.\ Sobol sequence~\cite{Sobol:1967}
 or Latin hypercube~\cite{Mckay:1979}). These methods are based on ensuring that
 the distance between sample points is as even as possible.  These will be our
-focus points. Based on this, our main contribution is an algorithm
-on how to slice a multi-dimensional polytope.  The algorithm will produce a
-single two-dimensional axis-aligned slice for a single focus point. To produce
-the full multi-dimensional view we repeat this algorithm for each focus point
+focus points. Based on this, the main contribution of Hypersliceplorer is an algorithm
+that computes slices of a multi-dimensional polytope.  The algorithm will produce a
+single, two-dimensional, axis-aligned slice for a single focus point. To produce
+the full multi-dimensional view this process is repeated for each focus point
 and dimension pair.
 
 \subsection{Conceptual overview}
@@ -64,7 +65,8 @@ parameters, the parameters representing the slice, to a fixed value based on the
 focus point. This gives us a two-dimensional function which we can draw as
 a one- or two-dimensional function plot.
 
-In our case, we have a simplical hull. This hull can be computed as a convex
+When we have a simplical hull instead of a functional description then we
+cannot use the parameter fixing method. This hull can be computed as a convex
 hull of a point cloud using an algorithm such as quickhull~\cite{Barber:1996}
 or they can be pre-defined.  In either case, a simplical hull is a set of
 \(d-1\)-dimensional simplices for a \(d\)-dimensional space. 
@@ -84,53 +86,57 @@ we cannot use this method to compute the intersection of a 2D planar object.
 This planar object does not have a well-defined concept of a ``side'' in a
 multi-dimensional space. The analogy to this is a line in three-dimensions.
 
-Our solution to this problem relies on two key observations. We can treat the
-plane as a point with two free parameters and then see if
+The solution to this problem relies on two key observations. The plane can
+be represetned as
+a point with two free parameters and then see if
 this point lies on the boundary of the simplex using barycentric coordinates.
 A barycentric coordinate defines the location of a point on the face of a simplex.
 %The plane must intersect the simplex
 %at its boundaries. We express the position of a point within a simplex by using barycentric coordinates. 
-For a single focus point, we choose a point somewhere in the domain. Then we
+For a single focus point, choose a point somewhere in the domain. Then,
 select two axis-aligned directions and create a plane by setting the values
-of that point to free parameters, which we denote $x$ and $y$. These free parameters
-create a 2D plane. We then want to see where this plane intersects the simplex
+of that point to free parameters, denoted $x$ and $y$. These free parameters
+create a 2D plane. The next step is to see where this plane intersects the simplex
 (\autoref{fig:slicing:simplex}). 
 A point is located on the boundary of a simplex whenever at least one
 barycentric coordinate is zero and the rest are between zero and one. 
-If there is a solution then we will have a formula for the line segment
+If there is a solution then there will be a formula for the line segment
 through the simplex (\autoref{alg:slicing:single}).
-We compute these line segments for each plane/simplex intersection. The
+These line segments are computed for each plane/simplex intersection. The
 collection of intersecting lines forms the image of the slice on the plane
 (see \autoref{fig:slicing:plane}).
 
 The simplical hull of a shape consists of $d−1$-dimensional simplices. However, in
 order to convert to barycentric coordinates without using a pseudoinverse we
 need a $d$-dimensional simplex where every point has a unique representation.
-Therefore, we add the focus point as an extra vertex.  Now we have a
-$d$-dimensional simplex. This will lead us to a square matrix, which is easy to
+Using the focus point as an additional vertex will yield a $d$-dimensional 
+simplex.
+This will lead us to a square matrix, which is easy to
 invert.  Any intersections with the extra point are removed at the end of the
 algorithm.
 
 \subsection{Algorithm details}
 
-The algorithm requires that the shape we are slicing is specified as a set of
+The algorithm requires that the shape to be sliced is specified as a set of
 simplices. Each combination of simplex, pair of slicing dimensions, and focus
 point is handled independently. These can be looped through, as in the
-pseudocode (see \autoref{alg:slicing:all}), or in parallel, as in our actual
+pseudocode (see \autoref{alg:slicing:all}), or in parallel, as in the actual
 implementation.
 
-To illustrate how our slicing algorithm works we first introduce some notation.  We begin with a $d$-dimensional focus point $f_p$ and a simplex $s$
-consisting of $d+1$ $d$-dimensional points, $x_1, \ldots, x_{d+1}$. We denote
-the slice as $f_p'$ in the formulas below. Without loss of generality, we will
+To illustrate how the slicing algorithm works I first introduce some notation.  
+We begin with a $d$-dimensional focus point $f_p$ and a simplex $s$
+consisting of $d+1$ $d$-dimensional points, $x_1, \ldots, x_{d+1}$. 
+The slice is denoted as $f_p'$ in the formulas below. Without loss of generality, 
+I will
 assume the slicing dimensions to be $(d_1,d_2)=(1,2)$. Then, the two free
 variables for the specification of the slice, $x$ and $y$, will replace the
 first two components of the focus point (\autoref{eq:fp}). 
 %\msnote{we might want to include 
 %equations right at the spot. Imho this makes it easier to read. But maybe just a matter of style/taste ...}
-We let $T$
+Let $T$
 be the matrix to convert a point from barycentric coordinates to Cartesian
-coordinates (including a homogeneous component of 1). The columns of $T$ are the $d+1$ points defining the simplex. We append
-a row of ones to ensure that the barycentric coordinates sum to one. The inverse
+coordinates (including a homogeneous component of 1). The columns of $T$ are the $d+1$ points defining the simplex. The final row
+of ones ensure that the barycentric coordinates sum to one. The inverse
 of $T$ will convert a point from Cartesian coordinates (including a homogeneous component of 1) back to barycentric coordinates.
 
 \begin{align}
@@ -187,8 +193,9 @@ the boundary of the simplex.  An intersection of a plane with a
 simplex must cross the boundaries
 (\autoref{fig:slicing:simplex}) so it suffices to turn each
 component of $\lambda$, $\lambda_i$, to zero in turn.  It is possible that the plane will
-intersect multiple faces so we set each component of $\lambda$ to $0$ in turn
-and then check what range of $x$ and $y$ in the remaining components are valid
+intersect multiple faces. Each component of $\lambda$ is set to $0$ in turn
+the range of $x$ and $y$ in the remaining components are checked
+to see if they are valid
 barycentric coordinates (i.e.\ are between zero and one).  If this is the case,
 then the plane intersects the simplex.  Otherwise, there is no intersection. In
 other words, if we are trying to find the intersection for face $i$, we need to
@@ -197,11 +204,12 @@ This can be solved either with a linear constraint solver or directly by
 solving for $y$ setting $\lambda_i = 0$ and substituting it into each row $j$ of \autoref{eq:inverted}
 %$\lambda_j$ 
 and then finding an interval for $x$ and $y$ that allows each
-$\lambda_j$ to be between $0$ and $1$.  We can do this by individually finding
+$\lambda_j$ to be between $0$ and $1$.  This can be done by individually finding
 the valid $x, y$ interval for each $j$ and then taking the intersection of all the
 individual intervals. If the intersection is non-empty then this is the interval
-of values for $x$ in the intersection. We can substitute this to find the
-interval of values for $y$. We can then draw these intervals as line segments
+of values for $x$ in the intersection. The $x$ values can be substituted into
+the formula to find the
+interval of values for $y$. These intervals are drawn as line segments
 on the screen (\autoref{fig:slicing:plane}). 
 
 \begin{algorithm}

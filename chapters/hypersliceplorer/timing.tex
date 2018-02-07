@@ -6,8 +6,8 @@
   \centering
   \caption{%
     Results of timing the Hypersliceplorer algorithm on a number of different
-    datasets. We ran the algorithm, setting the number of slices to $1,000$.
-    We record the number of simplices created by the quickhull
+    datasets. I ran the algorithm setting the number of slices to $1,000$.
+    I record the number of simplices created by the quickhull
     algorithm~\cite{Barber:1996}, the total time for all slices, and the time
     per simplex. The time per simplex is the total time divided by the number
     of plots (i.e.\ dimension pairs, the number of simplices, and the number of focus points.
@@ -48,29 +48,29 @@
   \label{fig:timing}
 \end{figure}
 
-In order to test the running time of our algorithm we ran a number of
-experiments to understand the timing. We tested regular polytopes in 3, 4, and
-5 dimensions as well as hyperspheres. We also tested the four-dimensional
+In order to test the running time of the slicing algorithm I ran a number of
+experiments to understand the timing. I tested regular polytopes in 3, 4, and
+5 dimensions as well as hyperspheres. I also tested the four-dimensional
 version of the Klein bottle because it has a large number of simplices in its
-mesh. For each test, we ran the slicing algorithm for all pairs of dimensions
-and for $1,000$ focus points. We recorded the total wall clock time as well as
+mesh. For each test, I ran the slicing algorithm for all pairs of dimensions
+and for $1,000$ focus points. I recorded the total wall clock time as well as
 the number of simplices given by the quickhull algorithm. The testing machine
 has an 8-core 3.2GHz Intel i7-6900K with 64GB of RAM.
 
-Our results are shown in \autoref{tbl:timings}. The total number of slicing
+The results are shown in \autoref{tbl:timings}. The total number of slicing
 checks (\autoref{alg:slicing:single}) is the number of simplices, times the
 number of pairs of dimensions ($d \choose 2$), times the total number of focus
-points ($1,000$). We divide the total time by this number to show the time per
+points ($1,000$). I divide the total time by this number to show the time per
 simplex. 
 
 As we can see, the times are roughly constant between the number of
 dimensions and simplices (see \autoref{fig:timing}). The reason the Klein 
 bottle is faster is because
 many slices do not hit any simplices and the algorithm will exit early
-once this is detected. Right now, this algorithm is not optimized.
+once this is detected. Right now this algorithm is not optimized.
 For example, it would be greatly beneficial to pre-compute a spatial data
 structure so that only slices that are likely to intersect simplices are
-evaluated. In our case, the algorithm must check every simplex against every
+evaluated. Currently, the algorithm must check every simplex against every
 focus point for every pair of dimensions. This is a lot of extra work for figures
 such as the Klein bottle with many simplexes.
 

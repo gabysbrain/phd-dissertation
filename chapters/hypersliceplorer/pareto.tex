@@ -80,16 +80,16 @@ and benefits of changing one of the remaining objectives.
   \label{fig:dltz} 
 \end{figure}
 
-We also show a popular multi-objective test problem, DLTZ1~\cite{Deb:2002a}
-with 5 objectives.  We find the Pareto points using the NSGA-II~\cite{Deb:2002}
-algorithm.  We used the same settings for the algorithm as in Deb et 
-al.~\cite{Deb:2002a}.  In real-world situations, the Pareto front is not
-convex. We can use, for example, alpha shapes~\cite{Edelsbrunner:1983} to
+I also show a popular multi-objective test problem, DLTZ1~\cite{Deb:2002a}
+with 5 objectives.  I find the Pareto points using the NSGA-II~\cite{Deb:2002}
+algorithm.  I used the same settings for the algorithm as in Deb et 
+al.~\cite{Deb:2002a}. In real-world situations, the Pareto front is not
+convex. One can use, for example, alpha shapes~\cite{Edelsbrunner:1983} to
 generate a non-convex hull of a set of points. For this example, we use the
 convex hull of the points generated using the quickhull~\cite{Barber:1996}
 algorithm since the Pareto front of DLTZ1 is convex.  The Pareto front is a
 hyperplane that cuts diagonally across the objective dimensions. In the
-3-objective (\autoref{fig:dltz:3}) we can see how the NSGA-II algorithm is 
+3-objective case (\autoref{fig:dltz:3}) we can see how the NSGA-II algorithm is 
 getting close to fitting the points to the hyperplane. It does not find it
 exactly though which is why the lines appear bent in the figure. In addition,
 NSGA-II pushes some points out to the maximum value for each objective.

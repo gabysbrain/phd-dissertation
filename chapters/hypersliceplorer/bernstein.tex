@@ -14,10 +14,11 @@ fitting process to Bernstein polynomials~\cite{Phillips:2003}. By only using
 positive Bernstein coefficients, Bernstein
 polynomials are restricted to be strictly positive.  However,
 %based on our interviews with experts,
-physicists do not know how "representative" are the positive Bernstein
+physicists do not know how ``representative'' are the positive Bernstein
 expansions of the space of positive polynomials. In other words, can every
-positive polynomial be represented by a corresponding Bernstein polynomial? We
-can select a large number of polynomials and visually compare the spaces in
+positive polynomial be represented by a corresponding Bernstein polynomial? 
+To show these differences, I
+select a large number of polynomials and visually compare the spaces in
 order to understand the differences.
 
 A Bernstein polynomial of degree \(n\) is a linear combination of
@@ -42,21 +43,21 @@ coefficients. For example, a 2\textsuperscript{nd} degree polynomial, \(a_0
 Since we are only concerned with positivity, any polynomials that differ from
 each other by a positive factor are equivalent. Thus, the polynomials
 $0.2x^2 + 0.1x + 2$ and $0.1x^2 + 0.05x + 1$ will be positive in the same
-range. Therefore, we can constrain the sampling by setting one of the
+range. Therefore, I constrain the sampling by setting one of the
 coefficients to $1$ or $-1$ and then sampling the rest between $-1$ and $1$.
-We used $10,000$ sample points to get a representative sample.
+I used $10,000$ sample points to get a representative sample.
 Since one coefficient is constrained in turn to
-either \(-1\) and \(1\) we have \(2n\) possible polynomials where the remaining
-\(n\) coefficients range between \([-1,1]\). We then test to see if each
-polynomial is positive in the domain \([0,1]\). We also determine if the
+either \(-1\) and \(1\) there are \(2n\) possible polynomials where the remaining
+\(n\) coefficients range between \([-1,1]\). I then test to see if each
+polynomial is positive in the domain \([0,1]\). I also determine if the
 equivalent Bernstein polynomial has all \(\beta_i \ge 0\). We can compute the
 \(\beta_i\) factors because each coefficient \(a_j\) is a linear combination of
 Bernstein coefficients. For our two-dimensional example: \(a_0 = \beta_0\),
-\(a_1 = 2(\beta_0-\beta_1)\), and \(a_2=\beta_0 - 2\beta_1 + \beta_2\). Then,
-for each polynomial it is either non-positive, or positive without positive Bernstein coefficients, or positive with 
-positive Bernstein coefficients. We perform this process to examine polynomials of
-degree 3, 4, and 5. By constraining a coefficient to $\pm 1$ we produce a
-face of the space of polynomials. These faces are convex so we generate a
+\(a_1 = 2(\beta_0-\beta_1)\), and \(a_2=\beta_0 - 2\beta_1 + \beta_2\) \ttwnote{incomplete sentence}. Then,
+for each polynomial, it is either non-positive, positive without positive Bernstein coefficients, or positive with 
+positive Bernstein coefficients. I perform this process to examine polynomials of
+degree 3, 4, and 5. Constraining a coefficient to $\pm 1$ produces a
+face of the space of polynomials. These faces are convex so I can generate a
 convex hull of these points and examine them using Hypersliceplorer. Since we
 are only interested in how these spaces differ, we examine the difference views.
 
@@ -88,11 +89,11 @@ are only interested in how these spaces differ, we examine the difference views.
 \end{figure}
 
 The current assumptions is that, while there is a difference between the set of all positive polynomials and the set of all Bernstein polynomials with positive coefficients,
-that difference is small. However, our Hypersliceplorer visualization shows
+that difference is small. However, the Hypersliceplorer visualization shows
 that this is not the case. \autoref{fig:spacediff:global} 
 shows all 4\textsuperscript{th} degree polynomial with the $x^4$ term fixed to
 $1$. We can see that for almost an entire range of the $x^2$ and $x^3$
-coefficients $a_1, a_2$ there are positive polynomials for which we cannot find a
+coefficients $a_1, a_2$ there are positive polynomials for which one cannot find a
 Bernstein polynomial with positive Bernstein coefficients. Using the local view
 (\autoref{fig:spacediff:local}), we can see that this difference is also
 large in the other dimensions. Other patterns become apparent, such that $a_0>0$ which could lead to novel hypothesis that can be tested.
@@ -129,7 +130,7 @@ large in the other dimensions. Other patterns become apparent, such that $a_0>0$
 \end{figure*}
 
 The global overview also lets us compare across degrees of polynomials.
-In \autoref{fig:dimcmp} we show a 3\textsuperscript{rd}, 4\textsuperscript{th},
+In \autoref{fig:dimcmp} I show a 3\textsuperscript{rd}, 4\textsuperscript{th},
 and 5\textsuperscript{th} degree polynomial with the coefficient of the $x^2$
 term set to $1$. Here we can see that the $a_0 \times a_1$ plots all look the same.
 In fact, the width across all the panels including $a_0$ are the same. In this

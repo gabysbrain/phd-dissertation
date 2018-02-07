@@ -24,7 +24,7 @@ scatterplots and dimensionality reduction techniques, are used for its analysis.
 Typical examples include business applications, in which one is analyzing
 customer data.
 The focus of
-this paper is different in that (2) we are focusing on continuous multi-dimensional data spaces. For computational purposes, the data set is then merely a
+my work is different in that (2) I am focusing on continuous multi-dimensional data spaces. For computational purposes, the data set is then merely a
 set of points sampled from a continuous phenomenon of study. This is
 rather common in simulation and engineering applications or for the study of
 continuous algorithmic parameters in modeling environments, including machine
@@ -32,23 +32,23 @@ learning applications~\cite{Sedlmair:2014}. Of course, for such scenarios, proje
 visualization might be of help as well. However, they do not respect the mental
 model of the object of study~\cite{Tory:2004}.
 
-To comprehend these continuous data spaces, we extend the
+To comprehend these continuous data spaces, I extend the
 HyperSlice~\cite{Wijk:1993} method, which presents a number of slices through
 data space, all connected through one point in data space (called the focus
 point). Slicing has a number of advantages including undistorted views of the
 space and the preservation of distances. The disadvantage is that only one
 focus point can be shown at a time. Vastly different views of the object may be
 seen depending on the location of the focus point. Navigating multiple
-dimensions, the user may also lose their place during interaction.  We create a
+dimensions, the user may also lose their place during interaction.  I create a
 two-dimensional slice by constraining all but two parameters to the focus point
 value.
 
 %our previous work, 
-In Sliceplorer~\cite{Torsney-Weir:2017a}, Torsney-Weir et al. suggest to
+In Sliceplorer~\cite{Torsney-Weir:2017a}, I suggest to
 present 1D slices instead of 2D slices in such cases. While a 1D slice carries
 less information than a 2D slice, they could now present a global view of the
 multidimensional object by over-plotting many 1D slices. This advantage was
-worth the loss of 2D information. In this paper, we take the idea of more global overviews and revisit 2D 
+worth the loss of 2D information. Here, I take the idea of more global overviews and revisit 2D 
 slices for closed multi-dimensional objects, whose overall multi-dimensional shape is
 of great importance. This has been motivated by a number of real-world
 application scenarios, from comprehension of multi-dimensional polytopes by 
@@ -61,39 +61,39 @@ over-plotting of many focus points.
 %description is not always practical, however. Often we only have a point
 %cloud or a simplical mesh describing the surface of the object.
 
-We address the issue of selecting a focus point by sampling a number of focus
+I address the issue of selecting a focus point by sampling a number of focus
 points and producing projections of 2D slices (\autoref{fig:interface}). This
 \emph{global view} gives the user an overview of the behavior of the object
 without having to navigate manually. Since we are viewing just
-the outer hull of the object, we can draw these as a projection of a set of 2D
-slices.  We use linked highlighting to show all slices for a particular focus
-point.  In addition, the user can click on a particular slice and switch to the
+the outer hull of the object, I draw these as a projection of a set of 2D
+slices. I use linked highlighting to show all slices for a particular focus
+point. In addition, the user can click on a particular slice and switch to the
 \emph{local view}. The local view begins by showing the particular slice the
 user clicked on. The user can add additional focus points and select particular
 slices for comparison. This interaction models Shneiderman's mantra: ``overview
 first, filter and zoom, details on demand''~\cite{Shneiderman:1996}.
 
-Our major contribution is an
-algorithm called Hypersliceplorer for computing the intersection of a 2D slice with a simplical
-mesh in any dimension (see \autoref{sec:algorithm} and \autoref{fig:slicing}). The issue is that a 2D plane does not have a
-well-defined normal in spaces higher than three. Therefore, we cannot
-use the typical point-normal form of a plane in order to compute the
-intersection of the plane with the simplex. Instead, we treat the plane
-as a point with two free parameters representing the plane. Then, we
-show how this representation allows us to compute how a
-multi-dimensional simplex intersects a 2D plane. This approach lets us compute
-slices of a multi-dimensional object without a parametric form of the
-surface. We also demonstrate the results of this algorithm with an interactive
-interface we developed.
+My major contribution is an algorithm called Hypersliceplorer for computing the
+intersection of a 2D slice with a simplical mesh in any dimension (see
+\autoref{sec:algorithm} and \autoref{fig:slicing}). The issue is that a 2D
+plane does not have a well-defined normal in spaces higher than three.
+Therefore, one cannot use the typical point-normal form of a plane in order to
+compute the intersection of the plane with the simplex. Instead, I treat the
+plane as a point with two free parameters representing the plane. Then, I show
+how this representation allows us to compute how a multi-dimensional simplex
+intersects a 2D plane. This approach lets one compute slices of a
+multi-dimensional object without a parametric form of the surface. I also
+demonstrate the results of this algorithm with an interactive interface I
+developed.
 
-We evaluate our algorithm and interface in two ways representing their recommended
+I evaluate our algorithm and interface in two ways representing their recommended
 evaluation methods according to the nested
 model~\cite{Munzner:2009}. For the overall technique and
-interactive viewer, we demonstrate the effectiveness of our technique by
-presenting three case studies. For the underlying algorithm we present an
+interactive viewer, I demonstrate the effectiveness of Hypersliceplorer by
+presenting three case studies. For the underlying algorithm I present an
 analysis of the running time. 
 
-In summary, our contributions are:
+In summary, my contributions are:
 \begin{itemize}
 \item
   an algorithm for computing 2D slices of multi-dimensional polytopes defined by a

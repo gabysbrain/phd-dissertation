@@ -2,11 +2,12 @@
 \label{sec:related-work}
 
 Multi-objective optimization and multi-dimensional objects are two areas
-where it is important to study shapes in over three dimensions. We discuss 
+where it is important to study shapes in over three dimensions. I discuss 
 these areas below. Topological techniques are based on viewing critical points
 of manifolds~\cite{Correa:2011,Gerber:2010} or how contours merge and 
-split~\cite{Carr:2003a}. We do not discuss them further. Manifold analysis
-is very different than visualizing shapes. 
+split~\cite{Carr:2003a}. I do not discuss them further here. Manifold analysis
+is very different than visualizing shapes and this is discussed 
+\autoref{chp:sliceplorer}. 
 
 The need to understand multi-dimensional polytopes is apparent to 
 geometers~\cite{Ziegler:2012}.
@@ -18,7 +19,7 @@ of multi-dimensional Pareto fronts (\autoref{sec:pareto}).
 
 \subsection{Multi-objective optimization}
 
-In multi-objective optimization we have several scalar values that we wish to
+In multi-objective optimization there are several scalar values that we wish to
 optimize. The set of optimal points is known as the Pareto front.
 If each objective measure is continuous then we have a continuous hull in one
 orthant. We want to use this hull to analyze the trade-offs between objective
@@ -31,7 +32,7 @@ the Pareto points using an algorithm such as NSGA-II~\cite{Deb:2002} or the
 skyline algorithm~\cite{Borzsony:2001}. We can then generate the hull using
 multi-dimensional marching cubes~\cite{Bhaniramka:2000}, the quickhull
 algorithm~\cite{Barber:1996}, or alpha shapes~\cite{Edelsbrunner:1983}. These
-can then be viewed in Hypersliceplorer as we do in \autoref{sec:pareto}.
+can then be viewed in Hypersliceplorer as I do in \autoref{sec:pareto}.
 
 An alternative is to treat the samples as a fixed set and then visualize the
 relationship between possible combinations of objectives. Typically this is
@@ -43,7 +44,7 @@ stability of rankings. The user can understand how much a particular objective
 is affected by its weighting. This can help speed interactive exploration. 
 Finally, the joint contour net~\cite{Carr:2014} can be used to compute how
 often two objectives hold particular values simultaneously. 
-In our case, the mental model is a continuous one. Thus it makes more sense
+In my case, the mental model is a continuous one. Thus it makes more sense
 to show a continuous Pareto front.
 
 \subsection{Multi-dimensional objects}
@@ -99,8 +100,8 @@ algorithms, such as the one by Battista et al.~\cite{Battista:1988}, but these
 do not work in all cases.
 
 For more than four dimensions, 
-projection methods no longer work as well.  Techniques based on slicing the
-space can be extended to any number of dimensions.  The techniques to perform
+projection methods no longer work as well. Techniques based on slicing the
+space can be extended to any number of dimensions. The techniques to perform
 this so far, such as HyperSlice~\cite{Wijk:1993},
 HyperMoVal~\cite{Piringer:2010}, and Sliceplorer~\cite{Torsney-Weir:2017a},
 are designed to show slices of multi-dimensional manifolds.
@@ -114,8 +115,8 @@ visualization and slicing.  However, they
 %also require a parametric description of the object under study and 
 are limited to 3D objects. 
 The global view of Hypersliceplorer is inspired by the idea of examining
-cross sections. We also have a local
+cross sections. Hypersliceplorer also has a local
 view which permits the user to look at a small number of self-selected slices.
-We have developed a method to produce slices based on a simplical mesh which
+I developed a method to produce slices based on a simplical mesh which
 is very useful given a discretized surface (see \autoref{fig:slicing}). 
 
