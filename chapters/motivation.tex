@@ -1,13 +1,12 @@
 %Thesis: Multi-dimensional spaces are better visualized through slice based views
 
 We live in a three-dimensional world. 
-%This is a relatively uncontroversial
-%statement. Some argue that time also behaves as a dimension but we do not have
-%control over it thus giving the universe 3.5 dimensions~\cite{Minkowski:1908}.
-%Nevertheless, ourselves and what we can interact with are in three dimensions.
 Ourselves and what we can interact with are in three dimensions.
+\ttwnote{bridge sentence}
+The phenomena governing the world are described as continuous processes.
+In order to learn about the world around us we need to study these processes.
 \ttwnote{The world is continuous}
-We learn about the world, first, by studying function plots in high 
+We begin by studying function plots in high 
 school\ttwnote{figure?}. These give an intuitive view of one-dimensional 
 phenomena. 
 By exploring the relationship
@@ -29,7 +28,7 @@ increasing.
 However, we interact with many phenomena around us that are essentially
 multi-dimensional in nature. For example, the weather in a certain location is
 determined by the temperature, pressure, humidity, dew point, wind velocity,
-wind direction, among others. A change in any of these factors results in a
+and wind direction, among others. A change in any of these factors results in a
 change in the weather. Each of these factors can be given a ``spatial
 embedding.'' Then, they can be viewed as a dimension of some space.  By
 ``walking'' or navigating through this space we can observe the effect on the
@@ -41,11 +40,47 @@ angle, and position in three dimensions. We do not have these once we
 move beyond three dimensions though. Nevertheless, visual analysis of
 these multi-dimensional spaces has produced insights about the
 underlying behavior~\cite{Sedlmair:2014}. The issue is how to show more
-than three dimensions on a two-dimensional screen. There are several
-techniques to do this: dimension reduction, projection, 
-topology, linked views, and slicing.
+than three dimensions on a two-dimensional screen. 
 
-\ttwnote{continuous vs discrete data and mental models}
+One strategy is to discretize the dataset through sampling and then use the
+wealth of discrete visualization tools available. Much of the work on
+multi-dimensional data analysis developed from analysis of abstract data such
+as tabular data\ttwnote{ref}. These datasets are often recorded from real-world
+events such as census, species, or text data and contain many different aspects
+about each entity. These datasets are inherently multi- or high-dimensional.
+Each different aspect of the data items creates a dimension to be analyzed. For
+example, census data consists of the address, age, marital status, among
+others. In the case of these data the mental model is that of discrete objects
+like humans, plants, or documents. Since the mental model is discrete in this
+case it makes sense to use data processing and visualization tools designed for
+discrete data.  However, our mental model is a continuous one. Therefore, the
+discrete data paradigm breaks our mental model~\cite{Tory:2004a}. Rather, we
+should use visualization techniques purpose-built for continuous data.
+
+\ttwnote{how we visualizae multi-D continuous stuff}
+
+\ttwnote{shorten this and move details to specific section} 
+\ttwnote{can put something here like both proj and topology distort what we're 
+         looking for and the distortion isn't clear} 
+While not as extensively developed \ttwnote{(or popular)}, there is previous
+work on visualizing multi-dimensional, continuous data. These techniques can be
+broadly classified into projection, topological, and slicing methods.
+\ttwnote{put in chart from Jurgen's presentation (projection vs dim
+reduction)?} Projection methods attempt to distort the multi-dimensional object
+in order to view it on a two-dimensional screen. With projection techniques we
+can preserve distances or angles, but not both~\cite{projection issues from
+projecting the globe} Depending on the projection method, we may see radically
+different representations.  The issue is that it is not clear from the
+resulting visualization what sort of transformation was performed on the data.
+Thus it can be difficult to reconstruct the mental model of the
+multi-dimensional object.  One of the most often seen multi-dimensional
+projection techniques is the Schlegel diagram~\cite{schlegel} which picks a
+``face'' of a polytope and projects the remaining faces inside it. Thus this
+technique only works for 4D polytopes.  Topological methods search the
+continuous dataset for values of interest, such as critical points or contours. 
+Topological visualization techniques also suffer from the issue of unclear
+transformation. It is difficult to relate the resulting visualization back to
+features in the multi-dimensional object.
 
 Slice-based views of multi-dimensional continuous spaces have not been explored
 as extensively as other options.  This work began with the advent of
@@ -81,6 +116,20 @@ address their shortcomings.
   }
 \end{figure}
 
+\tmnote{
+- I think your reasoning though is not so much as looking at wheather. Rather,
+I would argue that we have learned about the world through looking at 1D plot
+in school or by comparing (and equating) things into classes of similar things
+(hence, shape is a nice thing for us to reason about.
+- then you can talk about extending reasoning of 3D world to higher
+dimensions, that it is hard and all.
+- then I would argue about continuous vs. discrete. to me it is important to
+understand the mental model of how we reason about a phenomenon. somtimes
+discrete is important (some examples) sometimes continues (simulations,
+incluence of a parameter)
+- then you can reason about what Vis techniques we have for understanding
+cont. spaces
+}
 \input{motivation/multid_spaces}
 \input{motivation/challenges}
 \input{motivation/advantages}
