@@ -2,13 +2,21 @@
 \section{Multi-dimensional spaces}
 \label{sec:motivation:multi-d}
 
-There are a number of domains where one can apply the analysis of
-continuous multi-dimensional data.  As of yet, there has not been a
-comprehensive data and task analysis for multi-dimensional continuous data
-analysis. Work in this area has traditionally focused on developing a specific
-visualization for a specific task. For example, topological spines extracts
-critical points from a scalar field~\cite{Correa:2011}.
-\ttwnote{talk about why multi-D discrete data is so popular}
+There are a number of domains where one can apply the analysis of continuous
+multi-dimensional data.  As of yet, there has not been a comprehensive data and
+task analysis for multi-dimensional continuous data analysis. For discrete
+data, there are several task~\cite{task analyses} analyses. However, they are
+focused on identifying and selecting particular data items. Continuous datasets
+consist of ranges of values as well as functions. Functions can be seen as a
+mapping from ranges of numbers to other ranges. The analysis task here is to
+study these ranges.  Tasks addressing studying the mappings or studying the
+relationship between ranges have not yet been covered by visualization task
+analyses. Thus, there is no comprehensive source for what analysis tasks one
+wants to perform given a continuous multi-dimensional dataset.  Work in this
+area has traditionally focused on developing a specific visualization for a
+specific task. For example, topological spines extracts critical points from a
+scalar field~\cite{Correa:2011}. One goal of this thesis is to develop this
+task taxonomy for visualization of continuous multi-dimensional data.
 
 %Often work on continuous multi-dimensional data analysis is done in the context
 %of design studies~\cite{Sedlmair:2012}. The issue is transferability, while
@@ -18,11 +26,11 @@ critical points from a scalar field~\cite{Correa:2011}.
 %fit under a unified visualizaiton method though.
 
 These domains can be broadly classified into two types based on their analysis
-goals. One type, \emph{manifold} analysis, deals with understanding the
+tasks. One type, \emph{manifold} analysis, deals with understanding the
 relationship between inputs and outputs. This is a functional relationship.
 The user wants to inspect how changes in the inputs (independent variables)
 affect the outputs (dependent variables). One can also perform \emph{shape}
-analysis. Here, in terms of the analysis goals, there is no identification of
+analysis. Here, in terms of the analysis tasks, there is no identification of
 independent and depdendent variables. We look at each of these in turn.
 
 \subsection{Manifolds}
@@ -69,13 +77,12 @@ One may also want to understand the relationship or correlation between
 multiple continuous values. This is in contrast to studying the relationship
 between independent and dependent variables in the manifold case. In this case
 we want to study the relationship of all variables. Careful study of the shape
-of the dataset can give insight into the overall shape\ttwnote{use a different, more specific work than shape} of the object. For
-example, one may want to know if the multi-dimensional object is shaped like a
-sphere, donut, or box.
-In addition one may be interested in any kinks or cusps in the dataset.
-\ttwnote{why?} These do not necessarily need to be true cusps. Changes in
-the gradient and curvature of the shape are also of great interest.
-%Detecting these changes can be difficult to do numerically so 
+of the dataset can give insight into the relationship between the various
+ranges of the object. For example, one may want to know if the
+multi-dimensional object is shaped like a sphere, donut, or box.  In addition
+one may be interested in any kinks or cusps in the dataset. \ttwnote{why?}
+These do not necessarily need to be true cusps. Changes in the gradient and
+curvature of the shape are also of great interest.
 
 These analysis tasks of multi-dimensional shapes can be applied to a number of
 different areas. The study of polytopes is one such area and perhaps the most
@@ -85,7 +92,7 @@ The tasks are to understand the symmetries and patterns making up the
 polytopes~\cite{Ziegler:2012}. Perhaps a less obvious connection is the
 analysis of the tradeoff curves in multi-objective optimization. Since we are
 performing optimization we are interested in the tradeoffs amongst all the
-non-dominated points~\cite{nondominated}. This is also known as the Pareto
+non-dominated points~\cite{Kung:1975}. This is also known as the Pareto
 front. In this case, the user wants to understand what are the costs of
 reducing one or more parameters in order to increase the value of others. Cusps
 or large changes in curvature in these datasets are important since they show
