@@ -1,10 +1,11 @@
-\section{advantages of slicing}
+
+\section{Slices}
 \label{sec:slicing-advantages}
 
 Slicing offers a number of advantages over other multi-dimensional
 visualization techniques. Slicing is a direct visualization of the
-multi-dimensional object. In contrast to methods like projection or feature
-synthesis, slicing does not distort the dimensions in order to display them on
+multi-dimensional object. In contrast to methods like projection or dimension
+reduction, slicing does not distort the dimensions in order to display them on
 a two-dimensional screen. Since there is no distortion, distances in the visual
 representation are directly proportional to distances in the object. This is
 one of the reasons that slicing is popular in the medical imaging community.
@@ -56,17 +57,6 @@ the rate at which the user can maintain their
 concentration~\cite{Shneiderman:1987}. This is often defined at 10 frames per
 second. It can be difficult to compute a 2D slice of an arbitrary complex
 multi-dimensional object. 
-
-\ttwnote{move to its own section and expand}
-In my own work, I address these two critical issues. The navigation issue can
-be solved with sampling. With both Sliceplorer (\autoref{chp:sliceplorer}) and
-HyperSliceplorer (\autoref{chp:hypersliceplorer}), I sample over a number of
-focus points and display them all at once. In \autoref{chp:rendering}, I
-discuss how we can take advantage of the multi-dimensional geometry to allow
-interactive-speed browsing of the focus points. My goal is to highlight the
-advantages of slice-based methods for multi-dimensional data analysis. At the
-same time I want to address the limitations. The end goal is to bring
-slice-based views into the standard toolbox of visualizations.
 
 
 

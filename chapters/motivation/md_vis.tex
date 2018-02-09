@@ -1,16 +1,6 @@
 
-\section{Challenges with multi-dimensional spaces}
+\section{Visualizing multi-dimensional continuous spaces}
 \label{sec:multi-d-challenges}
-
-\ttwnote{this section should be about why multi-D is hard}
-
-\ttwnote{too unorganized... maybe turn it into a technique overview section}
-
-Given the importantance of multi-dimensional data analysis, a number of
-projects from the visualization community, as well as others, have worked on
-this problem. 
-\ttwnote{rewrite this paragraph}
-\ttwnote{introduce each section of the motivation with what's to come} 
 
 Understanding multi-dimensional space is difficult. As humans, we simply do not
 have the spatial analogs in more than three dimensions. A number of methods
@@ -21,25 +11,36 @@ an answer without sufficient context. They do not necessarily give any
 intuition as to how to transfer our three-dimensional knowledge to
 multi-dimensional spaces.
 
-\ttwnote{how visualization can help}
-\ttwnote{some sort of insight generation from context?}
+%\ttwnote{how visualization can help}
+%\ttwnote{some sort of insight generation from context?}
 
-The difficulty of visualizing a continuous multi-dimensional space on a
-two-dimensional screen brings a number of challenges. We treat each dimension
-separately, thus, we need several different visual channels. The ranking of
+Visualizations of multi-dimensional spaces on a 2D screen must contend with
+some sort of reduction of the information. A proper visualization must select
+visual encodings that highlight the information we want to see. Any sort of
+data reduction requires trade-offs. The best visualization choices acknowledge
+any difficiencies to a particualr visual encoding. By acknowledging these
+difficiencies, we can design tools to compensate for their shortcomings while
+still maintaining their advantages. Therefore, it is worth first looking at the
+possible mappings of data to visual elements. Then, I present commonly used
+visual encodings of multi-dimensional continuous data using these mappings.
+
+\subsection{Encoding multi-dimensional data}
+
+Multi-dimensional continuous data consists of a set of continuous ranges, one
+for each dimension. In the case of manifold analysis, each of these ranges can
+be classified as ``dependent'' or ``independent'' depending on which side of
+the mapping they are on. Typical visualization practice is to give each 
+dimension a separate visual channel. There are a number of possible visual
+channels that have been identified. 
+The ranking of
 effectiveness of visual channels (shown in \autoref{tbl:visual_encodings}) was
 proposed by Bertin~\cite{Bertin:1967} and confirmed through experiments by
 Cleveland and McGill~\cite{Cleveland:1984}, Mackinlay~\cite{Mackinlay:1986},
 and Heer and Bostock~\cite{Heer:2010}.  Munzner~\cite{Munzner:2014} provides a
-summary of the results. In addition, there are many others. We are also limited
+summary of the results. We are also limited
 in how many channels we can use simulataneously. According to
-Ware~\cite{Ware:2004}, many channels, such as red and green are not visually
-seperable. Furthermore, each dimension of the multi-dimensional object under
-study is often treated equally. For example, no particular axis of a polytope
-is more important than any other.  We should encode each dimension using
-equally weighted effectiveness channels.  With fewer channels available than
-data dimensions we either need to reduce the data or use multiple views to
-properly visualize the data.
+Ware~\cite{Ware:2004}, certain channels, such as red and green are not visually
+seperable. 
 
 \begin{table}
   \caption{Rankings of visual encodings of quantiative data}
@@ -59,6 +60,30 @@ properly visualize the data.
      & Color saturation &           & 
   \end{tabular}
 \end{table}
+
+The difficulty of visualizing a continuous multi-dimensional space on a
+two-dimensional screen brings a number of challenges. We treat each dimension
+separately, thus, we need several different visual channels. However, there are
+simply not enough visual channels available to draw a 15-dimensional object in
+a single view. This is further complicated by the fact that separate visual
+channels are not necessarilly visually seperable.  Furthermore, each dimension
+of the multi-dimensional object under study is treated equally. For example, no
+particular axis of a polytope is more important than any other.  We should
+encode each dimension using equally weighted effectiveness channels.  With
+fewer channels available than data dimensions we either need to reduce the data
+or use multiple views to properly visualize the data.
+
+
+\subsection{Methods}
+
+The common taxonomy of how to view multi-dimensional data on screen is based on
+discrete data analysis. There, there are two categories: dimension reduction or
+projection. With continuous data, though there is a third possibility, that of
+slicing. Therefore, I view the taxonomy of \emph{continuous} multi-dimensional
+data analysis methods into two categories. Data-driven methods include both
+projection and dimension reduction and reduce the dimensionality of the data
+before visualization. View-based methods reduce the data during the
+visualization. Slicing is a view-based method.
 
 Purely data-driven methods are commonly known as feature selection or dimension
 reduction. The goal is to find a subset of dimensions that are critical to
@@ -83,5 +108,10 @@ community~\cite{Rao:1994}. The traditional HyperSlice~\cite{Wijk:1993}
 technique falls into this category. Each panel of the HyperSlice view shows two
 of the input dimensions and the value is encoded with color.
 
-\ttwnote{conclude and transition}
+My work focuses on the exploration of the combination of these methods.
+Data-driven methods reduce the data in a way that we can get a global overview
+of the dataset. View-based methods are much more detailed but can only produce
+a local view of the data. By combining these methods I can achieve both a
+global overview as well as an on-demand local view of the dataset in a single
+visualization. 
 

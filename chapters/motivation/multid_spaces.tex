@@ -5,7 +5,9 @@
 There are a number of domains where one can apply the analysis of continuous
 multi-dimensional data.  As of yet, there has not been a comprehensive data and
 task analysis for multi-dimensional continuous data analysis. For discrete
-data, there are several task~\cite{task analyses} analyses. However, they are
+data, there are several task 
+analyses~\cite{Shneiderman:1996,Brehmer:2013,Amar:2004}. 
+However, they are
 focused on identifying and selecting particular data items. Continuous datasets
 consist of ranges of values as well as functions. Functions can be seen as a
 mapping from ranges of numbers to other ranges. The analysis task here is to
@@ -36,39 +38,49 @@ independent and depdendent variables. We look at each of these in turn.
 \subsection{Manifolds}
 \label{sec:manifolds}
 
-Studying manifolds means studying functional relationships. The critical issue
-is understanding the relationship between independent and dependent variables.
-\ttwnote{subtasks}. Analyzing functions is of course within the realm of
-manifold analysis. \ttwnote{examples of work} Another area where understanding
-the manifold is important is analyzing optimization surfaces and functions.  In
-this case, the identification of extrema is important for understanding how
-many and the relative location of local optima. In addition, we want to
-understand the degree to which these are extrema. These can result in global
-optimization algorithms ``getting stuck'' in local optima rather than
+Studying the mapping between continuous ranges means studying functional
+relationships and thus manifolds.  The critical issue is understanding the
+relationship between independent and dependent variables.  Subtasks in manifold
+analysis include examining critical points, assessing the sensitivity of
+parameters, and understanding the shape of the manifold.  Analyzing functions
+is of course within the realm of manifold analysis.  Another area where
+understanding the manifold is important is analyzing optimization surfaces and
+functions.  In this case, the identification of extrema is important for
+understanding how many and the relative location of local optima. In addition,
+we want to understand the degree to which these are extrema. These can result
+in global optimization algorithms ``getting stuck'' in local optima rather than
 continuing to search for the global optimum. Optimization algorithms need to be
 carefully tuned to properly detect these features and ignore them where
 necessary.
 
-Simulation analysis is another area where the analysis tasks, in the abstract,
-is examining functions. If we look back at the weather simulation from before,
-the inputs to the function are things like the temperature and pressure.
-The output is, for example, the likelihood of rain the
-next day. The function is the simulation itself. Computer simulations are
-deterministic. Stochastic simulations can be converted to deterministic by
-treating the random number generator seed as another parameter.  A
-deterministic simulation has a mapping from each unique input parameter
-configuration to an output value. This is the same as a functional
+Simulations can be used to run experiments that are impractical or impossible
+in the real world.  Simulation analysis is another area where the analysis
+tasks, in the abstract, is examining functions. If we look back at the weather
+simulation from before, the inputs to the function are things like the
+temperature and pressure.  The output is, for example, the likelihood of rain
+the next day. The function is the simulation itself. Computer simulations are
+deterministic.  A deterministic simulation has a mapping from each unique input
+parameter configuration to an output value. This is the same as a functional
 relationship. The sensitivity and extrema are also important to simulation
-analysis. Simulations can be used to run experiments that are impractical or
-impossible in the real world. Thus, these can all be analyzed with similar
-visualizations.
+analysis.  Thus, these can all be analyzed with visualizations of a manifold.
 
-\ttwnote{para on why this isn't enough, what is missing, and what I contribute}
+%Some computer simulations are considered stochastic. That is, their output
+%is the determined by a random number generator as well as input values.
+%Stochastic simulations can be converted to deterministic by treating the 
+%random number generator seed as another parameter.
 
-%\begin{eqnarray}
-  %P(\textrm{rain}) = f(\textrm{temperature}, \textrm{pressure}, \ldots)
-  %\label{eqn:simfunc}
-%\end{eqnarray}
+To date, manifold visualizations have concentrated on a particular analysis
+task or a particular application domain. For example, visualizations of the
+Morse-Smale complex~\cite{MSvis} are focused on showing only critical points of
+the manifold. As with any visualization designed for a specific task, they must
+be used in combination with other views for visual analysis of domain-specific
+data. Domain-specific visualizations often used linked views to show different
+aspects of data to accomplish multiple tasks at once. However, they are purpose
+built for a specific domain. While techniques may transfer from one domain to
+another~\cite{Seldmair:2012}, it is not always clear how.
+My goal is to unify these methods to a certain extent.
+As I will show in \autoref{chp:sliceplorer}, slice-based views of manifolds
+can be used for a wide variety of tasks in a wide number of domains.
 
 \subsection{Shapes}
 \label{sec:shapes}
@@ -78,11 +90,11 @@ multiple continuous values. This is in contrast to studying the relationship
 between independent and dependent variables in the manifold case. In this case
 we want to study the relationship of all variables. Careful study of the shape
 of the dataset can give insight into the relationship between the various
-ranges of the object. For example, one may want to know if the
-multi-dimensional object is shaped like a sphere, donut, or box.  In addition
-one may be interested in any kinks or cusps in the dataset. \ttwnote{why?}
-These do not necessarily need to be true cusps. Changes in the gradient and
-curvature of the shape are also of great interest.
+ranges of dimensions of the object. For example, one may want to know if the
+overall shape is a sphere, donut, or box. In addition one may be interested in
+any kinks or cusps in the dataset. \ttwnote{why?} These do not necessarily need
+to be true cusps. Changes in the gradient and curvature of the shape are also
+of great interest.
 
 These analysis tasks of multi-dimensional shapes can be applied to a number of
 different areas. The study of polytopes is one such area and perhaps the most
