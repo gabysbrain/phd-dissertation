@@ -1,6 +1,4 @@
 
-\ttwnote{link to 2D views of shapes}
-
 \begin{figure}
   \centering
   \begin{subfigure}[b]{0.45\linewidth}
@@ -28,9 +26,17 @@
   \label{fig:interface}
 \end{figure}
 
-1D slices cannot do everything. There are datasets and tasks where we need to
-examine the relationship between dimensions, thus 2D slices are the minimum
-number necessary to examine these relationships. \ttwnote{expand}
+One-dimensional slices cannot do everything. When we are examining shapes then
+we need to examine the relationship between dimensions. Thus, 2D slices are the
+minimum number necessary to examine these relationships.
+If we have a function describing the multi-dimensional shape we are examining
+then we can generate two-dimensional slices by constraining all but two of the
+parameters to a particular value and then computing the two-dimensional outline
+directly. However, there are domains, such as polytopes,
+where we have a simplical mesh of the continuous object. In this case, we cannot
+use the dimension constraining method. In this chapter, I develop an algorithm
+for generating two-dimensional slices of these multi-dimensional simplical 
+objects. 
 
 \input{hypersliceplorer/motivation}
 \input{hypersliceplorer/relwork}
