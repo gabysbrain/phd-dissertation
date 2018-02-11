@@ -16,7 +16,6 @@ objects that the medical community uses to understand their two- and
 three-dimensional datasets. Nevertheless, it is still important in
 multi-dimensional data analysis to properly estimate distances and relative
 sizes. 
-\ttwnote{example}
 
 Another benefit of the direct visualization is that users do not require
 extensive training to understand the visualization. The concept of slicing
@@ -27,19 +26,19 @@ well-known metaphor to cover multiple slices of multi-dimensional objects.
 Slice views use the horizontal and vertical axes for showing the effects due to
 the input parameters. These axes are the most perceptually
 uniform~\cite{Stevens:1957} and are considered the most effective
-(\autoref{tbl:enc_effectiveness}). One- or two-dimensional
+(\autoref{tbl:visual_encodings}). One- or two-dimensional
 plots are replicated for each combination of dimensions in order to show more
 than two dimensions at once. This promotes familiarity of the visualization.
 Once the user has learned to read a single panel, they can apply this knowledge
 to the remaining panels. This approach follows the principal of small
-multiples~\cite{Archambault:2011}. \ttwnote{maybe move this to a section on
-general vis techniques}
+multiples~\cite{Archambault:2011}. 
+%\ttwnote{maybe move this to a section on general vis techniques}
 
 In order to produce a slice plot one needs to first pick a particular
 \emph{focus point} in the multi-dimensional space. This focus point determines
 which slices are being viewed. Selecting a good focus point a-priori is
 difficult. 
-\ttwnote{from michael: this is a challenge again. imho it might be clearer to list all challenges in the same spot. I always liked the spectrum between toplogical approaches and Hyperslices. Then you can say that your goal is to combine their benefits and reduce their weaknesses and how you address these challenges.}
+%\ttwnote{from michael: this is a challenge again. imho it might be clearer to list all challenges in the same spot. I always liked the spectrum between toplogical approaches and Hyperslices. Then you can say that your goal is to combine their benefits and reduce their weaknesses and how you address these challenges.}
 It either requires a great deal of luck or careful analysis of the
 dataset. This is not always possible. Slice-based views require some sort of
 interactive focus point selection. Interactively browsing through the slices

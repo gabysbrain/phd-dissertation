@@ -71,16 +71,16 @@ analysis.  Thus, these can all be analyzed with visualizations of a manifold.
 
 To date, manifold visualizations have concentrated on a particular analysis
 task or a particular application domain. For example, visualizations of the
-Morse-Smale complex~\cite{MSvis} are focused on showing only critical points of
-the manifold. As with any visualization designed for a specific task, they must
-be used in combination with other views for visual analysis of domain-specific
-data. Domain-specific visualizations often used linked views to show different
-aspects of data to accomplish multiple tasks at once. However, they are purpose
-built for a specific domain. While techniques may transfer from one domain to
-another~\cite{Seldmair:2012}, it is not always clear how.
-My goal is to unify these methods to a certain extent.
-As I will show in \autoref{chp:sliceplorer}, slice-based views of manifolds
-can be used for a wide variety of tasks in a wide number of domains.
+Morse-Smale complex~\cite{Gerber:2010} are focused on showing only critical
+points of the manifold. As with any visualization designed for a specific task,
+they must be used in combination with other views for visual analysis of
+domain-specific data. Domain-specific visualizations often used linked views to
+show different aspects of data to accomplish multiple tasks at once. However,
+they are purpose built for a specific domain. While techniques may transfer
+from one domain to another~\cite{Sedlmair:2012}, it is not always clear how.
+My goal is to unify these methods to a certain extent.  As I will show in
+\autoref{chp:sliceplorer}, slice-based views of manifolds can be used for a
+wide variety of tasks in a wide number of domains.
 
 \subsection{Shapes}
 \label{sec:shapes}
@@ -92,9 +92,9 @@ we want to study the relationship of all variables. Careful study of the shape
 of the dataset can give insight into the relationship between the various
 ranges of dimensions of the object. For example, one may want to know if the
 overall shape is a sphere, donut, or box. In addition one may be interested in
-any kinks or cusps in the dataset. \ttwnote{why?} These do not necessarily need
-to be true cusps. Changes in the gradient and curvature of the shape are also
-of great interest.
+any kinks or cusps in the dataset. Changes in the gradient and curvature of
+the shape are also of great interest. These indicate changes in correlation or
+relation.
 
 These analysis tasks of multi-dimensional shapes can be applied to a number of
 different areas. The study of polytopes is one such area and perhaps the most
@@ -110,13 +110,14 @@ reducing one or more parameters in order to increase the value of others. Cusps
 or large changes in curvature in these datasets are important since they show
 fundamental changes in the rate of tradeoff.  With a proper view of a
 multi-dimensional object we can also view differences betweeen two objects
-directly. With 1-, 2-, or 3-D objects we show these differences directly and
-can understand them.  Showing a difference object requires the user to reconstruct
-the two objects at once. This requires quite a lot of mental processing.
-However, the two-stage processing of showing a difference object and then
-performing dimension reduction makes it difficult to view difference objects
-with dimension reduction. Slicing, as a direct visualization technique, does
-not have this problem. \ttwnote{confusing, use images/diagrams to explain?}
+directly. 
+%With 1-, 2-, or 3-D objects we show these differences directly and
+%can understand them.  Showing a difference object requires the user to reconstruct
+%the two objects at once. This requires quite a lot of mental processing.
+%However, the two-stage processing of showing a difference object and then
+%performing dimension reduction makes it difficult to view difference objects
+%with dimension reduction. Slicing, as a direct visualization technique, does
+%not have this problem. \ttwnote{confusing, use images/diagrams to explain?}
 
 These two different data types and sets of tasks require different visualization
 considerations. Proper visualization for manifold analysis should focus on
