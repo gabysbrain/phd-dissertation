@@ -38,28 +38,28 @@ also be positive.
 \subsubsection{Sampling method}
 
 The space of a polynomial of degree \(n\) is the range of each of its
-coefficients. For example, a 2\textsuperscript{nd} degree polynomial, \(a_0
-+ a_1 x + a_2 x^2\), has three coefficients: \(a_0\), \(a_1\), and \(a_2\).
+coefficients. For example, a 2\textsuperscript{nd} degree polynomial, \(a_0 +
+a_1 x + a_2 x^2\), has three coefficients: \(a_0\), \(a_1\), and \(a_2\).
 Since we are only concerned with positivity, any polynomials that differ from
-each other by a positive factor are equivalent. Thus, the polynomials
-$0.2x^2 + 0.1x + 2$ and $0.1x^2 + 0.05x + 1$ will be positive in the same
-range. Therefore, I constrain the sampling by setting one of the
-coefficients to $1$ or $-1$ and then sampling the rest between $-1$ and $1$.
-I used $10,000$ sample points to get a representative sample.
-Since one coefficient is constrained in turn to
-either \(-1\) and \(1\) there are \(2n\) possible polynomials where the remaining
-\(n\) coefficients range between \([-1,1]\). I then test to see if each
-polynomial is positive in the domain \([0,1]\). I also determine if the
-equivalent Bernstein polynomial has all \(\beta_i \ge 0\). We can compute the
-\(\beta_i\) factors because each coefficient \(a_j\) is a linear combination of
-Bernstein coefficients. For our two-dimensional example: \(a_0 = \beta_0\),
-\(a_1 = 2(\beta_0-\beta_1)\), and \(a_2=\beta_0 - 2\beta_1 + \beta_2\) \ttwnote{incomplete sentence}. Then,
-for each polynomial, it is either non-positive, positive without positive Bernstein coefficients, or positive with 
-positive Bernstein coefficients. I perform this process to examine polynomials of
-degree 3, 4, and 5. Constraining a coefficient to $\pm 1$ produces a
-face of the space of polynomials. These faces are convex so I can generate a
-convex hull of these points and examine them using Hypersliceplorer. Since we
-are only interested in how these spaces differ, we examine the difference views.
+each other by a positive factor are equivalent. Thus, the polynomials $0.2x^2 +
+0.1x + 2$ and $0.1x^2 + 0.05x + 1$ will be positive in the same range.
+Therefore, I constrain the sampling by setting one of the coefficients to $1$
+or $-1$ and then sampling the rest between $-1$ and $1$.  I used $10,000$
+sample points to get a representative sample.  Since one coefficient is
+constrained in turn to either \(-1\) and \(1\) there are \(2n\) possible
+polynomials where the remaining \(n\) coefficients range between \([-1,1]\). I
+then test to see if each polynomial is positive in the domain \([0,1]\). I also
+determine if the equivalent Bernstein polynomial has all \(\beta_i \ge 0\). We
+can compute the \(\beta_i\) factors because each coefficient \(a_j\) is a
+linear combination of Bernstein coefficients. For our two-dimensional example:
+\(a_0 = \beta_0\), \(a_1 = 2(\beta_0-\beta_1)\), and \(a_2=\beta_0 - 2\beta_1 +
+\beta_2\). Then, for each polynomial, it is either non-positive, positive
+without positive Bernstein coefficients, or positive with positive Bernstein
+coefficients. I perform this process to examine polynomials of degree 3, 4, and
+5. Constraining a coefficient to $\pm 1$ produces a face of the space of
+polynomials. These faces are convex so I can generate a convex hull of these
+points and examine them using Hypersliceplorer. Since we are only interested in
+how these spaces differ, we examine the difference views.
 
 \begin{figure}
   \centering

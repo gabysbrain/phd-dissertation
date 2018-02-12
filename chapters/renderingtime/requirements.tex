@@ -183,13 +183,12 @@ need to scale the intensity
 value of the texture by its distance to the 
 slice (\autoref{al:line:splatscale}).
 
-\ttwnote{put KwData and KwResult back}
 \begin{algorithm}
-  %\KwData{viewpoint $\vec{v}$, maximum distance $r$}
-  %\KwResult{${d \choose 2}$ slices through an $N$-point, $d$-dimensional data set}
   \caption{Algorithm for rendering multi-dimensional data using HyperSlice and Gaussian process regression}
   \label{algo:full}
   \begin{algorithmic}
+  \Require viewpoint $\vec{v}$, maximum distance $r$
+  \Ensure ${d \choose 2}$ slices through an $N$-point, $d$-dimensional data set
   \ForAll {${d \choose 2}$ subplots $S_i$} \Comment{filtering}
     \ForAll {$N$ points $p$ in the vertex buffer}
       \State $p_{2D} \gets$ the 2D projection of $p$ onto the slice $S_i$\label{al:line:slicedist}\;

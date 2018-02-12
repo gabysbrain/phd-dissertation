@@ -54,10 +54,10 @@ lower the number of sample points until we reach this line.
 
 \ttwnote{put KwData back}
 \begin{algorithm}
-  %\KwData{Calibrated prediction formula $E[t_\text{total}^\text{H}](N, d, r)$,
-           %calibrated GP model parameters $\vec{\theta}$}
-
   \begin{algorithmic}
+    \Require Calibrated prediction formula $E[t_\text{total}^\text{H}](N, d, r)$,
+             calibrated GP model parameters $\vec{\theta}$
+
     \State $t_\text{pred} \gets E[t_\text{total}^\text{H}](N, d, r)$\;
     \While{$t_\text{pred} < 30\text{fps}$}
       \State $N_\text{30fps} \gets$ Numerically solve $E[t_\text{total}^\text{H}](N, d, r)$ for an $N$ that will give 30fps rendering times\;

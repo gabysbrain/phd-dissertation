@@ -5,7 +5,6 @@ In addition to evaluating 1D slices with a low-level task hierarchy, I also
 provide usage scenarios to understand their value in real-world applications.
 First, I begin with an illustrative example using the 2D sinc
 function.
-%\ttwnote{cite?}.  TM: No need to cite!
 I then use our 1D slices approach to illustrate how
 it can help better understand neural network architectures for a regression
 problem. Finally, I use 1D slices to investigate the effect of initial
@@ -206,7 +205,6 @@ can drastically change the predictions.
 While these choices are crucial, currently, there is only
 little guidance available for designers. A typical rule of thumb is to
 use a hidden layer two times the size of the input dimensions.
-% or two layers with \ttwnote{some reduction}. 
 There are also some general proofs regarding what type of functions neural
 networks can represent~\cite{Hornik:1989,Eldan:2016}. However, there are no
 formal guidelines for designing these networks~\cite{Goodfellow:2016} and the
@@ -248,7 +246,6 @@ with a radial (Gaussian) kernel.
 
 I compare 1D slices with an adaption of the common way of viewing
 classification algorithms to continuous data.
-% to maintain \ttwnote{ecological validity?}. 
 The results of \emph{classification} models are commonly visualized
 by using MDS~\cite{Kruskal:1964} or t-SNE~\cite{Maaten:2008} to reduce the input
 dimensions to two and then present a scatterplot with the predictions colored
@@ -258,8 +255,7 @@ converting the points to two dimensions with t-SNE, and then coloring the points
 on a continuous scale which shown in \autoref{fig:nn_comp} (top row).  The
 bottom row of the figure shows the 1D slice view of the same four prediction
 models. Only the first dimension is shown due to space reasons. The full 13
-dimension slice view image in \autoref{app:sliceplorer_ml} 
-\ttwnote{move image here?}.
+dimension slice view image in \autoref{app:sliceplorer_ml}.
 
 Showing the changes in home price as it corresponds directly to the crime rate
 can help to increase confidence in a model.  From the prediction lines, one may
