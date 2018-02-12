@@ -21,7 +21,6 @@ order to attain interactive frame rates.
  is able to either enter the number of sample points directly in field (a)
  and the system displays the expected fps in (b) or enter the desired fps
  in (b) first and the system calculates the number of sample points.
- %\ttwnote{too many points in this picture}
 }
 \label{fig:sampler}
 \end{figure}
@@ -52,8 +51,11 @@ expect that the radius around each sample point will increase as we reduce
 the number of sample points.  The goal of \autoref{algo:subsample} is to 
 lower the number of sample points until we reach this line.
 
-\ttwnote{put KwData back}
 \begin{algorithm}
+  \caption{A proposed algorithm for subsampling data in order to achieve
+           interactive rendering times using the Gaussian process model
+           with the HyperSlice rendering technique.}
+  \label{algo:subsample}
   \begin{algorithmic}
     \Require Calibrated prediction formula $E[t_\text{total}^\text{H}](N, d, r)$,
              calibrated GP model parameters $\vec{\theta}$
@@ -66,9 +68,6 @@ lower the number of sample points until we reach this line.
       \State $t_\text{pred} \gets E[t_\text{total}^\text{H}](N_\text{30fps}, d, r')$\;
     \EndWhile
   \end{algorithmic}
-  \caption{A proposed algorithm for subsampling data in order to achieve
-           interactive rendering times using the Gaussian process model
-           with the HyperSlice rendering technique.  \label{algo:subsample}}
 \end{algorithm}
 
 In this fashion we can have a progressive rendering setup using 2 GP models, 
