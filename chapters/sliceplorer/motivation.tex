@@ -49,22 +49,21 @@ local detail.
 %  \label{fig:scale}
 %\end{figure}
 
-In this chapter, I explore the idea of 1D slices to fill this gap. I focus on 
-multi-dimensional continuous scalar functions. I define these as functions that take two or more
-scalar parameters as input and produce a single scalar as output.
-Towards illustrating the benefits, I propose a concrete technique using projections of 1D slices, called Sliceplorer (\autoref{fig:walkthrough}). 
-1D slices are traditional function line plots familiar to anyone with
-basic mathematics knowledge: one dimensional curves with respect to
-changes in a single parameter. 
-Like HyperSlice, they show a separate subplot
-for each input dimension. For 1D slices, the number of
-subplots scales linearly with the number of dimensions, not quadratically as with 2D slices. I address the issue of having to choose a focus
-point by sampling focus points and then showing all slices as a
-projection. Therefore, my 1D approach can be seen as a hybrid method of slicing
-and projection techniques. %Classical projections (scatterplots), which would equal ``0D slices'' in the above terminology, have been hugely successful in the discrete data realm. What we are proposing here are 1D projections for the continuous data realm.
+In this chapter, I explore the idea of 1D slices to fill this gap. I focus on
+multi-dimensional continuous scalar functions. I define these as functions that
+take two or more scalar parameters as input and produce a single scalar as
+output.  Towards illustrating the benefits, I propose a concrete technique
+using projections of 1D slices, called Sliceplorer~\cite{Torsney-Weir:2017a}
+(\autoref{fig:walkthrough}).  1D slices are traditional function line plots
+familiar to anyone with basic mathematics knowledge: one dimensional curves
+with respect to changes in a single parameter.  Like HyperSlice, they show a
+separate subplot for each input dimension. For 1D slices, the number of
+subplots scales linearly with the number of dimensions, not quadratically as
+with 2D slices. I address the issue of having to choose a focus point by
+sampling focus points and then showing all slices as a projection. Therefore,
+my 1D approach can be seen as a hybrid method of slicing and projection
+techniques. 
 
-%Naturally, our technique fits into the currently developed techniques for
-%multi-dimensional functions. 
 In order to evaluate any new technique, we need to
 consider what data characteristics and tasks each method is good for. As of yet, there has not been a comprehensive
 listing of the tasks a user would want to perform when looking at

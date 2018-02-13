@@ -2,28 +2,28 @@
 \section{Upcoming}
 \label{sec:thesis_outline}
 
+My goal is to highlight the advantages of slice-based methods for
+multi-dimensional data analysis. At the same time I want to address the
+limitations. The end goal is to bring slice-based views into the standard
+toolbox of visualizations.
+
 In \autoref{chp:sliceplorer}, I examine how to visualize manifolds using
 slices. I present sliceplorer which is a system to view one-dimensional slices
 of multi-dimensional manifolds. I use projections of these one-dimensional
 slices instead of showing one focus point at a time. I also go into detail
 about the tasks one wants to perform with manifold analysis.
 
-\autoref{chp:hypersliceplorer} extends the idea of projections of slices to
-the second dimension. I show how this can be used to effectively analyze
-visually the shape of multi-dimensional data. In many cases, this data is given
-as a simplical mesh. I introduce an algorithm to compute 2D slices of this mesh.
+\autoref{chp:hypersliceplorer} extends the idea of projections of slices to the
+second dimension. I show how this can be used to effectively visually analyze
+the shape of multi-dimensional data. In many cases, this data is given as a
+simplical mesh. I introduce an algorithm to compute 2D slices of this mesh.
 Using this algorithm, I show how we can visually understand datasets like
 Pareto fronts or polytopes.
 
 Finally, in \autoref{chp:rendering}, I discuss how we can take advantage of the
-multi-dimensional geometry to allow interactive-speed browsing of the focus
-points. In addition to this algorithm, I develop a method that can predict the
-amount of time needed per element to draw one frame of the visualization. I
-then show how this estimation formula can be calibrated to a particular user's
-hardware.
-
-My goal is to highlight the advantages of slice-based methods for
-multi-dimensional data analysis. At the same time I want to address the
-limitations. The end goal is to bring slice-based views into the standard
-toolbox of visualizations.
+multi-dimensional geometry and GPU architecture to allow interactive-speed
+browsing of the focus points. In addition to this algorithm, I develop a method
+that can predict the amount of time needed per element to draw one frame of the
+visualization. I then show how this estimation formula can be calibrated to a
+particular user's hardware.
 

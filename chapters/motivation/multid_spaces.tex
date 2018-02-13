@@ -11,14 +11,15 @@ However, they are
 focused on identifying and selecting particular data items. Continuous datasets
 consist of ranges of values as well as functions. Functions can be seen as a
 mapping from ranges of numbers to other ranges. The analysis task here is to
-study these ranges.  Tasks addressing studying the mappings or studying the
-relationship between ranges have not yet been covered by visualization task
-analyses. Thus, there is no comprehensive source for what analysis tasks one
-wants to perform given a continuous multi-dimensional dataset.  Work in this
-area has traditionally focused on developing a specific visualization for a
-specific task. For example, topological spines extracts critical points from a
-scalar field~\cite{Correa:2011}. One goal of this thesis is to develop this
-task taxonomy for visualization of continuous multi-dimensional data.
+study these ranges, their relationships to each other, and the mappings between
+them. Tasks addressing these
+have not yet been covered by visualization task analyses. Thus,
+there is no comprehensive source for what analysis tasks one wants to perform
+given a continuous multi-dimensional dataset.  Work in this area has
+traditionally focused on developing a specific visualization for a specific
+task. For example, topological spines extracts critical points from a scalar
+field~\cite{Correa:2011}. One goal of this thesis is to develop this task
+taxonomy for visualization of continuous multi-dimensional data.
 
 %Often work on continuous multi-dimensional data analysis is done in the context
 %of design studies~\cite{Sedlmair:2012}. The issue is transferability, while
@@ -33,7 +34,7 @@ relationship between inputs and outputs. This is a functional relationship.
 The user wants to inspect how changes in the inputs (independent variables)
 affect the outputs (dependent variables). One can also perform \emph{shape}
 analysis. Here, in terms of the analysis tasks, there is no identification of
-independent and depdendent variables. We look at each of these in turn.
+independent and depdendent variables. We look at each of these two in turn.
 
 \subsection{Manifolds}
 \label{sec:manifolds}
@@ -42,8 +43,8 @@ Studying the mapping between continuous ranges means studying functional
 relationships and thus manifolds.  The critical issue is understanding the
 relationship between independent and dependent variables.  Subtasks in manifold
 analysis include examining critical points, assessing the sensitivity of
-parameters, and understanding the shape of the manifold.  Analyzing functions
-is of course within the realm of manifold analysis.  Another area where
+parameters, and understanding the shape of the manifold.  
+One area where
 understanding the manifold is important is analyzing optimization surfaces and
 functions.  In this case, the identification of extrema is important for
 understanding how many and the relative location of local optima. In addition,
@@ -55,14 +56,15 @@ necessary.
 
 Simulations can be used to run experiments that are impractical or impossible
 in the real world.  Simulation analysis is another area where the analysis
-tasks, in the abstract, is examining functions. If we look back at the weather
+tasks, in the abstract, are examining functions. If we look back at the weather
 simulation from before, the inputs to the function are things like the
 temperature and pressure.  The output is, for example, the likelihood of rain
 the next day. The function is the simulation itself. Computer simulations are
-deterministic.  A deterministic simulation has a mapping from each unique input
-parameter configuration to an output value. This is the same as a functional
-relationship. The sensitivity and extrema are also important to simulation
-analysis.  Thus, these can all be analyzed with visualizations of a manifold.
+deterministic.  A deterministic simulation has a fixed mapping from each unique
+input parameter configuration to an output value. This is the same as a
+functional relationship. The sensitivity and extrema are also important to
+simulation analysis.  Thus, these can all be analyzed with visualizations of a
+manifold.
 
 %Some computer simulations are considered stochastic. That is, their output
 %is the determined by a random number generator as well as input values.
@@ -86,8 +88,10 @@ wide variety of tasks in a wide number of domains.
 \label{sec:shapes}
 
 One may also want to understand the relationship or correlation between
-multiple continuous values. This is in contrast to studying the relationship
-between independent and dependent variables in the manifold case. In this case
+multiple continuous values. In the manifold analysis case we have the notion
+of independent and dependent variables. This classification does not exist 
+here.
+In this case
 we want to study the relationship of all variables. Careful study of the shape
 of the dataset can give insight into the relationship between the various
 ranges of dimensions of the object. For example, one may want to know if the
@@ -96,7 +100,7 @@ any kinks or cusps in the dataset. Changes in the gradient and curvature of
 the shape are also of great interest. These indicate changes in correlation or
 relation.
 
-These analysis tasks of multi-dimensional shapes can be applied to a number of
+The analysis tasks of multi-dimensional shapes can be applied to a number of
 different areas. The study of polytopes is one such area and perhaps the most
 direct application of understanding multi-dimensional continuous shapes.
 Polytopes are the multi-dimensional generalization of polyhedra and polygons.
@@ -108,7 +112,7 @@ non-dominated points~\cite{Kung:1975}. This is also known as the Pareto
 front. In this case, the user wants to understand what are the costs of
 reducing one or more parameters in order to increase the value of others. Cusps
 or large changes in curvature in these datasets are important since they show
-fundamental changes in the rate of tradeoff.  With a proper view of a
+critical changes in the rate of tradeoff.  With a proper view of a
 multi-dimensional object we can also view differences betweeen two objects
 directly. 
 %With 1-, 2-, or 3-D objects we show these differences directly and
