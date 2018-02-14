@@ -16,11 +16,12 @@ order to attain interactive frame rates.
 \begin{figure}[h]
 \centering
 \includegraphics[width=7cm]{sampler_fps}
-\caption{A prototypical example use case for our prediction formula,
- \autoref{eq:calib-acttotal-H}. The user
- is able to either enter the number of sample points directly in field (a)
- and the system displays the expected fps in (b) or enter the desired fps
- in (b) first and the system calculates the number of sample points.
+\caption[Using rendering time prediction to constrain sampling]{%
+  A prototypical example use case for our prediction formula,
+  \autoref{eq:calib-acttotal-H}. The user
+  is able to either enter the number of sample points directly in field (a)
+  and the system displays the expected fps in (b) or enter the desired fps
+  in (b) first and the system calculates the number of sample points.
 }
 \label{fig:sampler}
 \end{figure}
@@ -52,9 +53,11 @@ the number of sample points.  The goal of \autoref{algo:subsample} is to
 lower the number of sample points until we reach this line.
 
 \begin{algorithm}
-  \caption{A proposed algorithm for subsampling data in order to achieve
-           interactive rendering times using the Gaussian process model
-           with the HyperSlice rendering technique.}
+  \caption[Subsampling data to achieve interactive rendering time]{%
+    A proposed algorithm for subsampling data in order to achieve
+    interactive rendering times using the Gaussian process model
+    with the HyperSlice rendering technique.
+  }
   \label{algo:subsample}
   \begin{algorithmic}
     \Require Calibrated prediction formula $E[t_\text{total}^\text{H}](N, d, r)$,
@@ -79,7 +82,7 @@ interacting.
   \centering
   \include{30fps_time}
   %\includegraphics[width=9cm]{30fps_time}
-  \caption{
+  \caption[Interactive rendering times for various dimensions]{%
     Average number of points that can be rendered in 30 frames per 
     second for the HyperSlice technique.
   }

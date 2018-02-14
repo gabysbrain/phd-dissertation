@@ -20,7 +20,7 @@ refs:
 	pandoc -t latex -o $@ $<
 
 clean:
-	rm -f *.aux *.bbl *.blg *.brf *.fls *.fdb_latexmk *.lbl *.log *.toc \
-	$(MAINTEX).pdf 
+	rm -f *.aux *.bbl *.blg *.brf *.fls *.fdb_latexmk *.loa *.lot *.lof *.lbl \
+		    *.log *.toc $(MAINTEX).pdf 
 
 

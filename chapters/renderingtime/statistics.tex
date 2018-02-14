@@ -50,7 +50,7 @@ The function as well as the sample locations are shown in
   \centering
   \include{example_function_sampled}
   %\includegraphics[width=8cm]{example_function_sampled}
-  \caption{
+  \caption[The function $f(x) = sin(x) + cos(2x)$ uniformly sampled with 10 points]{%
     An example of taking 10 uniformly distributed samples of the function
     $f(x) = sin(x) + cos(2x)$.  The dots show the sampling locations.
   }
@@ -78,7 +78,7 @@ normally would not be known beforehand.
   \centering
   \include{example_function_interp}
   %\includegraphics[width=8cm]{example_function_interp}
-  \caption{
+  \caption[Example of different interpretation methods]{%
     Here we show different interpolation methods of the function
     $f(x) = sin(x) + cos(2x)$ using the same 10 uniformly random distributed
     sample points.  We show the true function as well as piecewise linear,
@@ -107,7 +107,7 @@ applications it is important to sample near the edge of the domain.
   \centering
   \include{gp_example}
   %\includegraphics[width=8cm]{gp_example}
-  \caption{
+  \caption[Gaussian process interpolation example]{%
     The Gaussian process interpolation of the function 
     $f(x) = sin(x) + cos(2x)$ from 10 uniformly distributed samples.  
     The standard error of estimation from the model is shown in gray.
@@ -170,7 +170,7 @@ to find tumor sites.
 
 \begin{table*}[htb]
 \centering
-\caption{
+\caption[A summary of the literature using Gaussian process models]{%
   A summary of the literature described in \autoref{sec:gp_applications}.  We
   show the domain of application of each paper, their analysis goal, as
   well as the number of samples and number of input parameters (dimensions)

@@ -20,14 +20,12 @@
 \ttwnote{dedication}
 \ttwnote{acknowledgements}
 
-\begin{abstract}
-\input{abstract}
-\end{abstract}
-
 % contents
+\addtocontents{loa}{\def\string\figurename{Algorithm}}
 \tableofcontents
 \listoffigures
 \listoftables
+\listofalgorithms
 
 \chapter{Motivation}
 \label{chp:motivation}
@@ -71,6 +69,14 @@
 
 \bibliographystyle{apalike}
 \bibliography{dissertation}
+
+\begin{abstract}
+\input{abstract_en}
+\end{abstract}
+
+\begin{abstract}
+\input{abstract_de}
+\end{abstract}
 
 \end{document}
 

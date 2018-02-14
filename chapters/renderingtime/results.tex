@@ -5,7 +5,7 @@
   \centering
   \include{figures/raw_times}
   %\includegraphics[width=\textwidth]{raw_times}
-  \caption{
+  \caption[Scatterplots of the time to render using the HyperSlice method.]{%
     Scatterplots of the time to render using the HyperSlice method.
     Each dimension is analyzed separately.  The x-axis is the number of
     fragments drawn on screen and the y-axis is the number of seconds
@@ -92,7 +92,7 @@ of \texttt{vec4}s is required for dimensions $9$--$12$ and computing distances w
 \begin{table}[h]
 %\begin{table}[htb]
 \centering
-\caption{
+\caption[Rendering time calibration results]{%
   Table showing the calibrated parameters, $a$, $t_f$, and $t_\text{H}$,
   as a result of running a segmented regression fit using the data we gathered
   from our timing experiments and \autoref{eq:expanded-regression}.
@@ -119,7 +119,7 @@ of \texttt{vec4}s is required for dimensions $9$--$12$ and computing distances w
     \caption{Relative prediction error}
     \label{fig:hs_rel_error}
   \end{subfigure}
-  \caption{%
+  \caption[Actual and relative error rates of prediction]{%
     Histograms showing actual (a) and relative (b) error rates
     for the HyperSlice method
     comparing predictions using \autoref{eq:calib-acttotal-H} to empirical 
@@ -179,7 +179,7 @@ the data.
 
 \begin{table}[htb]
 \centering
-\caption{
+  \caption[Results of the cross-validation procedure.]{%
   Results of the cross-validation procedure.  For each dimension we compute
   the root-mean squared error of prediction as well as the Nash-Sutcliffe
   efficiency~\cite{Nash:1970}, and the relative maximum error.  The 
