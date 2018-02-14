@@ -7,7 +7,9 @@
 *.fls
 *.lbl
 *.dvi
+*.lof
 *.log
+*.lot
 *.lox
 *.out
 *.ps
