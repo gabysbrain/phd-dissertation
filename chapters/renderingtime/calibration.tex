@@ -1,41 +1,43 @@
 \section{Fitting}
 \label{sec:fitting}
 
-With a proper mathematical formulation of the scene geometry in terms of how many pixels are produced on screen, we now describe the second missing piece of the prediction. Namely, a procedure for tuning this formula to a particular user's implementation and hardware configuration. 
-The values $t_f$ and $t_\text{H}$ in \autoref{eq:exptotal} are dependent on a
-particular hardware. Hence, we engage in an empirical stage to determine these
-values for a particular rendering environment.
-For the purposes of these timings we set our correlation cutoff value 
-(see \autoref{sec:scene_geometry}),
-$\epsilon$, to $1 \times 10^{-9}$. This value allows us to link the kernel radius,
-$r$, with the kernel bandwidth parameter in the GP model.
+With a proper mathematical formulation of the scene geometry in terms of how
+many pixels are produced on screen, I now describe the second missing piece of
+the prediction, namely, a procedure for tuning this formula to a particular
+user's implementation and hardware configuration.  The values $t_f$ and
+$t_\text{H}$ in \autoref{eq:exptotal} are dependent on a particular hardware.
+Hence, I engage in an empirical stage to determine these values for a
+particular rendering environment.  For the purposes of these timings I set my
+correlation cutoff value (see \autoref{sec:scene_geometry}), $\epsilon$, to $1
+\times 10^{-9}$. This value allows me to link the kernel radius, $r$, with the
+kernel bandwidth parameter in the GP model.
 
 The architecture of each GPU is different and efficiencies on one 
 architecture may not carry over to another.
 Therefore, it is
 impossible to argue from first-principles how to derive $t_f$ and $t_\text{H}$ 
 for a
-particular GPU. We fit these parameters by doing a regression analysis
+particular GPU. I fit these parameters by doing a regression analysis
 on empirical results obtained from examining the time to render a frame for
-various values of $d$, $N$, and $r$. While the specific values we derive are 
+various values of $d$, $N$, and $r$. While the specific values I derive are 
 specific to a particular architecture,
 the method we present is applicable
 elsewhere. 
 
-In order to fit \autoref{eq:exptotal} we note that the first term
+In order to fit \autoref{eq:exptotal} I note that the first term
 represents the number of points we need to check to be filtered. This is 
 constant
 with respect to the kernel size, $r$. The second term, the drawing
 time, increases with respect to $r$. The filtering time dominates
 for small values of $r$ while the drawing time dominates for larger values of 
 $r$.
-Therefore, there will be a point in terms of number of fragments drawn, that
-we designate $a$, at which point the dominant term will change from the first to
-the second. In order to fit this behaviour we used a segmented regression
+Therefore, there will be a point in terms of number of fragments drawn, 
+designated $a$, at which point the dominant term will change from the first to
+the second. In order to fit this behaviour I used a segmented regression
 model which changes behaviour according to the value of a \{0,1\} indicator
 function, $I(\text{frags}<a)$, where $\text{frags}$ is the total number of 
 fragments drawn. This 
-function returns 0 if $\text{frags} < a$. We form the regression
+function returns 0 if $\text{frags} < a$. I form the regression
 formula as:
 \begin{align}
   t_\text{render} &= N {d \choose 2} t_f + I(\text{frags} > a) t_\text{H} \text{frags}  \text{.}
@@ -49,9 +51,9 @@ point).
 \subsection{Sampling}
 \label{sampling}
 
-For each dimension, we would like to ensure that we have a good coverage of
-the number of fragments we are drawing.
-Hence, we must choose different values of $r$ for each $d$.
+For each dimension, I must ensure that I have good coverage of the number of
+fragments being drawn.
+Hence, I must choose different values of $r$ for each $d$.
 In order to 
 obtain
 a sensible range of values for $\expfrags$ we begin by using dimension 3
@@ -59,24 +61,24 @@ as a baseline and vary radii from $0$ to $0.5$ in that dimension to come
 up with a reasonable
 range of $\expfrags$.
 Given this desired range of fragments,
-for the remaining dimensions we can numerically invert
+for the remaining dimensions I numerically invert
 \autoref{eq:expfrags},
 given $d$ and hence, obtain a range of radii $r$. 
 
-The final issue is that for each setting of $d$, $N$, and $r$ we must
+The final issue is that for each setting of $d$, $N$, and $r$ I must
 generate enough iterations such that the average number of points affecting
 the slices, $N'$, converges to the theoretical expected value, $E[N']$. 
-This is the expected number of points we will need to draw over all possible
-uniform distributions of points and viewpoints. In our case we found that
+This is the expected number of points need to be drawn over all possible
+uniform distributions of points and viewpoints. In my case we found that
 20 viewpoint changes, redrawing the screen for a fixed viewpoint 5 times,
 and 3 sample
 point distributions for a total of 300 timing measures resulted in good
 convergence.
 
-We compute the number of fragments drawn on screen internally by the 
-application.  We can do this because we know the position of the focus
+I compute the number of fragments drawn on screen internally by the 
+application.  I can do this because we know the position of the focus
 point, locations of all the sample points, and the kernel information.  
-The number of fragments in our calculations is the percentage the quad takes
+The number of fragments in the calculations is the percentage the quad takes
 up on the subplot.
 In other words, if a quad takes up an entire subplot then
 it has area $1$.
@@ -86,26 +88,26 @@ OpenGL offers a query
 object, GL\_SAMPLES\_PASSED, that should return the number of fragments 
 needed to draw
 the screen.  This is very convenient and would correctly account for the 
-rasterization method used.  However, in our experiments this query would 
+rasterization method used.  However, in my experiments this query would 
 return several different values for the exact same scene, which does not
 make sense.
-Due to this inconsistency, we went with an internal calculation.
+Due to this inconsistency, I used an internal calculation.
 
-We can record the rendering time with either the CPU timer or the GPU timer.
+I can record the rendering time with either the CPU timer or the GPU timer.
 The CPU timer better represents the user's perception of how long it takes
 to draw the screen since it includes the time necessary to transfer data back
 and forth to the GPU.  However, this timer is much noisier than the GPU
-timer.  In our tests we found that on average the CPU timing differed from
-the GPU timing by a constant amount.  Therefore, we used the GPU timer for
-our timing.  The GPU timer is still quite noisy however and in order to 
-smooth out this noise we redrew each screen five times for each change of
+timer.  In my tests I found that on average the CPU timing differed from
+the GPU timing by a constant amount.  Therefore, I used the GPU timer for
+the timing.  The GPU timer is still quite noisy however and in order to 
+smooth out this noise I redrew each screen five times for each change of
 viewpoint and then averaged the times.
 
 \subsection{Final model}
 \label{finalmodel}
 
 If we then apply these estimates of filter and draw time to 
-\autoref{eq:exptotal}, the full form of our prediction 
+\autoref{eq:exptotal}, the full form of the prediction 
 model, conditional on the dimension, $d$, is
 \begin{align*}
   t_{total}(d, N, r) &= 
@@ -115,12 +117,12 @@ model, conditional on the dimension, $d$, is
                          & \left[t_f(d) + I(\exppts{r} \expfrags > a(d)) t_\text{H}(d) \exppts{r} \expfrags \right] \text{,}
     \numberthis \label{eq:expanded-regression}
 \end{align*}
-where $t_f(d)$, $t_\text{H}(d)$, and $a(d)$ are the parameters we fit
+where $t_f(d)$, $t_\text{H}(d)$, and $a(d)$ are the parameters fit
 and $\exppts{r}$ and $\expfrags$ are from \autoref{eq:exppoints} and 
 \autoref{eq:expfrags} respectively.
-The parameters are conditional on the dimension, $d$, because we 
-fit each dimension separately so we have a different value of $t_f$, 
+The parameters are conditional on the dimension, $d$, because I 
+fit each dimension separately so there is a different value of $t_f$, 
 $t_\text{H}$, and $a$ for each dimension.
-We fit these parameters using segmented regression as described in
+I fit these parameters using segmented regression as described in
 \autoref{sec:datafitting}.
 

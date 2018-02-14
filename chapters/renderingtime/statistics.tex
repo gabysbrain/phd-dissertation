@@ -57,18 +57,14 @@ The function as well as the sample locations are shown in
   \label{fig:reconstruction_sampling}
 \end{figure}
 
-%Signal processing theory~\cite{Oppenheim:1999} gives the relationship between 
-%the
-%number of samples and how much frequency content we can glean from the signal.
 We would prefer to take as many samples as possible in order to identify
 the various peaks and valleys.
 The interpolation method we choose depends on how we expect the values to
 change between the sample points.
-%\ttwnote{in signal processing  it depends on the number of samples taken and the continuity of the reconstruction but I don't quite understand\ldots}.  
 If we expect linear behavior then fitting a
 piecewise linear function would be ideal.  If we expect more complex behavior
-then we should fit higher-order functions.  We show 3 different fitting 
-methods for our function in \autoref{fig:interp_methods}: piecewise linear (blue), 
+then we should fit higher-order functions.  I show 3 different fitting 
+methods for the function in \autoref{fig:interp_methods}: piecewise linear (blue), 
 cubic spline (green), and Gaussian process model (red) along with the true
 function (black).  In this case the cubic spline and Gaussian process model
 interpolations are very close to the true function, but the true function
@@ -79,9 +75,9 @@ normally would not be known beforehand.
   \include{example_function_interp}
   %\includegraphics[width=8cm]{example_function_interp}
   \caption[Example of different interpretation methods]{%
-    Here we show different interpolation methods of the function
+    Here, I show different interpolation methods of the function
     $f(x) = sin(x) + cos(2x)$ using the same 10 uniformly random distributed
-    sample points.  We show the true function as well as piecewise linear,
+    sample points.  I show the true function as well as piecewise linear,
     cubic spline, and Gaussian process interpolations.
   }
   \label{fig:interp_methods}
@@ -92,11 +88,11 @@ function behavior between the sample points is random in the sense it could
 take any path as long as it intersects the points and the correlation function
 we select gives the general form of the function between the points.
 The distribution of possible paths follows a multi-variate Gaussian
-distribution through the sample points we've selected.  The mean of this 
+distribution through the selected sample points.  The mean of this 
 distribution is the most likely path, which is typically what is visualized.
 By modeling the behavior this way we also get a model for the uncertainty
 at any point in the domain.  This uncertainty grows in proportion to the
-distance to the sample points.  In \autoref{fig:gp_example} we show the Gaussian
+distance to the sample points.  In \autoref{fig:gp_example} I show the Gaussian
 process estimation of the above function given the sample points along with
 the standard error of the estimation.  The error grows very quickly when
 extrapolating, for example when $x < 1$.  This is 
@@ -134,9 +130,6 @@ to analyze simulations among other types of data.
 There exist a number of examples where Gaussian process regression along
 with a uniformly distributed experimental design is used in order to 
 run an analysis.
-%By looking at commonalities in terms of dimensions and numbers of points
-%for examining these simulations we can determine the order of dimensions
-%and number of sample points we need to build our predictive function on.
 Using uniform sampling with a Gaussian process model 
 has been applied in 
 an optimization scenario, as with
@@ -171,7 +164,7 @@ to find tumor sites.
 \begin{table*}[htb]
 \centering
 \caption[A summary of the literature using Gaussian process models]{%
-  A summary of the literature described in \autoref{sec:gp_applications}.  We
+  A summary of the literature described in \autoref{sec:gp_applications}.  I
   show the domain of application of each paper, their analysis goal, as
   well as the number of samples and number of input parameters (dimensions)
   of the simulation used to train the GP model. 
@@ -195,7 +188,7 @@ to find tumor sites.
 
 As one can see, there are a wide variety of application domains.  However, 
 all these analyses share commonalities.
-We show the summary information of these studies in \autoref{tb:literature}.
+I show the summary information of these studies in \autoref{tb:literature}.
 The number of inputs is typically on
 the order of 5--15 inputs. Each of these may correspond to a known factor that
 can vary in the real world like wind speed or the velocity of a particle, or
@@ -207,14 +200,14 @@ functions which reduce the complex output to a set of numerical
 attributes~\cite{Sedlmair:2014}.
 Therefore, for each simulation run we get a vector of scalar input factors and
 the corresponding vector of scalar outputs.  Each scalar output can be
-considered in a separate analysis so in this paper we assume that there is
+considered in a separate analysis so in this chapter we assume that there is
 only one scalar output for each input configuration.
 
 The practical number of simulation samples range from a few hundred to hundreds
 of thousands.  This is due to either time or monetary constraints.  Running more
 simulations than this simply takes too long or costs too much.  
 Based on these
-data we test our timing function on dimensions $3$--$8$ and run up to 
+data I test my timing function on dimensions $3$--$8$ and run up to 
 $1,000,000$ sample points.
 
 
@@ -235,7 +228,7 @@ The
 simulation is run using each sample and the outputs are recorded. If the
 output is a complex object then feature
 extractors are run on the outputs to generate scalar results.
-We then build an emulator of this
+Then, an emulator is built of this
 process. Prediction using this emulator must be fast as we will want to
 evaluate it at many points. Often, a Gaussian process
 model~\cite{Rasmussen:2006} is selected for the emulator. 
@@ -268,12 +261,12 @@ exploration of the Gaussian process model is a
 relatively new technique as it is more complex to implement and the limits
 in terms of the number of points and how the size of the kernels affects 
 interactivity is not yet understood.  
-The rest of this paper will discuss how to address both these questions.
-We present a rendering algorithm which is similar to 
+The rest of this chapter will discuss how to address both these questions.
+I present a rendering algorithm which is similar to 
 splatting~\cite{Mueller:1998}
 to render the Gaussian
 process prediction function using HyperSlice.
-We also develop a method to determine when
+I also develop a method to determine when
 the interactivity of the rendering will fail taking into account the geometric 
 interpretation of the Gaussian process model as well as the performance
 of an individual user's machine.

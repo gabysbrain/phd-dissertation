@@ -1,8 +1,22 @@
 
 
-For this derivation, we are assuming a $d$-dimensional centred unit cube\footnote{Note, that in the paper we had specified a non-centred unit cube $[0, 1]^d$. However, the centering does not impact the result, but is mathematically easier to deal with.} $[-0.5, 0.5]^d$ with coordinate axes $x_1, x_2, \ldots, x_d$. Without loss of generality, we will specify a 2D slice by a $(d-2)$-dimensional (focus) point $\vs$ and are assuming that the two additional coordinates are the coordinates within the slice.
+For this derivation, assume a $d$-dimensional centred unit
+cube\footnote{Note, that in \autoref{chp:renderingtime} I specified a
+non-centred unit cube $[0, 1]^d$. However, the centering does not impact the
+result, but is mathematically easier to deal with.} $[-0.5, 0.5]^d$ with
+coordinate axes $x_1, x_2, \ldots, x_d$. Without loss of generality, we
+specify a 2D slice by a $(d-2)$-dimensional (focus) point $\vs$ and 
+assume that the two additional coordinates are the coordinates within the
+slice.
 
-As explained in \autoref{sec:expectedtotaltime}, $\exppts{r}$ is the expected percentage of points within distance $r$ from a single 2D slice in $d$ dimensions. In the case of a uniform point distribution, this essentially measures the volume of a slab with thickness $2r$ around the slice. The extent of this slab in the $d$th and $d-1$ dimensions is one, since we are examining a $d$-dimensional unit cube. Hence, the volume of the slab is the $(d-2)$-dimensional volume $V(\vs)$ around the $(d-2)$-dimensional point $\vs$ multiplied by one for each direction $(d-1)$ and $d$:
+As explained in \autoref{sec:expectedtotaltime}, $\exppts{r}$ is the expected
+percentage of points within distance $r$ from a single 2D slice in $d$
+dimensions. In the case of a uniform point distribution, this essentially
+measures the volume of a slab with thickness $2r$ around the slice. The extent
+of this slab in the $d$th and $d-1$ dimensions is one, since we have a
+$d$-dimensional unit cube. Hence, the volume of the slab is the
+$(d-2)$-dimensional volume $V(\vs)$ around the $(d-2)$-dimensional point $\vs$
+multiplied by one for each direction $(d-1)$ and $d$:
 \begin{equation}
   V(\vs) = 1 \cdot 1 \cdot \int_{[-0.5,0.5]^{d-2}} B_r(\vs-\vx) d\vx \text{,}
    \label{eq:vs}
@@ -19,7 +33,7 @@ where, $B_r$ is the constant $(d-2)$-ball with radius $r$:
 %Here we should note, that the shape of the ball $B_r$ depends on the distance metric we are using. If this distance metric is the Euclidean norm, we essentially are dealing with the HyperSlice technique. 
 %If, instead, we are dealing with the infinity-norm, we are dealing with the filtered scatterplot technique.
 
-Considering the $(d-2)$-dimensional centred unit box $\Pi(\vx)$, we can express \autoref{eq:vs} as a convolution:
+Considering the $(d-2)$-dimensional centred unit box $\Pi(\vx)$, we express \autoref{eq:vs} as a convolution:
 \begin{align*}
   V(\vs) &= \int_{[-0.5,0.5]^{d-2}} B_r(\vs-\vx) d\vx\\
           &= \int_{[-\infty,\infty]^{d-2}} \Pi(\vx) B_r(\vs-\vx) d\vx \\
@@ -69,7 +83,7 @@ x_n &= R \sin(\phi_1) \cdots \sin(\phi_{n-2}) \sin(\phi_{n-1}) \text{,}
 \end{align*}
 where $\phi_i \in [0, \pi]$ for $i = 1, \dotsc, n-2$ and $\phi_{n-1} \in [0, 2\pi]$.
 
-The Jacobian, needed to properly substitute the integration variables in \autoref{eq:ErdConvH} of the transformation from spatial coordinates $\vx$ to polar coordinates $\vvarphi$ can be computed as follows:
+The Jacobian, needed to properly substitute the integration variables in \autoref{eq:ErdConvH} of the transformation from spatial coordinates $\vx$ to polar coordinates $\vvarphi$, can be computed as follows:
 \begin{align*}
   \frac{d\vx}{d\vvarphi} &= R^{n-1} \prod_{i=1}^{n-1}\sin^{n-1-i}(\phi_i) \\
   d\vx &= R^{n-1} dR \prod_{i=1}^{n-1}\sin^{n-1-i}(\phi_i) d\phi_i
@@ -81,7 +95,7 @@ The Jacobian, needed to properly substitute the integration variables in \autore
 
 \section{Derivation}
 
-In this section, we will assume that our radius $r$ never grows above one. This is a reasonable assumption, which holds for the experiments performed in our paper. We can now simplify \autoref{eq:ErdConvH} as follows:
+In this section, we will assume that the radius $r$ never grows above one. This is a reasonable assumption, which holds for the experiments I performed. We can now simplify \autoref{eq:ErdConvH} as follows:
 \begin{align*}
 \exppts{r} &= 2^n \int_{B^{+}_r} \prod_{i=1}^{n} \max(0,(1-x_i)) d\vx \\
   &= 2^n\int_{B^{+}_r} \prod_{i=1}^{n} (1-x_i) d\vx \\

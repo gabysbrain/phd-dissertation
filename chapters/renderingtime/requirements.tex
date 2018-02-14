@@ -1,12 +1,12 @@
 \section{Requirements}
 \label{sec:requirements}
 
-Sampling the Gaussian process prediction forumula \autoref{eq:gp-pred} directly in
-sufficient density to draw the slices is expensive because each evaluation
-requires computing the dot product of two size $N$ vectors.  Instead, we render
+Sampling the Gaussian process prediction forumula \autoref{eq:gp-pred} directly
+in sufficient density to draw the slices is expensive because each evaluation
+requires computing the dot product of two size $N$ vectors.  Instead, I render
 the prediction formula in order to exploit the inherent parallelism provided by
-the GPU. Before describing the algorithm itself, we first need to consider
-what the multi-dimensional ``scene'' we are trying to render looks like.  The
+the GPU. Before describing the algorithm itself, we first need to consider what
+the multi-dimensional ``scene'' we are trying to render looks like.  The
 fundamental data type we are given are sample points of the simulation.  This
 section describes how these sample points are transformed into higher-order
 geometric primitives and then what happens when slicing them in order to be
@@ -15,7 +15,7 @@ drawn on screen.
 \subsection{Scene geometry}
 \label{sec:scene_geometry}
 
-Here we will describe the spatial interpretation of the Gaussian process
+Here I will describe the spatial interpretation of the Gaussian process
 model so that one can build an intuition for the geometric portion of the 
 prediction formula.  This spatial interpretation is very close to the 
 form used for the splatting algorithm.
@@ -47,7 +47,7 @@ $R$ is
 the $N \times N$ correlation matrix 
 between the sample points using the same correlation function.
 We also note that neither $R^{-1}$ nor $(Y - \mu)$
-depend on $x'$ so we let the vector, 
+depend on $x'$ so let the vector, 
 $\vec{\Upsilon} = R^{-1} (\vec{Y} - \mu)'$.  
 Then, we can write \autoref{eq:gp-pred} in a linear form,
 
@@ -59,18 +59,6 @@ The value $\Upsilon_i$ is $f'(x_i)$ and $\hat{y}$ is $\hat{f}$ from
 \autoref{eq:kernel_regression} which is normalized by $R^{-1}$ from 
 \autoref{eq:gp-pred}.
 
-%This means that the prediction formula for the Gaussian process model 
-%is essentially a kernel-based estimator. The shape of the kernels depends 
-%on the chosen
-%correlation function. In the case of Gaussian correlation, if we set a
-%maximum distance at which points no longer have any effect, the kernels are
-%ellipsoidal in shape. In our case, and as reported in section 
-%\SC{sec:calibrationmethodology} this value is, $\epsilon = 1x10-9$.  
-%The $\theta$
-%parameters determine the size of the ellipses.  Increasing the value of a
-%particular $\theta$ will cause the size of the kernel to decrease in that
-%dimension.
-
 A common choice for $r(\cdot)$ is the squared exponential correlation
 function
 which has infinite support and is strictly 
@@ -80,7 +68,7 @@ There is a different falloff
 parameter for each dimension.
 For visualization purposes these small values don't contribute a
 perceivable effect.
-Therefore, we set a lower bound on the correlation value which we denote,
+Therefore, I set a lower bound on the correlation value which we denote,
 $\epsilon = 1 \times 10^{-9}$, essentially giving the correlation function
 compact support. This can also be done using specific compactly supported 
 correlation functions as in
@@ -92,29 +80,18 @@ around each sample point with principal axis lengths related to the
 correlation falloff parameter. The sample point will only influence 
 predictions within this region.
 
-%Typically in modeling simulations the output values
-%are considered deterministic. That is, for a given parameter configuration,
-%the simulation will always yield the same output.
-%A spatial-embedding of the Gaussian process model with 
-%squared exponential correlation functions will yield $N$
-%$d$-dimensional ellipsoids.  These ellipses may overlap or be clipped by the
-%edges of the parameter space depending on location and size. However, they
-%still have a known layout.  
-%We can use this known layout to predict how this will influence the number
-%of pixels we need to draw on screen.
-
 \subsection{HyperSlice effect on scene geometry}
 \label{sec:hypersliceeffectonscenegeometry}
 
 The last step is using some method to examine this multi-dimensional
-scene on a computer screen.  Our
+scene on a computer screen. My
 chosen display method is the
 HyperSlice~\cite{Wijk:1993} technique to which will draw $2$-dimensional
 slices through these multi-dimensional ellipsoids on screen.  
 HyperSlice relies on the user selecting a \textit{viewpoint} which 
 determines the location in the multi-dimensional parameter space where to
 position of the slices.
-In \autoref{fig:hyperslice_geometry} we show the representation for the
+In \autoref{fig:hyperslice_geometry} I show the representation for the
 HyperSlice technique in both 2 and 3 dimensions.  In 2D the slicing plane (what
 one sees) is a line.  In 3D it is a 2D plane slicing through the space.  In 
 higher dimensions it is also a 2D slicing plane.
@@ -152,32 +129,32 @@ Only the points within range $r$ of the slicing plane have an effect on the
 final image on the slice.
 The conceptual algorithm works by first filtering out all points
 that do not fall within range, $r$, of the slicing plane.  Then, for all points
-within this range, we determine where the drawing plane intersects the
+within this range, I determine where the drawing plane intersects the
 ellipsoid which determines its impact on the drawing plane.
 
 \subsection{Algorithm}
 
 The GPU has vertex and fragment processing stages.  This is analogous
 to the filtering and rendering stages of our rendering algorithm.
-We present the full schematic of the rendering algorithm in \autoref{algo:full}.
+I present the full schematic of the rendering algorithm in \autoref{algo:full}.
 
 The distance to the slice is a $d-2$ dimensional distance since the remaining
 $2$ dimensions are projected on to the slice directly.
-We compute the projection of the point onto the current 2D 
+I compute the projection of the point onto the current 2D 
 slice in~\autoref{algo:full} (\autoref{al:line:slicedist}).
-We then compute the distance of the sample point to the slice in 
+I then compute the distance of the sample point to the slice in 
 \autoref{al:line:disteq}.
-Because we are only interested in the distance to the slice itself, and not
-a particular point on that slice, we don't include the two dimensions
+Because I am only interested in the distance to the slice itself, and not
+a particular point on that slice, I don't include the two dimensions
 of the slice in the distance computation.  
 If this distance is smaller
-than the size of the reconstruction kernel, we would need to render a
+than the size of the reconstruction kernel, I render a
 2D slice through this reconstruction kernel. 
 A speed-up for drawing exponential functions often used
 in GPU-based splatting algorithms is to use a template exponential distribution
 drawn onto a quad~\cite{Mueller:1998}.
 However, since these splat-like slices have different distances from each subplot they affect
-the subplot by different amounts depending on the distance.  Therefore, we 
+the subplot by different amounts depending on the distance.  Therefore, I
 need to scale the intensity
 value of the texture by its distance to the 
 slice (\autoref{al:line:splatscale}).
@@ -204,26 +181,24 @@ slice (\autoref{al:line:splatscale}).
   \end{algorithmic}
 \end{algorithm}
 
-In our vertex shader implementation we filter the points as well as compute
-the sliced splat size.  This splat size is used to generate a quad that we
-send to the fragment shader.  We use the fragment shader to compute the 
+In my vertex shader implementation I filter the points as well as compute
+the sliced splat size.  This splat size is used to generate a quad that I
+send to the fragment shader.  I use the fragment shader to compute the 
 final pixel color values within the slice.
 For practical visualizations this final pixel color value should be passed
-through a colormap.  Therefore, in such practical applications, we recommend
-to render the pixel values to a floating point texture. Then this floating
+through a colormap.  Therefore, in such practical applications, I recommend
+rendering the pixel values to a floating point texture. Then this floating
 point texture can be rendered to the screen with a colormap shader program
 to convert the floating point values to color values.
 
 One of the main bottlenecks in the rendering pipeline is transferring
 vertex data from CPU memory to GPU memory.  This is due to the slower
-speed of the bus compared to the GPU. We simply do not want the GPU waiting
+speed of the bus compared to the GPU. I do not want the GPU waiting
 for pixel data.  The best way to address this, as specified by Xue and
 Crawfis~\cite{Xue:2003}, is to store vertex data in display lists on the
-GPU.  Then, before calling a draw command, we only need to update the 
+GPU.  Then, before calling a draw command, I only need to update the 
 small amount of viewpoint information to
-render the group of slices to the GPU. Hence, we store all $N$ $d$-dimensional
+render the group of slices to the GPU. Hence, I store all $N$ $d$-dimensional
 data points on the GPU. Memory of current GPUs is large enough that we can easily 
 store millions of points in a number of dimensions directly on the card.
-%Storage
-%does not tend to be the bottleneck of our multi-dimensional data analysis.
 

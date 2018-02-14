@@ -6,10 +6,10 @@ The prediction of rendering times is a staple of the 3D rendering community,
 S{\'e}quin~\cite{Funkhouser:1993}).  However, these are focused on the 
 three-dimensional
 rendering domain. It has yet to be analyzed in the multi-dimensional domain,
-which we do here.  
-Another difference with our setting is that we have a known scene geometry 
-that we can take into account.
-Furthermore, our focus is on the conversion of this high-dimensional data representation
+which I do here.  
+Another difference with this setting is that I have a known scene geometry 
+that I can take into account.
+Furthermore, my focus is on the conversion of this high-dimensional data representation
 to 2D views and not global illumination.
 
 One could perform an iterative search method, for example bisection search, on
@@ -43,11 +43,9 @@ relevant to the view and drawn on screen. The focus of HyperMoVal is
 visualizing how well a model fits sampled data. Their desire is to show how
 ``close'' data points fall to a regression line.
 
-Often, the data points represent samples of a continuous function. Hence, it
+Often, data points represent samples of a continuous function. Hence, it
 is quite common to reconstruct this function as best as possible from samples
 and visually inspect reconstructed continuous, multi-dimensional function.
-%In fact, such areas as applied statistics, machine learning, and numerical 
-%mathematics pursue this path. 
 In this regard, HyperSlice~\cite{Wijk:1993} plots
 two-dimensional orthogonal slices of a continuous function around a local
 viewpoint. This allows the user to visually inspect the behaviour of the
@@ -90,12 +88,6 @@ compute the known values of the sample points.
 This factor is either automatically 
 computed as in the case of Gaussian process regression or explicitly computed 
 from the local neighborhood. 
-%Kernel reconstruction can also be used to estimate the
-%\emph{density} of points in the parameter space. This is known as kernel
-%density estimation (KDE)~\cite{Parzen:1962,Rosenblatt:1956}.
-%We can map
-%KDE into standard kernel regression by assuming that $f(x_i) = 1$ for all
-%$x_i$.
 
 Often the squared exponential kernel is chosen for $\varphi(\cdot)$. This 
 function has one
@@ -115,11 +107,11 @@ where $j$ denotes the particular value for a certain dimension so $x_{i,j}$
 is the value of the $j$th dimension of sample $i$. The value $x_j$ is
 the $j$th dimension of the prediction point.
 Therefore,
-we have a separate parameter, $\theta_j$ to fit for each dimension.
+there is a separate parameter, $\theta_j$ to fit for each dimension.
 Another approach,
 exemplified by Hong et al.~\cite{Hong:2006}, is to set the kernel bandwidth to
 take into account the Voronoi cells around each data point. In either case,
-we recognize that
-setting the bandwidth is data-dependent. Therefore, we test rendering performance for a
+I recognize that
+setting the bandwidth is data-dependent. Therefore, I test rendering performance for a
 number of different kernel sizes.
 

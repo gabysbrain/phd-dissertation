@@ -3,9 +3,9 @@
 
 As was mentioned in \autoref{sec:motivation}, there are a number of ways to apply
 our prediction methodology in a practical visualization system. 
-To this end we show two application scenarios where our method can be
-used to control the number of samples such that we maintain interactive 
-rates.  We show how our method may be used 
+To this end I show two application scenarios where my method can be
+used to control the number of samples to maintain interactive 
+rates.  I show how our method may be used 
 to sample the simulation in order
 to maintain a desired frame rate and to subsample an existing dataset in
 order to attain interactive frame rates.
@@ -17,7 +17,7 @@ order to attain interactive frame rates.
 \centering
 \includegraphics[width=7cm]{sampler_fps}
 \caption[Using rendering time prediction to constrain sampling]{%
-  A prototypical example use case for our prediction formula,
+  A prototypical example use case for my prediction formula,
   \autoref{eq:calib-acttotal-H}. The user
   is able to either enter the number of sample points directly in field (a)
   and the system displays the expected fps in (b) or enter the desired fps
@@ -42,15 +42,16 @@ number of samples.
 
 The goal of this algorithm, presented as \autoref{algo:subsample} is to reduce the
 sample size, $N$, such that the rendering time reaches an acceptable 30fps.
-We will do this by removing samples from the set.  An issue with simply
+Normally this is done by removing samples from the set.  An issue with simply
 removing points and rebuilding the Gaussian process model is that the
 bandwidth parameters, $\theta$ will change.
 
-In \autoref{fig:30fps_time} we show the trade-off between the radius, $r$, and the
-number of points, $N$, that can be drawn in 30fps.  When subsampling data we
-expect that the radius around each sample point will increase as we reduce
-the number of sample points.  The goal of \autoref{algo:subsample} is to 
-lower the number of sample points until we reach this line.
+In \autoref{fig:30fps_time} I show the trade-off between the radius, $r$, and the
+number of points, $N$, that can be drawn in 30fps.  When subsampling data I
+expect that the radius around each sample point increases as the number of
+sample points decreases.
+The goal of \autoref{algo:subsample} is to 
+lower the number of sample points until this line is reached.
 
 \begin{algorithm}
   \caption[Subsampling data to achieve interactive rendering time]{%
@@ -73,7 +74,7 @@ lower the number of sample points until we reach this line.
   \end{algorithmic}
 \end{algorithm}
 
-In this fashion we can have a progressive rendering setup using 2 GP models, 
+In this fashion one can have a progressive rendering setup using 2 GP models, 
 a low-resolution model for fast rendering and a high-resolution one for
 detail views.  The system could dynamically switch between these two when
 interacting.

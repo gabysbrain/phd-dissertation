@@ -1,20 +1,17 @@
 
 
-With our formulation for the expected percentage of points appearing on a
-slice, $\exppts{r}$, we now turn to the derivation of the expected
+With the formulation for the expected percentage of points appearing on a
+slice, $\exppts{r}$, I now turn to the derivation of the expected
 number of fragments that need to be drawn per point on a slice, 
-$\expfrags$. Only the points which pass the filtering stage of our algorithm
+$\expfrags$. Only the points which pass the filtering stage of the algorithm
 are taken into account at this point. 
 To do this,
-we derive the expected area of 
+I derive the expected area of 
 the quad each point will create on the slice given that the point is a certain
 distance, $t$, from the slice. Even though each point drawn
-leaves a circular splat, we still must process it as a quad since the GPU
-does not support circle primitives. To discard a sample point we generate a
+leaves a circular splat, it is still represented as a quad since the GPU
+does not support circle primitives. To discard a sample point I generate a
 quad of area $0$.
-%For convenience, in the derivation below we drop
-%the functional notation, $\expfrags$ in favor of the more compact
-%$E[q]$.
 
 \section{Expected number of fragments}
 
@@ -87,7 +84,7 @@ of the area of each region:
                     with probability $P = (1-2u)^2$
 \end{itemize}
 
-Therefore, our formulation for $E[q](u)$ can be split into 3 integrals:
+Therefore, the formulation for $E[q](u)$ can be split into 3 integrals:
 \begin{align*}
   E[q](u) &=   4 \int_{x=0}^u \int_{y=0}^u (x+u)(y+u) \, dy \, dx     \\
            & + 4 \int_{x=u}^{1-u} \int_{y=0}^u (2u)(y+u) \, dy \, dx \\
@@ -139,17 +136,17 @@ Substituting $A$, $B$, and $C$ back into the formula we get,
 
 \section{Expected 3D quad size}
 
-Now we can turn to a formulation of $\expfrags$ which is the expected quad
-size over all $0 \le t \le r$.  We also need to take into account the
-likelihood of a point lying at a particular value of $t$, which we
-denote $P_t$:
+Now I can turn to a formulation of $\expfrags$ which is the expected quad
+size over all $0 \le t \le r$.  We need to take into account the
+likelihood of a point lying at a particular value of $t$, 
+denoted $P_t$:
 \begin{align*}
   \expfrags = \int_0^r E[q](u) P_t \, dt
   \text{.}
 \end{align*}
 
-There are 2 cases we need to consider, the $d=3$ case and the $d>3$ case.
-We first derive $\expfrags$ for the simpler $3D$ case in order to illustrate
+There are 2 cases to consider, the $d=3$ case and the $d>3$ case.
+I first derive $\expfrags$ for the simpler $3D$ case in order to illustrate
 the basic procedure combining the expected impact size with the number of
 points drawn.
 
@@ -233,7 +230,7 @@ which leads to
 
 %\subsubsubsection{Identities}
 
-When $d>3$, two of the dimensions are determined by the slice however the
+When $d>3$, two of the dimensions are determined by the slice. However, the
 sample point's position with respect to the remaining $(d-2)$-dimensions 
 determine its distance to the slice.  All points with the same 
 $(d-2)$-dimensional distance will have the same impact on the slice.
@@ -540,6 +537,6 @@ yields the final form for $\expfrags$ for the $d>3$ case:
         \text{.}
 \end{align*}
 
-Which gives us our final result for $\expfrags$ for a given dimension, $d$,
-and kernel radius $r$.  This is the formula we used in the paper.
+Which gives the final result for $\expfrags$ for a given dimension, $d$,
+and kernel radius $r$.  This is the formula I used in the paper.
 
