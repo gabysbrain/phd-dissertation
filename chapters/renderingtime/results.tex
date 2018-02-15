@@ -4,10 +4,9 @@
 
 \begin{figure}[t]
   \centering
-  \include{figures/raw_times}
-  %\includegraphics[width=\textwidth]{raw_times}
+  \resizebox{\linewidth}{!}{%
+    {\tiny \input{figures/raw_times}}}
   \caption[Scatterplots of the time to render using the HyperSlice method.]{%
-    \ttwnote[nomarginclue]{fix width}
     Scatterplots of the time to render using the HyperSlice method.
     Each dimension is analyzed separately.  The x-axis is the number of
     fragments drawn on screen and the y-axis is the number of seconds
@@ -103,20 +102,21 @@ of \texttt{vec4}s is required for dimensions $9$--$12$ and computing distances w
  
 \begin{figure}[t]
   \centering
-  \begin{subfigure}{0.5\linewidth}
+  \begin{subfigure}{0.50\linewidth}
     %\includegraphics[width=\textwidth]{act_err_histo}
-    \include{figures/act_err_histo}
+    \resizebox{\linewidth}{!}{%
+      {\tiny \input{figures/act_err_histo}}}
     \caption{Actual prediction error}
     \label{fig:hs_abs_error}
   \end{subfigure}%
-  \begin{subfigure}{0.5\linewidth}
+  \begin{subfigure}{0.50\linewidth}
     %\includegraphics[width=\textwidth]{rel_err_histo}
-    \include{figures/rel_err_histo}
+    \resizebox{\linewidth}{!}{%
+      {\tiny \input{figures/rel_err_histo}}}
     \caption{Relative prediction error}
     \label{fig:hs_rel_error}
   \end{subfigure}
   \caption[Actual and relative error rates of prediction]{%
-    \ttwnote[nomarginclue]{fix width}
     Histograms showing actual (a) and relative (b) error rates
     for the HyperSlice method
     comparing predictions using \autoref{eq:calib-acttotal-H} to empirical 
