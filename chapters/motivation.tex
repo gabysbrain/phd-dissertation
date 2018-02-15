@@ -83,12 +83,11 @@ as extensively as other options.  This work began with the advent of
 HyperSlice~\cite{Wijk:1993}.  HyperSlice extends the idea of slicing from
 medical imaging to any number of dimensions.  HyperSlice provides the framework
 for visualizing multi-dimensional continuous objects as a set of
-two-dimensional slices (\autoref{fig:slicing_overview}).  There are $d \choose
-2$ subpanels, one for each pair of dimensions. Each panel shows a 2D slice of
-the object. The horizontal axis shows one dimension and the vertical axis shows
-another dimension. Essentially, each sub-plot of HyperSlice shows a 2D function
-plot. With 2D slices of solid multi-dimensional objects color is often used to
-encode value. 
+two-dimensional slices.  There are $d \choose 2$ subpanels, one for each pair
+of dimensions. Each panel shows a 2D slice of the object. The horizontal axis
+shows one dimension and the vertical axis shows another dimension. Essentially,
+each sub-plot of HyperSlice shows a 2D function plot. With 2D slices of solid
+multi-dimensional objects color is often used to encode value. 
 
 My work is inspired by the HyperSlice technique. Van Wijk and van Liere
 introduced the idea of using slice-based views of multi-dimensional data.
@@ -104,29 +103,14 @@ the possibilities of these slice-based views. Through a number of case
 study examples, I will demonstrate the power of these views and ways to
 address their shortcomings.
 
-\begin{figure}
-  \centering
-  %\includegraphics{slicing_overview}
-  \label{fig:slicing_overview}
-  \caption{
-    \ttwnote[nomarginclue]{diagram of slicing}
-  }
-\end{figure}
-
-%\tmnote{
-%%- I think your reasoning though is not so much as looking at wheather. Rather,
-%%I would argue that we have learned about the world through looking at 1D plot
-%%in school or by comparing (and equating) things into classes of similar things
-%%(hence, shape is a nice thing for us to reason about.
-%- then you can talk about extending reasoning of 3D world to higher
-%dimensions, that it is hard and all.
-%- then I would argue about continuous vs. discrete. to me it is important to
-%understand the mental model of how we reason about a phenomenon. somtimes
-%discrete is important (some examples) sometimes continues (simulations,
-%incluence of a parameter)
-%- then you can reason about what Vis techniques we have for understanding
-%cont. spaces
-%}
+%\begin{figure}
+  %\centering
+  %%\includegraphics{slicing_overview}
+  %\label{fig:slicing_overview}
+  %\caption{
+    %\ttwnote[nomarginclue]{diagram of slicing}
+  %}
+%\end{figure}
 
 \input{motivation/multid_spaces}
 %\input{motivation/mental_models}

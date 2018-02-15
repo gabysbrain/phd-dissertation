@@ -5,6 +5,8 @@
 \usepackage{tikz}
 \usepackage{color}
 
+\usepackage{pdfpages}
+
 % algorithm layout
 %\usepackage{breqn}
 \usepackage{algorithm}
@@ -32,4 +34,12 @@
 \FXRegisterAuthor{tm}{atm}{\color{red}TM}
 \FXRegisterAuthor{ttw}{attw}{\color{ttwgreen}TTW} % creates ttwnote, ttwwarning, ttwerror, ttwfatal commands
 %\FXRegisterAuthor{mk}{amk}{\color{blue}MK}
+
+%%% general macro for Abstract, etc., headings
+\newlength{\topfiddle} \setlength{\topfiddle}{2\baselineskip}
+\newcommand*{\pretoctitle}[1]{{\clearpage\centering
+\vspace*{-2\topfiddle}\textbf{#1}\par}}
+
+%%% Start the ACKNOWLEDGEMENTS
+\newcommand{\acknowledgements}{\pretoctitle{Acknowledgements}}
 
