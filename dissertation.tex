@@ -15,6 +15,7 @@
 
 \begin{document}
 \DoubleSpacing
+%\OnehalfSpacing
 
 \frontmatter
 
@@ -26,7 +27,8 @@
 
 \dedication{To whomever finds this}
 
-\acknowledgements
+%\acknowledgements
+\chapter*{Acknowledgements}
 \input{acknowledgements}
 
 \clearpage
@@ -90,15 +92,17 @@
 
 \end{appendices}
 
-\begin{abstract}
-\input{abstract_en}
-\end{abstract}
+\ttwnote{ensure these become separate sections}
 
 \clearpage
 
-\begin{abstract}
+\chapter*{Abstract}
+\input{abstract_en}
+
+%\clearpage
+
+\chapter*{Zusammenfassung}
 \input{abstract_de}
-\end{abstract}
 
 \end{document}
 
