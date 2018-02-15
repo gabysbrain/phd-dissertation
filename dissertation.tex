@@ -13,6 +13,8 @@
 \setsecnumdepth{subsection}
 \maxtocdepth{subsection}
 
+\pagestyle{Ruled} % Include the chapter/section in the header along with a horizontal rule underneath
+
 \begin{document}
 \DoubleSpacing
 %\OnehalfSpacing
@@ -75,7 +77,11 @@
 
 %\clearpage
 
+\cleardoublepage
+
 % appendices
+%\part*{Appendices}
+
 \begin{appendices}
 
 \chapter{Full sliceplorer views}
@@ -91,6 +97,8 @@
 \input{chapters/renderingtime/app_expfrags}
 
 \end{appendices}
+
+\cleardoublepage
 
 \backmatter
 
