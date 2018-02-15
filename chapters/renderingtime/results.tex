@@ -1,11 +1,13 @@
+
 \section{Timing results}
 \label{sec:timingresults}
 
-\begin{figure*}[t]
+\begin{figure}[t]
   \centering
   \include{figures/raw_times}
   %\includegraphics[width=\textwidth]{raw_times}
   \caption[Scatterplots of the time to render using the HyperSlice method.]{%
+    \ttwnote[nomarginclue]{fix width}
     Scatterplots of the time to render using the HyperSlice method.
     Each dimension is analyzed separately.  The x-axis is the number of
     fragments drawn on screen and the y-axis is the number of seconds
@@ -14,7 +16,7 @@
     formula. 
   }
   \label{fig:hs_draw_times}
-\end{figure*}
+\end{figure}
 
 I now present the results of running the timing experiments.  My test
 machine is a Macbook Pro with Retina display with a 2.6GHz Intel Core i7, 16GB
@@ -99,21 +101,22 @@ of \texttt{vec4}s is required for dimensions $9$--$12$ and computing distances w
 
 \subsection{Accuracy}
  
-\begin{figure*}[t]
+\begin{figure}[t]
   \centering
-  \begin{subfigure}{0.5\textwidth}
+  \begin{subfigure}{0.5\linewidth}
     %\includegraphics[width=\textwidth]{act_err_histo}
     \include{figures/act_err_histo}
     \caption{Actual prediction error}
     \label{fig:hs_abs_error}
   \end{subfigure}%
-  \begin{subfigure}{0.5\textwidth}
+  \begin{subfigure}{0.5\linewidth}
     %\includegraphics[width=\textwidth]{rel_err_histo}
     \include{figures/rel_err_histo}
     \caption{Relative prediction error}
     \label{fig:hs_rel_error}
   \end{subfigure}
   \caption[Actual and relative error rates of prediction]{%
+    \ttwnote[nomarginclue]{fix width}
     Histograms showing actual (a) and relative (b) error rates
     for the HyperSlice method
     comparing predictions using \autoref{eq:calib-acttotal-H} to empirical 
@@ -125,7 +128,7 @@ of \texttt{vec4}s is required for dimensions $9$--$12$ and computing distances w
     and drawing time, $t_\text{H}$, separately for each dimension.
   }
   \label{fig:hs_accuracy}
-\end{figure*}
+\end{figure}
 
 As with the filtered scatterplot, I compared our predicted running time
 against new timing data using the same experimental conditions.  I do this

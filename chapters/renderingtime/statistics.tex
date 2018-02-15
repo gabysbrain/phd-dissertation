@@ -75,6 +75,7 @@ normally would not be known beforehand.
   \include{example_function_interp}
   %\includegraphics[width=8cm]{example_function_interp}
   \caption[Example of different interpretation methods]{%
+    \ttwnote[nomarginclue]{fix overlap}
     Here, I show different interpolation methods of the function
     $f(x) = sin(x) + cos(2x)$ using the same 10 uniformly random distributed
     sample points.  I show the true function as well as piecewise linear,
@@ -104,6 +105,7 @@ applications it is important to sample near the edge of the domain.
   \include{gp_example}
   %\includegraphics[width=8cm]{gp_example}
   \caption[Gaussian process interpolation example]{%
+    \ttwnote[nomarginclue]{fix overlap}
     The Gaussian process interpolation of the function 
     $f(x) = sin(x) + cos(2x)$ from 10 uniformly distributed samples.  
     The standard error of estimation from the model is shown in gray.
@@ -235,7 +237,7 @@ model~\cite{Rasmussen:2006} is selected for the emulator.
 
 \begin{figure}[htb]
   \centering
-  \includegraphics[width=7cm]{tuner}
+  \includegraphics[width=\linewidth]{tuner}
   \caption[Tuner's HyperSlice view]{\
     Screenshot of Tuner~\cite{Torsney-Weir:2011} demonstrating the
     HyperSlice~\cite{Wijk:1993} method for rendering an
