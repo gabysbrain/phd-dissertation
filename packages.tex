@@ -40,6 +40,9 @@
 \newcommand*{\pretoctitle}[1]{{\clearpage\centering
 \vspace*{-2\topfiddle}\textbf{#1}\par}}
 
-%%% Start the ACKNOWLEDGEMENTS
+%% make it easy to center any dedication
+\newcommand{\dedication}[1]{%
+{\clearpage\mbox{}\vfill\centering #1 \par\vfill\clearpage}}
+%% acknowledgements section
 \newcommand{\acknowledgements}{\pretoctitle{Acknowledgements}}
 
