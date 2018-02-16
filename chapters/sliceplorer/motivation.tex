@@ -1,9 +1,6 @@
-\section{Motivation}\label{motivation}
+section{Motivation}\label{motivation}
 
 The visual analysis of multi-dimensional scalar functions is a fundamental aspect in many areas, from computational sciences (based on computer simulations) to data sciences (based on machine learning techniques) and general optimization algorithms. 
-%For example, one might
-%want to examine the results of a prediction model and find a what parameter
-%settings produce robust optima \msnote{add aspect of continuous}. 
 Neural networks, for instance, have shown to produce very good results that come in the form of highly non-linear response manifolds.
 While understanding these manifolds would greatly help to verify
 the resulting models, there
@@ -20,8 +17,6 @@ as argued by Gleicher~\cite{Gleicher:2016}.
 
 To examine these functions visually they must be reduced to be
 displayed on a 2D screen. 
-%There are a number of techniques that we will discuss
-%in more detail in the background section (\autoref{sec:background}). 
 Currently, the two major approaches used to visualize these spaces are either
 two-dimensional slices, a technique known as HyperSlice~\cite{Wijk:1993} or dimension transformation techniques. This includes dimensionality
 reduction and topological methods~\cite{Correa:2011,Carr:2003a}.  HyperSlice
@@ -72,19 +67,13 @@ have been seen before. For example, I discuss how one can use my
 method to compare the \emph{global} prediction manifold of a neural
 network algorithm against a support vector machine to guide and better understand the architecture of a neural network. This is currently an open research question in the machine learning community.
 
-%Although 2D and 3D scalar functions are also multi-dimensional functions, our
-%technique is focused on functions with domains of \emph{4D and higher}. 
-
 In summary my contributions are: 
 \begin{itemize}
 \item exploring the idea of 1D slices with a concrete software prototype called Sliceplorer,
 \item a task-based analysis of multi-dimensional functions, comparing 1D slices to 2D HyperSlices and topological techniques, and
 \item %evaluating our technique through 
 three usage scenarios illustrating the value of 1D slices in common function 
-      visualization scenarios. % in both computational and data science applications.
-      %, and
-%\item a discussion of task analysis for multi-dimensional functions. 
-%\item and deriving design guidelines based on the results of our evaluation. \msnote{do we still do that?}
+      visualization scenarios. 
 \end{itemize}
 
 

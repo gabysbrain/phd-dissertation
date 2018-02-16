@@ -80,7 +80,6 @@ beyond the scope of this thesis, and are left for future work.
 Imagining how a function in more than 3-dimensions looks is difficult if not
 impossible. In order to illustrate how Sliceplorer visualizes functions we show
 the 2D sinc function. 
-%\tmnote{The sinc function is a the perfect reconstruction function in the band limited case.}
 I am using the formulation where 
 $y(x_1,x_2) = \frac{sin(\pi x_1)}{\pi x_1} \frac{sin(\pi x_2)}{\pi x_2}$.
 For reference, \autoref{fig:sinc:3d} shows a 3D surface plot of this function. The 
@@ -194,7 +193,6 @@ parameterization.
   \label{fig:nn_comp}
 \end{figure*}
 
-%\msnote{sounds a bit too defensive. Deep Learning is the big hype at the moment but nobody understands them! That's imho the core message that we need to say}
 Artificial neural networks are currently gaining a lot of attention in machine
 learning.  The goal of these algorithms is to produce a multi-dimensional
 function fitted to the training points. Neural networks, in particular, have
@@ -228,22 +226,6 @@ highways. I then trained a neural network with a single hidden layer of 26
 nodes, a neural network with 2 hidden layers: one of 5 and one of 3 nodes, a
 support vector machine with a polynomial kernel, and a support vector machine
 with a radial (Gaussian) kernel.
-%\msnote{Ok, add more detailed notes ... I think the challenge is to add a
-%couple of subclauses explaining the ML background in a nutshell and connect it
-%to / make its relevance for the problem at hand clear (abstractly, we would
-%like to look at and understand multi-D respose surfaces, i.e. multi-D
-%continuous functions. As soon as we can see these functions, we also can
-%compare different models. That is, if models have similar response surface
-%functions, we can use the easier to understand one to as a ``surrogate'' to
-%better understand the behavior of the more complex ones ... just some thoughts
-%in my words, not sure if this is actually what we want to achieve, but our
-%goals should be very clear here ... Said all that, to me I think it is mostly
-%clear what you mean, but I might be biased here as I do know our project well
-%and can fit in all the pieces without any problem.  ... old: for the above
-%paragraphs: need to be explained more clearly imho.  Specifically, they should
-%also make the issues and concepts clear to someone who is not necessarily an
-%ML expert. Needs re-writing; happy to discuss to give some ideas on what a
-%good level of information would be here.}
 
 I compare 1D slices with an adaption of the common way of viewing
 classification algorithms to continuous data.
@@ -268,7 +250,6 @@ also has a number of curves that increase as crime increases. The neural
 network with two hidden layers does not have this problem. Maybe this is the
 best model to use in this case.
 
-%\tmnote{needs a final paragraph, maybe sth like} 
 In summary, this usage scenario illustrated that a direct inspection of a
 model's response surfaces can give intuition of its behavior, and can lead to a
 better model selection and a better intuition of the modeling process. 1D
@@ -291,20 +272,11 @@ stuck in a local minima or take unreasonably long to finish.
 When one is trying to parameterize or build optimization algorithms then
 one wants to evaluate the trace of the optimization on an easy function
 that is fast to compute first. This analysis helps to better understand how to parameterize for more complex problems
-%, which will be faced in reality, 
 but are
 too computationally expensive to analyze directly. 
 Visual inspection of the easy function before running the optimization algorithm, as well as
 viewing the trace of the optimization algorithm (the sequence of steps it took) is a good way to ensure that the algorithm is converging towards the global
 minimum. 
-%\msnote{... maybe something: you would also like to use the algorithm
-%inn other situations as well or so?}\ttwnote{not sure what you mean}
-%\msnote{... old: just playing devil's advocate: So, we have the visual minimum,
-%why care about the visualization then if you simply could compute a number
-%between the visual global minimum and the algorithmically detected minimum}
-%\msnote{TO DISCUSS: what about a number for the difference between the visual minimum in the slices and 
-%the local minimum found?}
-%\msnote{TO DISCUSS: also, how would the other alternatives perform here?}
 
 I compare 1D slices with HyperSlice~\cite{Wijk:1993} as this is the only
 technique that also directly visualizes the parameter space.  I ran the
@@ -326,15 +298,6 @@ HyperSlice.
   \qquad\qquad
   \begin{subfigure}[b]{0.35\linewidth}
     \includegraphics[width=\textwidth]{optim_trace_hs_1_1.png}
-    %\resizebox{\textwidth}{!}{%
-    %\begin{tabular}{rrrrr}
-      %20.9885770  & -0.3256642 & -0.3257547 & -0.3258958 & -0.3252083 \\
-      %-0.3256642  & 20.9908910 & -0.3254367 & -0.3255775 & -0.3248914 \\
-      %-0.3257547  & -0.3254367 & 20.9902343 & -0.3256679 & -0.3249814 \\
-      %-0.3258958  & -0.3255775 & -0.3256679 & 20.9892087 & -0.3251219 \\
-      %-0.3252083 & -0.3248914 & -0.3249814 & -0.3251219 & 20.9941950
-    %\end{tabular}
-    %}
     \subcaption{
       \label{fig:optim_1:hs}
     }
@@ -349,15 +312,6 @@ HyperSlice.
   \qquad\qquad
   \begin{subfigure}[b]{0.35\linewidth}
     \includegraphics[width=\textwidth]{optim_trace_hs_2_1.png}
-    %\resizebox{\textwidth}{!}{%
-    %\begin{tabular}{rrrrr}
-      %21.0042955 & -0.1840739 & -0.1843067 & -0.1846840 & -0.1845613 \\
-      %-0.1840739 & 21.0067633 & -0.1839595 & -0.1843355 & -0.1842132 \\
-      %-0.1843067 & -0.1839595 & 21.0051112 & -0.1845689 & -0.1844464 \\
-      %-0.1846840 & -0.1843355 & -0.1845689 & 21.0024265 & -0.1848241 \\
-      %-0.1845613 & -0.1842132 & -0.1844464 & -0.1848241 & 21.0033008
-    %\end{tabular}
-    %}
     \subcaption{
       \label{fig:optim_2:hs}
     }

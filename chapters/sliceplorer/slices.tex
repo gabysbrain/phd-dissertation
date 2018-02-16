@@ -19,11 +19,9 @@ global optimum of a function.
 \textbf{R-robust}: The relative height
 around each optima is important to detecting the robustness of that optimum. In
 some cases one may prefer a local optimum over a global one if it is more stable.
-%\ttwnote{there is SA, but visual analysis gives context} 
 This is very common in
 simulations of manufacturing processes where variations in manufacturing tolerances
 should not affect the performance of a part too much~\cite{Berger:2011}.  
-%\tmnote{should we site berger11 again?}
 
 \textbf{R-bowl}: Similarly, we may be
 interested in how ``bowl''-shaped the area around an optimum is. The goal is
@@ -61,12 +59,11 @@ according to Bertin and others~\cite{Bertin:1967, Mackinlay:1986}.
 of our technique from a one-dimensional function to the full, multi-dimensional
 Sliceplorer view.
 To extend this simple technique to multi-dimensional functions, each parameter
-receives its own one-dimensional plot.
-the one-dimensional function plot for each parameter
+receives its own one-dimensional plot
 (\autoref{fig:walkthrough}b). 
 There will be \(d\) plots where \(d\) is
 the number of dimensions in the function. In the same way that
-HyperSlice~\cite{Wijk:1993} is inspired by the SPLOM layout, one can use any
+HyperSlice~\cite{Wijk:1993} is inspired by the SPloM layout, one can use any
 layout technique for multiple histograms. 2D slices scale as $\mathcal{O}(d^2)$
 which is worse than the $\mathcal{O}(d)$ for 1D slices. 
 1D slices also give us separable channels remaining for encoding of additional
@@ -110,20 +107,12 @@ it easy to adjust the number of 1D slices shown (i.e.\ focus points) on the
 fly.  Specifically, it avoids a complete resampling of the parameter space like
 we would need with a Latin hypercube sampling. 
 
-%The number
-%of focus points is user-adjustable so if they want to see more or fewer numbers
-%of sample points they can. \msnote{this goes into details now. Imho what is
-%missing before is a good high-level summary of what our technique is actually
-%doing. There is the N plots things, but not the sampling thing, nore the
-%overdrawing. A good mental model would at the beginnign would be really cool
-%... maybe this was in the intro and I just forgot :)}
-
 
 \subsection{Linked selection}
 
 One disadvantage with 1D views over 2D views is that we cannot see the
 two-dimensional interactions anymore. I compensate for this with
-interaction. %\msnote{should comparisons to other VE techniques, 2D slices, topology, be here or in a section further down? ... hmm just a thought ... maybe both is fine if we only have it short here ...}
+interaction. 
 The user can mouse over a particular slice which will highlight
 all slices corresponding to that focus point. That is, one slice in each view is highlighted.
 I also superimpose the focus point itself on these lines. In doing so,
@@ -169,8 +158,4 @@ The clustering is done with a k-nearest neighbor algorithm using the
 $L^2$ distance between two slices as the distance metric.
 This allows us to group the slices into distinct
 groups of behavior and color-code these groups to distinguish them.
-
-%These methods overcome many of the limitations of showing slices as
-%compared to projection or topological methods while retaining the
-%benefits. \msnote{hmmm ... coming back to my point from above: wouldn't it be good to first show that the general idea is good/better than STAR in certain cases before speaking of overcoming its limitations ... maybe this is just a framing issue ... }
 

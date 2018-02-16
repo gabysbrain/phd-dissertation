@@ -45,13 +45,10 @@
   \subcaptionbox{Gerber et al.~\cite{Gerber:2010}\label{fig:compare:gerber}}
     [0.48\textwidth]
     {\includegraphics[width=0.4\linewidth]{gerber_ms.pdf}}
-  %~
-  %\subcaptionbox{1D slices\label{fig:compare:slices}}
-    %[0.15\textwidth]
-    %{\includegraphics[width=0.1\textwidth]{images/4d_ackley_150slices.png}}
   \caption[The four techniques we used to compare with 1D slices.]{%
     The four techniques we used to compare with 1D slices. With
-    the exception of HyperSlice, the images are from the respective papers and show different datasets used in their context.
+    the exception of HyperSlice, the images are from the respective papers 
+    and show different datasets used in their context.
   }
   \label{fig:compare}
 \end{figure}
@@ -158,7 +155,6 @@ values.
 \textbf{Compute derived value}:\label{compute-derived-value}
 The direct interpretation of this task to continuous data is to compute derived
 value results about the curves 
-%\msnote{TO-DISCUSS: the curves? all 1D ones for one dimension? What about derived values that summarize the entire function?} 
 like mean and variance. Many of these values can
 also be perceived visually.  Topological methods compute the persistence value
 between the function to determine what to show but with the exception of
@@ -232,19 +228,6 @@ reconstruct the function between extrema and saddle points does not allow us to
 view the variance between these points as the 1D slice view
 allows. Clustering the 1D slices tries to split the slices into groups of
 similar behavior (see \autoref{fig:cluster:clustered}).
-
-%\begin{figure}
-  %\centering
-  %\includegraphics[width=\columnwidth]{images/gerber_evolution.pdf}
-  %\caption{
-    %How the method of Gerber et al.\ visualizes a function. They take a 
-    %function (left image), decompose it into areas of monotonic behavior 
-    %(center image), approximate each region with a regression model (right
-    %image), and then show this regression model to the user.
-    %(image from \cite{Gerber:2010}).
-  %}
-  %\label{fig:gerber}
-%\end{figure}
 
 \textbf{Correlate}:\label{correlate}
 Finally, we consider correlation. In the discrete data case the goal is to find

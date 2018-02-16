@@ -12,7 +12,7 @@ correlation cutoff value (see \autoref{sec:scene_geometry}), $\epsilon$, to $1
 \times 10^{-9}$. This value allows me to link the kernel radius, $r$, with the
 kernel bandwidth parameter in the GP model.
 
-The architecture of each GPU is different and efficiencies on one 
+The architecture of each GPU is different and what is efficient on one 
 architecture may not carry over to another.
 Therefore, it is
 impossible to argue from first-principles how to derive $t_f$ and $t_\text{H}$ 
@@ -33,8 +33,8 @@ for small values of $r$ while the drawing time dominates for larger values of
 $r$.
 Therefore, there will be a point in terms of number of fragments drawn, 
 designated $a$, at which point the dominant term will change from the first to
-the second. In order to fit this behaviour I used a segmented regression
-model which changes behaviour according to the value of a \{0,1\} indicator
+the second. In order to fit this behavior I used a segmented regression
+model which changes behavior according to the value of a \{0,1\} indicator
 function, $I(\text{frags}<a)$, where $\text{frags}$ is the total number of 
 fragments drawn. This 
 function returns 0 if $\text{frags} < a$. I form the regression

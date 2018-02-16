@@ -85,7 +85,6 @@ filtering code I parallelize the distance computations in OpenGL using the
 of \texttt{vec4}s is required for dimensions $9$--$12$ and computing distances with these additional \texttt{vec4}s takes slightly more time.
 
 \begin{table}[h]
-%\begin{table}[htb]
 \centering
 \caption[Rendering time calibration results]{%
   Table showing the calibrated parameters, $a$, $t_f$, and $t_\text{H}$,
@@ -103,14 +102,12 @@ of \texttt{vec4}s is required for dimensions $9$--$12$ and computing distances w
 \begin{figure}[t]
   \centering
   \begin{subfigure}{0.50\linewidth}
-    %\includegraphics[width=\textwidth]{act_err_histo}
     \resizebox{\linewidth}{!}{%
       {\tiny \input{figures/act_err_histo}}}
     \caption{Actual prediction error}
     \label{fig:hs_abs_error}
   \end{subfigure}%
   \begin{subfigure}{0.50\linewidth}
-    %\includegraphics[width=\textwidth]{rel_err_histo}
     \resizebox{\linewidth}{!}{%
       {\tiny \input{figures/rel_err_histo}}}
     \caption{Relative prediction error}

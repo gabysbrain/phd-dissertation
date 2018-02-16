@@ -44,8 +44,6 @@
   \label{fig:slicing}
 \end{figure*}
 
-%Now we turn to how we actually compute a two-dimensional slice of a
-%multi-dimesnsional polytope.
 There are a several ready-made solutions to creating a number of uniformly
 distributed multi-dimensional samples (e.g.\ Sobol sequence~\cite{Sobol:1967}
 or Latin hypercube~\cite{Mckay:1979}). These methods are based on ensuring that
@@ -87,7 +85,7 @@ This planar object does not have a well-defined concept of a ``side'' in a
 multi-dimensional space. The analogy to this is a line in three-dimensions.
 
 The solution to this problem relies on two key observations. The plane can
-be represetned as
+be represented as
 a point with two free parameters and then see if
 this point lies on the boundary of the simplex using barycentric coordinates.
 A barycentric coordinate defines the location of a point on the face of a simplex.
@@ -131,8 +129,6 @@ I will
 assume the slicing dimensions to be $(d_1,d_2)=(1,2)$. Then, the two free
 variables for the specification of the slice, $x$ and $y$, will replace the
 first two components of the focus point (\autoref{eq:fp}). 
-%\msnote{we might want to include 
-%equations right at the spot. Imho this makes it easier to read. But maybe just a matter of style/taste ...}
 Let $T$
 be the matrix to convert a point from barycentric coordinates to Cartesian
 coordinates (including a homogeneous component of 1). The columns of $T$ are the $d+1$ points defining the simplex. The final row
@@ -188,7 +184,7 @@ Thus, each component is an equation of a line ($t$ is denoting the transpose).
 Here, $x$ and $y$ correspond to the horizontal and vertical coordinates of the
 intersection of the plane with the simplex. Each component of $\lambda$
 reflects the influence of one of the ($d+1$) points of the simplex. If the
-influence is zero (i.e. for the $i$-th point we have $\lambda_i=0$) then we are on
+influence is zero (i.e.\ for the $i$-th point we have $\lambda_i=0$) then we are on
 the boundary of the simplex.  An intersection of a plane with a
 simplex must cross the boundaries
 (\autoref{fig:slicing:simplex}) so it suffices to turn each
@@ -220,15 +216,6 @@ on the screen (\autoref{fig:slicing:plane}).
       \State $T\gets \left[ s\ 1 \right]^t$ \Comment{from barycentric to Cartesian coordinates}
       \State $r \gets p$
       \State $r[d_1,d_2] \gets [x,y]$
-      %\State $r_c\gets p$ 
-      %\State $r_c[d1,d2]\gets 0$
-      %\State $r_x\gets \textbf{0}$
-      %\State $r_y\gets \textbf{0}$
-      %\State $r_x[d1]\gets 1$
-      %\State $r_y[d2]\gets 1$
-      %\State $\lambda_c \gets T^{-1} r_c$
-      %\State $\lambda_x \gets T^{-1} r_x$
-      %\State $\lambda_x \gets T^{-1} r_y$
       \State $\lambda_x x + \lambda_y y + \lambda_c \gets T^{-1} r$ \Comment{convert to barycentric coordinates}
       \State $\textrm{rng}_x \gets [-\infty,\infty]$
       \State $\textrm{rng}_y \gets [-\infty,\infty]$

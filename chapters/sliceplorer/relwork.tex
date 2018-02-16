@@ -31,15 +31,6 @@ studying \emph{continuous} multi-dimensional functions, such as regression
 functions or classification boundaries. Here, one of the main concerns is
 understanding a continuous phenomenon and a good visualization design should
 thus respect this mental model~\cite{Tory:2004a,Sedlmair:2012,Liu:2010a}.
-%We have argued in the past (and it is well accepted) that one of the main
-%concerns of a proper visualization design is to respect the mental model of
-%the user~\cite{Tory2004b,Sedlmair2012a}.
-
-%The reason that we are not using discrete techniques is because in domains like
-%regression or parameter space analysis the user's mental model is in the
-%continuous realm. Input parameters are continuous and the output is also
-%continuous \msnote{really, do we have some reference to back this claim up? I think it is a good point but needs more backing up ... wither through a ref or through careful argumentation (maybe one more sentence or so)}. According to ???~\cite{???} we should match the visualization with
-%the user's mental model.  Continuous data is not devoid of research though.
 
 \subsection{Local methods}
 
@@ -55,9 +46,6 @@ focus points. Although not created for HyperSlice specifically,  techniques
 like the grand tour~\cite{Asimov:1985}, projection pursuit~\cite{Huber:1985},
 and optimal sets of projections~\cite{Lehmann:2015b} might be appropriate to
 tackle this issue.
-%\ttwnote{I'm not sure we need to cite projection persuit, etc
-%here since it doesn't work on continuous data}\msnote{I would cur except the Lehman paper is
-%one that they explicitly asked to include}. Torsten: we say "might" and I think it is ok.
 All of these approaches are
 still local though. A mental image of the global function can only be built up
 over time and with mental effort by browsing through the focus points. Our
@@ -67,10 +55,7 @@ of understanding.
 Note that for some tasks a local view might in fact suffice, such as when one is interested in the robustness of an extrema value. 
 For example, Tuner~\cite{Torsney-Weir:2011} used 2D
 continuous slices, letting the user navigate them via selecting Pareto optimal focus points in a separate view. 
-%Tuner used a separate view to show the uncertainty, but could then show the prediction uncertainty for all parameter values at once.
-%On the other hand, 
-Berger et
-al.~\cite{Berger:2011} use coordinated views of
+Berger et al.~\cite{Berger:2011} use coordinated views of
 scatterplots and parallel coordinates to show additional (continuous) prediction uncertainty. Having a discrete approach provided extra space to display information about the prediction uncertainty for the currently selected point.
 
 \subsection{Global methods}
@@ -91,110 +76,13 @@ relation of extrema in a function. However, they do not work for important
 tasks like robust optimization. Here, one does not necessarily want to find the
 global optimum but wants an optimum in a relatively ``flat'' area of the
 parameter space. 
-%There is also multi-field 
-%topology~\cite{Duke:2012,Huettenberger:2014,Carr:2015} which we do not consider
-%in this paper since we are concerned only with \emph{scalar} functions\ttwnote{is this definition clear? i.e. scalar means 1D range}.
 
-With Sliceplorer, we use line plots
-%which
-%any student of high school algebra has had to study. We use the
-together with the widely-used technique of projection to overdraw 1D slices. This approach is similar to the work by Hall et al.~\cite{Hall:2014} but differs in two major ways. (1) They showed 2 primary dimensions with slices and then used the third for color limiting their view to three dimensions and (2) they were concerned with isosurface extraction. This technique can scale to any number of dimensions and the evaluation is based on a much broader set of tasks and applications, such as parameter space analysis. 
-%We also compare our technique to curve boxplots~\cite{Mirzargar:2014}, an extension of contour 
-%boxplots~\cite{Whitaker:2013} to arbitrary curves. In our evaluation (see
-%\autoref{sec:task-eval}) we find that only showing the distribution can hide
-%some sutulties of the function that the user may want to see.
+With Sliceplorer, we use line plots together with the widely-used technique of
+projection to overdraw 1D slices. This approach is similar to the work by Hall
+et al.~\cite{Hall:2014} but differs in two major ways. (1) They showed 2
+primary dimensions with slices and then used the third for color limiting their
+view to three dimensions and (2) they were concerned with isosurface
+extraction. This technique can scale to any number of dimensions and the
+evaluation is based on a much broader set of tasks and applications, such as
+parameter space analysis. 
 
-%Rather than looking at the continuous function directly we could simply
-%sample the continuous function and then use the wealth of discrete
-%visualization techniques that have been developed over the years.
-%Discrete views by and large leave a lot of room for showing additional
-%visual channels. For example, Berger et
-%al.~\cite{Berger:2011} use coordinated views of
-%scatterplots and parallel coordinates to show prediction uncertainty
-%information. The discrete approach left them with additional room to
-%display information about the prediction uncertainty for the currently
-%selected point. Tuner~\cite{Torsney-Weir:2011} used 2D
-%continuous slices so had to use a separate view to show the uncertainty,
-%but could then show the prediction uncertainty for all parameter values
-%at once. Researchers have developed task
-%taxonomies~\cite{Brehmer:2014,Amar:2005} to abstract the
-%common tasks that visualization users want to perform. By and large,
-%these taxonomies were developed with discrete data in mind and do not
-%even use examples from
-%
-%There has been alot of work done by the visualization community on
-%visualization of multi-dimensional \emph{discrete} data. Naturally, one
-%could sample the continuous function and then use the wealth of discrete
-%visualization techniques like scatterplots and bar graphs. In addition,
-%there have been a number of techniques developed specifically with
-%viewing multi-dimensional data in mind like parallel coordinate
-%views~\cite{Inselberg:1985}, scatterplot
-%matrices~\cite{SPLOM}, and \ttwnote{something}. By and large
-%discrete data visualizations can be considered different projection
-%techniques\ttwnote{projection vs slicing}. For example, Berger et
-%al.~\cite{Berger:2011} use coordinated views of
-%scatterplots and parallel coordinates to show prediction uncertainty
-%information. The discrete approach left them with additional room to
-%display information about the prediction uncertainty for the currently
-%selected point. \msnote{this paragraph is write repetitive to the last one. Also, for both I'm missing somewhat to context on why they are actually discussed and how exactly they relate to our work}
-%
-%Rather than choosing a viewpoint there are also a wide variety of techniques to
-%reduce the data before viewing it. For example, dimension reduction techniques
-%are often used on a discrete data set to reduce the number of attributes that
-%we show. These include linear techniques like principal component
-%analysis~\cite{PCA} and linear descriminant analysis~\cite{LDA}. Other
-%techniques work similar to dimension reduction where they try to find
-%projection axes but instead work on the view axes. Techniques like the grand
-%tour~\cite{Asimov:1985} and projection persuit~\cite{Huber:1985} fall in here.
-
-
-%\msnote{I moved the entire task part to below, it does not fit the flow very well here, and we can save space if we simply discuss it in section 4}
-%\subsection{Task taxonomies}
-%
-%To help us reason about when to use which visualization techniques, 
-%researchers have developed
-%low-level~\cite{Amar:2005} and high-level task
-%taxonomies~\cite{Heer:2012}. Brehmer and Munzner~\cite{Brehmer:2013} link
-%these together into a comprehensive multi-level typology. These
-%taxonomies can be applied to continuous data but not directly. As we
-%will see in \autoref{sec:evaluation}, these taxonomies need to be adapted for
-%continuous data.
-%%Researchers have also done perceptual studies to
-%%determine what are the best visual encodings for certain tasks and data
-%%characteristics. To our knowledge, these were mostly done with discrete
-%%data in mind. For example, Correll and
-%%Gleicher~\cite{???} \ttwnote{did something}. \msnote{perceptual studies need to be better connected to the taxonomies point ... in general, I would recommend to have one sentence at the beginning of each paragraph that states the main point ... e.g. here something along the lines of there is tons of work in projections of discrete data, while there is much less on "projection" in continuous data ... that's btw also a good idea for all other paragraphs}
-%%\ttwnote{maybe cite mackinlay too?} 
-%Sedlmair et al.~\cite{Sedlmair:2014} started to enumerate the tasks one would
-%do with multi-dimensional continuous data in a parameter space analysis
-%setting. They did not differentiate between continuous and discrete views of
-%the parameter space in their taxonomy, however.
-%Part of what we are advocating in
-%this work is more consideration of multi-dimensional continuous data as
-%a first class citizen when developing task hierarchies.
-%and perceptual studies. %\msnote{Nice point!}
-%MS: taking out this point, it comes out of nowhere
-
-
-%\ttwnote{mathematical surfaces paper} \ttwnote{contour boxplots evolved into curve boxplots...}
-%\ttwnote{color map creation?}
-%\ttwnote{some discretization is helpful, but how much?}
-%
- %\msnote{needs to be rephrased, it sounds much too defensive ... unfortunately, Vis reviewers are not appreciating such an honest statement in my experience}
-
-%\msnote{(1) it seems a bit disorganized at the moment,
-%i.e. missing a clear train of thought that is connected to our idea.
-%A dedicated into paragraph would help saying what will happen
-%in this section and why. Maybe we can even have subsections then.
-%For each block of related work we should add a clear statement 
-%how this is different from what we are doing. For some, this is already there
-%for others not.}
-%
-%\msnote{(2) to increase the flow it would also be good to think about the “glue”
-%between the different related aspects (paragraphs and/or subsections).
-%At the moment, it feels a bit disconnected.}
-%
-%\msnote{(3) I think there are already some nice text blocks in there. 
-%Others need to be improved. In general, I felt that end it gets much stronger ...}
-%
-%\ttwnote{need to say something about volume rendering here...}

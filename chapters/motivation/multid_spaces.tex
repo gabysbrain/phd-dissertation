@@ -21,12 +21,6 @@ task. For example, topological spines extracts critical points from a scalar
 field~\cite{Correa:2011}. One goal of this thesis is to develop this task
 taxonomy for visualization of continuous multi-dimensional data.
 
-%Often work on continuous multi-dimensional data analysis is done in the context
-%of design studies~\cite{Sedlmair:2012}. The issue is transferability, while
-%important, is not always considered. 
-
-%Each of these application scenarios are often treated individually. These all
-%fit under a unified visualizaiton method though.
 
 These domains can be broadly classified into two types based on their analysis
 tasks. One type, \emph{manifold} analysis, deals with understanding the
@@ -34,7 +28,7 @@ relationship between inputs and outputs. This is a functional relationship.
 The user wants to inspect how changes in the inputs (independent variables)
 affect the outputs (dependent variables). One can also perform \emph{shape}
 analysis. Here, in terms of the analysis tasks, there is no identification of
-independent and depdendent variables. We look at each of these two in turn.
+independent and dependent variables. We look at each of these two in turn.
 
 \subsection{Manifolds}
 \label{sec:manifolds}
@@ -65,11 +59,6 @@ input parameter configuration to an output value. This is the same as a
 functional relationship. The sensitivity and extrema are also important to
 simulation analysis.  Thus, these can all be analyzed with visualizations of a
 manifold.
-
-%Some computer simulations are considered stochastic. That is, their output
-%is the determined by a random number generator as well as input values.
-%Stochastic simulations can be converted to deterministic by treating the 
-%random number generator seed as another parameter.
 
 To date, manifold visualizations have concentrated on a particular analysis
 task or a particular application domain. For example, visualizations of the
@@ -113,15 +102,8 @@ front. In this case, the user wants to understand what are the costs of
 reducing one or more parameters in order to increase the value of others. Cusps
 or large changes in curvature in these datasets are important since they show
 critical changes in the rate of tradeoff.  With a proper view of a
-multi-dimensional object we can also view differences betweeen two objects
+multi-dimensional object we can also view differences between two objects
 directly. 
-%With 1-, 2-, or 3-D objects we show these differences directly and
-%can understand them.  Showing a difference object requires the user to reconstruct
-%the two objects at once. This requires quite a lot of mental processing.
-%However, the two-stage processing of showing a difference object and then
-%performing dimension reduction makes it difficult to view difference objects
-%with dimension reduction. Slicing, as a direct visualization technique, does
-%not have this problem. \ttwnote{confusing, use images/diagrams to explain?}
 
 These two different data types and sets of tasks require different visualization
 considerations. Proper visualization for manifold analysis should focus on

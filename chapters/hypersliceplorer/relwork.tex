@@ -49,22 +49,10 @@ to show a continuous Pareto front.
 
 \subsection{Multi-dimensional objects}
 
-%TM: I wanted to add a sentence like this, but I dont think we need to after all: Since we are focusing on the visualization of continuous objects in multiple dimension, literature on projection based techniques is not relevant and will not be mentioned. 
-
-%We review related work on the visualization of multi-dimensional continuous objects.
-
 When speaking of 3D polytopes, their source is usually either from reconstruction of 3D point clouds 
 (see Dey~\cite{Dey:2006})
 or from iso-surfacing techniques (see Wenger~\cite{Wenger:2013}).
-%However, we believe that the method of choice for visualization of 3D shapes are 3D renderings.
-%Visualization of (continuous) objects in three (or fewer) dimensions is not that relevant for our discussion, since we believe that our method will not be of advantage here. Still, in the are of volume visualization there are quite a wealth of approaches for creating an iso-surface, which creates a 3D polytope. See also the excellent text books by Wenger or Day
-%
-%often falls under the name of
-%volume visualization.  Three-dimensional volumes can be rendered using
-%techniques isosurface techniques like marching cubes~\cite{Lorensen:1987a} or direct volume visualization. 
 There are extensions to iso-surfacing techniques in multiple dimensions~\cite{Bhaniramka:2000}, 
-%Marching cubes has been extended to arbitrary
-%dimensions 
 but in more than three dimensions we must distort the space somehow to visualize the object. 
 
 For the visualization of 4D polytopes, there are a number of techniques for moving from four to three dimensions.  The
@@ -84,7 +72,6 @@ object. Rather than first projecting from 4D to 3D and then rendering the
 projection, Hanson and Cross~\cite{Hanson:1993} propose a method to first
 render the object in 4D and then view the three-dimensional projection. This
 allows them to show unique lighting effects from the 4D surfaces.
-%One can also use a stererographic projection. 
 As with all projection methods, if the user is unaware of the details of the
 method it can be difficult to build a mental model of the shape under study.
 
