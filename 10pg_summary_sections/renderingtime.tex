@@ -1,16 +1,5 @@
 
 
-With slicing, the user should be able to interactively set the focus point to
-any position they desire. If we cannot update the view quickly enough then this
-will break the cognitive connection between the mental model of the user and
-what they are viewing on screen~\cite{Shneiderman:1987}. The multi-dimensional
-structures we are visualizing often have some regular geometric structure like
-simplices or spheres.  In this chapter I examine how we can take advantage of
-the power of the parallelism of the graphics processing unit on any modern
-computer to create interactive-time focus point selection of multi-dimensional
-objects~\cite{Torsney-Weir:2017}.
-
-
 
 Many scientific studies investigate the relationship between
 several explanatory variables (inputs) and one or more system response
@@ -83,12 +72,12 @@ location of the viewpoint around which they are inspecting.
 Given this method, it would be ideal to know if the number of
 points or the dimensionality of the dataset will overwhelm the
 graphics capabilities of the user's machine and slow the frame rate. 
-Hence, we need a way to evaluate a priori what the frame rate will be
+Hence, one needs a way to evaluate a priori what the frame rate will be
 given some data. The main aim of this chapter is developing a methodology to 
 estimate the rendering time of a multi-dimensional
 visualization system in the form of a predictive formula.
-We can even invert this formula so that, given a desired frame rate, 
-we can compute the number of points 
+One can even invert this formula so that, given a desired frame rate, 
+one can compute the number of points 
 possible to render in the given time.
 This inversion can be used, for example, 
 to automatically sub-sample the dataset when the predicted rendering 
