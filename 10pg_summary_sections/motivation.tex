@@ -1,0 +1,421 @@
+%Thesis: Multi-dimensional spaces are better visualized through slice based views
+
+We live in a three-dimensional world.  Ourselves and what we can interact with
+are in three dimensions.  We learn about our world by studying the various
+phenomena around us.  These phenomena are described as continuous processes.
+In the beginning of our  education we study function plots in high school.
+These give an intuitive view of one-dimensional phenomena.  By exploring the
+relationship between an input factor
+and output,
+we can build an understanding on the relationship between the two.  We can also
+compare one function plot to another. Visual inspection of these plots allows
+us to see common patterns. We use our pattern recognition ability to quickly
+categorize these different plots into different types of function behavior.
+Function plots can also be used to describe two-dimensional phenomena. These
+show the effect due to two input factors. In this case we can use the third
+dimension or color encoding to show the function value.  From these plots we
+can also make general statements about the ``shapes'' of the behavior like how
+``peaky'' the function is or if it is monotonically increasing. These shapes
+give us intuition into the underlying processes and help us learn about the
+world~\cite{Palmer:1999}.
+
+We also interact with many phenomena around us that are essentially
+multi-dimensional in nature. For example, the weather in a certain location is
+determined by the temperature, pressure, humidity, dew point, wind velocity,
+and wind direction, among others. A change in any of the factors results in a
+change in the weather. Each of these factors can be given a ``spatial
+embedding.'' Then, they can be viewed as a dimension of some space.  By
+``walking'' or navigating through this space we can observe the effect on the
+weather due to changes in these parameters. 
+
+Understanding multi-dimensional continuous spaces is difficult. As
+three-dimensional beings we have real-world analogs for measurement, angle, and
+position in three dimensions. We do not have these once we move beyond three
+dimensions though. Nevertheless, visual analysis of these multi-dimensional
+spaces has produced insights about the underlying
+behavior~\cite{Sedlmair:2014,Gleicher:2016}. The issue is how to show more than
+three dimensions on a two-dimensional screen. 
+
+One strategy is to discretize the dataset through sampling and then use the
+wealth of discrete visualization tools available. Much of the work on
+multi-dimensional data analysis developed from analysis of 
+tabular data. These datasets are often recorded from real-world
+events such as census, species, or text data and contain many different aspects
+about each entity. Thus, these datasets are inherently multi- or high-dimensional.
+Each different aspect of the data items creates a dimension to be analyzed. 
+In the case of these data the mental model is that of discrete objects
+like humans, plants, or documents. Since the mental model is discrete in this
+case it makes sense to use data processing and visualization tools designed for
+discrete data.  However, our mental model for physical data is a continuous 
+one. Therefore, the
+discrete data paradigm breaks our mental model~\cite{Tory:2004a,Liu:2010a}. 
+Breaking the mental model means that the visualization is not conveying the
+complexities of the continuous phenomena.
+Rather, we
+should use visualization techniques purpose-built for continuous data.
+
+While not as
+extensively developed, there is previous work on visualizing multi-dimensional,
+continuous data. These techniques can be broadly classified into projection,
+topological, and slicing methods.  
+Projection methods attempt to
+distort the multi-dimensional object in order to view it on a two-dimensional
+screen. With projection techniques we can preserve distance, direction, size,
+or angles, but not all of 
+these~\cite{Snyder:1987}. 
+Depending on the
+projection method, we may see radically different representations.  The issue
+is that it is not clear from the resulting visualization what sort of
+transformation was performed on the data.  Thus it can be difficult to
+reconstruct the mental model of the multi-dimensional object.  One of the most
+often seen multi-dimensional projection techniques is the Schlegel
+diagram~\cite{Sommerville:1929} which picks a ``face'' of a polytope and projects the
+remaining faces inside it. Thus, this technique only works for 4D polytopes.
+Topological methods search the continuous dataset for values of interest, such
+as critical points or contours.  Topological visualization techniques also
+suffer from the issue of unclear transformation. It is difficult to relate the
+resulting visualization back to features in the multi-dimensional object.
+
+Slice-based views of multi-dimensional continuous spaces have not been explored
+as extensively as other options.  This work began with the advent of
+HyperSlice~\cite{Wijk:1993}.  HyperSlice extends the idea of slicing from
+medical imaging to any number of dimensions.  HyperSlice provides the framework
+for visualizing multi-dimensional continuous objects as a set of
+two-dimensional slices.  There are $d \choose 2$ subpanels, one for each pair
+of dimensions. Each panel shows a 2D slice of the object. The horizontal axis
+shows one dimension and the vertical axis shows another dimension. Essentially,
+each sub-plot of HyperSlice shows a 2D function plot. With 2D slices of solid
+multi-dimensional objects color is often used to encode value. 
+
+My work is inspired by the HyperSlice technique. Van Wijk and van Liere
+introduced the idea of using slice-based views of multi-dimensional data.
+However, they did not expand on what data types and tasks are involved in
+multi-dimensional continuous data analysis.  I build on their work,
+investigating the usefulness of slice-based views of continuous
+multi-dimensional datasets. I also identified tasks involved in
+multi-dimensional data analysis. The task analysis informed the development of
+one- and two-dimensional slice-based views.
+
+In this thesis I will explore
+the possibilities of these slice-based views. Through a number of case
+study examples, I will demonstrate the power of these views and ways to
+address their shortcomings.
+
+\subsection{Multi-dimensional spaces}
+\label{sec:motivation:multi-d}
+
+There are a number of domains where one can apply the analysis of continuous
+multi-dimensional data.  As of yet, there has not been a comprehensive data and
+task analysis for multi-dimensional continuous data analysis. For discrete
+data, there are several task 
+analyses~\cite{Shneiderman:1996,Brehmer:2013,Amar:2004}. 
+However, they are
+focused on identifying and selecting particular data items. Continuous datasets
+consist of ranges of values as well as functions. Functions can be seen as a
+mapping from ranges of numbers to other ranges. The analysis task here is to
+study these ranges, their relationships to each other, and the mappings between
+them. Tasks addressing these
+have not yet been covered by visualization task analyses. Thus,
+there is no comprehensive source for what analysis tasks one wants to perform
+given a continuous multi-dimensional dataset.  Work in this area has
+traditionally focused on developing a specific visualization for a specific
+task. For example, topological spines extracts critical points from a scalar
+field~\cite{Correa:2011}. One goal of this thesis is to develop this task
+taxonomy for visualization of continuous multi-dimensional data.
+
+
+These domains can be broadly classified into two types based on their analysis
+tasks. One type, \emph{manifold} analysis, deals with understanding the
+relationship between inputs and outputs. This is a functional relationship.
+The user wants to inspect how changes in the inputs (independent variables)
+affect the outputs (dependent variables). One can also perform \emph{shape}
+analysis. Here, in terms of the analysis tasks, there is no identification of
+independent and dependent variables. We look at each of these two in turn.
+
+\subsection{Manifolds}
+\label{sec:manifolds}
+
+Studying the mapping between continuous ranges means studying functional
+relationships and thus manifolds.  The critical issue is understanding the
+relationship between independent and dependent variables.  Subtasks in manifold
+analysis include examining critical points, assessing the sensitivity of
+parameters, and understanding the shape of the manifold.  
+One area where
+understanding the manifold is important is analyzing optimization surfaces and
+functions.  In this case, the identification of extrema is important for
+understanding how many and the relative location of local optima. In addition,
+we want to understand the degree to which these are extrema. These can result
+in global optimization algorithms ``getting stuck'' in local optima rather than
+continuing to search for the global optimum. Optimization algorithms need to be
+carefully tuned to properly detect these features and ignore them where
+necessary.
+
+Simulations can be used to run experiments that are impractical or impossible
+in the real world.  Simulation analysis is another area where the analysis
+tasks, in the abstract, are examining functions. If we look back at the weather
+simulation from before, the inputs to the function are things like the
+temperature and pressure.  The output is, for example, the likelihood of rain
+the next day. The function is the simulation itself. Computer simulations are
+deterministic.  A deterministic simulation has a fixed mapping from each unique
+input parameter configuration to an output value. This is the same as a
+functional relationship. The sensitivity and extrema are also important to
+simulation analysis.  Thus, these can all be analyzed with visualizations of a
+manifold.
+
+To date, manifold visualizations have concentrated on a particular analysis
+task or a particular application domain. For example, visualizations of the
+Morse-Smale complex~\cite{Gerber:2010} are focused on showing only critical
+points of the manifold. As with any visualization designed for a specific task,
+they must be used in combination with other views for visual analysis of
+domain-specific data. Domain-specific visualizations often used linked views to
+show different aspects of data to accomplish multiple tasks at once. However,
+they are purpose built for a specific domain. While techniques may transfer
+from one domain to another~\cite{Sedlmair:2012}, it is not always clear how.
+My goal is to unify these methods to a certain extent.  As I will show in
+\autoref{chp:sliceplorer}, slice-based views of manifolds can be used for a
+wide variety of tasks in a wide number of domains.
+
+\subsection{Shapes}
+\label{sec:shapes}
+
+One may also want to understand the relationship or correlation between
+multiple continuous values. In the manifold analysis case we have the notion
+of independent and dependent variables. This classification does not exist 
+here.
+In this case
+we want to study the relationship of all variables. Careful study of the shape
+of the dataset can give insight into the relationship between the various
+ranges of dimensions of the object. For example, one may want to know if the
+overall shape is a sphere, donut, or box. In addition one may be interested in
+any kinks or cusps in the dataset. Changes in the gradient and curvature of
+the shape are also of great interest. These indicate changes in correlation or
+relation.
+
+The analysis tasks of multi-dimensional shapes can be applied to a number of
+different areas. The study of polytopes is one such area and perhaps the most
+direct application of understanding multi-dimensional continuous shapes.
+Polytopes are the multi-dimensional generalization of polyhedra and polygons.
+The tasks are to understand the symmetries and patterns making up the
+polytopes~\cite{Ziegler:2012}. Perhaps a less obvious connection is the
+analysis of the tradeoff curves in multi-objective optimization. Since we are
+performing optimization we are interested in the tradeoffs amongst all the
+non-dominated points~\cite{Kung:1975}. This is also known as the Pareto
+front. In this case, the user wants to understand what are the costs of
+reducing one or more parameters in order to increase the value of others. Cusps
+or large changes in curvature in these datasets are important since they show
+critical changes in the rate of tradeoff.  With a proper view of a
+multi-dimensional object we can also view differences between two objects
+directly. 
+
+These two different data types and sets of tasks require different visualization
+considerations. Proper visualization for manifold analysis should focus on
+the relationships between independent and dependent variables. Visualizations
+of shapes do not have this mapping requirement and instead focus on the 
+relationships between dimensions. With this categorization in mind, we can now
+examine the available visualization techniques to examine these.
+
+
+\subsection{Visualizing multi-dimensional continuous spaces}
+\label{sec:multi-d-challenges}
+
+Understanding multi-dimensional space is difficult. As humans, we simply do not
+have the spatial analogs in more than three dimensions. A number of methods
+have been developed to extract specific features from the multi-dimensional
+object. For example, when studying polytopes, the number of faces and
+symmetries is very important~\cite{Ziegler:2012}. However, these only produce
+an answer without sufficient context. They do not necessarily give any
+intuition as to how to transfer our three-dimensional knowledge to
+multi-dimensional spaces.
+
+Visualizations of multi-dimensional spaces on a 2D screen must contend with
+some sort of reduction of the information. A proper visualization must select
+visual encodings that highlight the information we want to see. Any sort of
+data reduction requires trade-offs. The best visualization choices acknowledge
+any deficiencies to a particular visual encoding. By acknowledging these
+deficiencies, we can design tools to compensate for their shortcomings while
+still maintaining their advantages. Therefore, it is worth first looking at the
+possible mappings of data to visual elements. Then, I present commonly used
+visual encodings of multi-dimensional continuous data using these mappings.
+
+\subsection{Encoding multi-dimensional data}
+
+Multi-dimensional continuous data consists of a set of continuous ranges, one
+for each dimension. In the case of manifold analysis, each of these ranges can
+be additionally classified as ``dependent'' or ``independent'' depending on
+which side of the mapping they are on. Typical visualization practice is to
+give each dimension a separate visual channel. There are a number of possible
+visual channels that have been identified.  The ranking of effectiveness of
+visual channels (shown in \autoref{tbl:visual_encodings}) was proposed by
+Bertin~\cite{Bertin:1967} and confirmed through experiments by Cleveland and
+McGill~\cite{Cleveland:1984}, Mackinlay~\cite{Mackinlay:1986}, and Heer and
+Bostock~\cite{Heer:2010}.  Munzner~\cite{Munzner:2014} provides a summary of
+the results. We are also limited in how many channels we can use
+simultaneously. According to Ware~\cite{Ware:2004}, certain channels, such as
+red and green are not visually separable. 
+
+\begin{table}
+  \caption{Rankings of visual encodings of quantitative data}
+  \label{tbl:visual_encodings}
+  \begin{adjustbox}{max width=\linewidth}
+  \begin{tabular}{llll}
+    Bertin~\cite{Bertin:1967} & Cleveland and McGill~\cite{Cleveland:1984} & Mackinlay~\cite{Mackinlay:1986} & Munzner~\cite{Munzner:2014} \\
+    \hline \\
+     Position & Position along a common scale & Position & Position on common scale \\
+     Size & Position along identical, nonaligned scales & Length & Position on unaligned scale \\
+     (Grey) Value & Length & Angle & Length (1D size) \\
+     Texture & Direction & Slope & Tilt/angle \\
+     Color & Angle & Area & Area (2D size) \\
+     Orientation & Area & Volume & Depth (3D position) \\
+     Shape & Volume & Density & Color luminance\\
+     & Curvature & Color saturation & Color saturation \\
+     & Densities & Color hue & Curvature \\
+     & Shading & & Volume (3D size) \\
+     & Color saturation &           & 
+  \end{tabular}
+  \end{adjustbox}
+\end{table}
+
+The difficulty of visualizing a continuous multi-dimensional space on a
+two-dimensional screen brings a number of challenges. We treat each dimension
+separately, thus, we need several different visual channels. However, there are
+simply not enough visual channels available to draw a 15-dimensional object in
+a single view. This is further complicated by the fact that separate visual
+channels are not necessarily visually separable.  Furthermore, each dimension
+of the multi-dimensional object under study is treated equally. For example, no
+particular axis of a polytope is more important than any other.  We should
+encode each dimension using equally weighted effectiveness channels.  With
+fewer channels available than data dimensions we either need to reduce the data
+or use multiple views to properly visualize the data.
+
+
+\subsection{Methods}
+
+The common taxonomy of how to view multi-dimensional data on screen is based on
+discrete data analysis. There, there are two categories: dimension reduction or
+projection. With continuous data, though there is a third possibility, that of
+slicing. Therefore, I view the taxonomy of \emph{continuous} multi-dimensional
+data analysis methods into two categories. Data-driven methods include both
+projection and dimension reduction and reduce the dimensionality of the data
+before visualization. View-based methods reduce the data during the
+visualization. Slicing is a view-based method.
+
+Purely data-driven methods are commonly known as feature selection or dimension
+reduction. The goal is to find a subset of dimensions that are critical to
+understanding the dataset. Topological techniques take this a step further.
+They discard all spatial information about the dataset and only concentrate on
+the difference in function value, as in the Morse-Smale
+complex~\cite{Gyulassy:2012a}, or evolution of contours, as in the contour
+tree~\cite{Carr:2003a}.  Projections also synthesize the dataset into new
+dimensions to show using visual channels. Principal component
+analysis~\cite{Holbrey:2006} is a popular choice in this area. This rotates the
+space and thus produces new set of dimensions that are a linear combination of
+the input dimensions. Even this relatively simple operation (a rotation) can be
+difficult to understand. For example, iPCA~\cite{Jeong:2009a} was a tool to
+help users understand the effects of the dimensional transformation.
+
+View-based methods try and produce multiple linked views of a multi-dimensional
+dataset from different angles. Each view shows a subset of the dimensions.
+This way we can use a proper set of visual channels for each view.  We use
+interaction to link these different views. These multiple, coordinated, linked
+views have been one of the biggest success stories from the visualization
+community~\cite{Rao:1994}. The traditional HyperSlice~\cite{Wijk:1993}
+technique falls into this category. Each panel of the HyperSlice view shows two
+of the input dimensions and the value is encoded with color.
+The views are linked through the focus point selection. Changing the focus point
+in one sub-plot updates the other sub-plots.
+
+My work focuses on the exploration of the combination of data-driven and
+view-based methods.  Data-driven methods reduce the data in a way that we can
+get a global overview of the dataset. View-based methods are much more detailed
+but can only produce a local view of the data. By combining these methods I can
+achieve both a global overview as well as an on-demand local view of the
+dataset in a single visualization. 
+
+
+\subsection{Slices}
+\label{sec:slicing-advantages}
+
+Slicing offers a number of advantages over other multi-dimensional
+visualization techniques. Slicing is a direct visualization of the
+multi-dimensional object. In contrast to methods like projection or dimension
+reduction, slicing does not distort the dimensions in order to display them on
+a two-dimensional screen. Since there is no distortion, distances in the visual
+representation are directly proportional to distances in the object. This is
+one of the reasons that slicing is popular in the medical imaging community.
+Sizes of organs or tumors can be measured visually on screen. Additionally,
+relative sizes correspond to what a doctor would expect to see in the body.
+Multi-dimensional data is abstract. It lacks the correspondence to real-world
+objects that the medical community uses to understand their two- and
+three-dimensional datasets. Nevertheless, it is still important in
+multi-dimensional data analysis to properly estimate distances and relative
+sizes. 
+
+Another benefit of the direct visualization is that users do not require
+extensive training to understand the visualization. The concept of slicing
+through a three-dimensional object is a familiar one. Humans are used to this
+even from slicing fruits and vegetables with a knife. This concept of slicing
+can be extended from this well-known metaphor to cover multiple slices of
+multi-dimensional objects.
+
+Slice views use the horizontal and vertical axes for showing the effects due to
+the input parameters. These axes are the most perceptually
+uniform~\cite{Stevens:1957} and are considered the most effective
+(\autoref{tbl:visual_encodings}). One- or two-dimensional
+plots are replicated for each combination of dimensions in order to show more
+than two dimensions at once. This promotes familiarity of the visualization.
+Once the user has learned to read a single panel, they can apply this knowledge
+to the remaining panels. This approach follows the principal of small
+multiples~\cite{Archambault:2011}. 
+
+In order to produce a slice plot one needs to first pick a particular
+\emph{focus point} in the multi-dimensional space. This focus point determines
+which slices are being viewed. Selecting a good focus point a-priori is
+difficult. 
+It either requires a great deal of luck or careful analysis of the
+dataset. This is not always possible. Slice-based views require some sort of
+interactive focus point selection. Interactively browsing through the slices
+requires interaction controls to give the user control over the focus point.
+Furthermore, we need some kind of navigation map to show which focus points the
+user has selected so that they do not become lost. Neither of these navigation
+aids are well developed at this point. This need for interaction is likely one
+of the reasons that slice-based views have not developed as much as projection
+or topological techniques. Static views are much easier to include in papers
+and don't require explanation prior to use.
+
+The other implementation issue of slice-based views is ensuring that the
+visualization can remain interactive. In this case, interactive is defined as
+the rate at which the user can maintain their
+concentration~\cite{Shneiderman:1987}. This is often defined at 10 frames per
+second. It can be difficult to compute a 2D slice of an arbitrary complex
+multi-dimensional object. 
+
+
+\subsection{Upcoming}
+\label{sec:thesis_outline}
+
+My goal is to highlight the advantages of slice-based methods for
+multi-dimensional data analysis. At the same time I want to address the
+limitations. The end goal is to bring slice-based views into the standard
+toolbox of visualizations.
+
+In \autoref{chp:sliceplorer}, I examine how to visualize manifolds using
+slices. I present Sliceplorer which is a system to view one-dimensional slices
+of multi-dimensional manifolds. I use projections of these one-dimensional
+slices instead of showing one focus point at a time. I also go into detail
+about the tasks one wants to perform with manifold analysis.
+
+I extend the idea of projections of slices to the second dimension in
+\autoref{chp:hypersliceplorer}.  I show how this can be used to effectively
+visually analyze the shape of multi-dimensional data. In many cases, this data
+is given as a simplical mesh. I introduce an algorithm to compute 2D slices of
+this mesh.  Using this algorithm, I show how we can visually understand
+datasets like Pareto fronts or polytopes.
+
+Finally, in \autoref{chp:rendering}, I discuss how we can take advantage of the
+multi-dimensional geometry and GPU architecture to allow interactive-speed
+browsing of the focus points. In addition to this algorithm, I develop a method
+that can predict the amount of time needed per element to draw one frame of the
+visualization. I then show how this estimation formula can be calibrated to a
+particular user's hardware.
+
+
