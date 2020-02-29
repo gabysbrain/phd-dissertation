@@ -1,10 +1,11 @@
 %Thesis: Multi-dimensional spaces are better visualized through slice based views
 
-We live in a three-dimensional world.  Ourselves and what we can interact with
-are in three dimensions.  We learn about our world by studying the various
+We live in a three-dimensional world.  
+We learn about our world by studying the various
 phenomena around us.  These phenomena are described as continuous processes.
-In the beginning of our  education we study function plots in high school.
-These give an intuitive view of one-dimensional phenomena.  By exploring the
+In the beginning of our  education, we study function plots in high school.
+These give an intuitive view of one-dimensional phenomena.  
+By exploring the
 relationship between an input factor
 and output,
 we can build an understanding on the relationship between the two.  We can also
@@ -21,11 +22,11 @@ world~\cite{Palmer:1999}.
 
 The visual analysis of multiple dimensions is one of the central themes of
 visualization research. In principle there are two conceptual types of problems
-that amount to two different mental models. (1) Often, the data set is
+that amount to two different mental models. Often, the data set is
 considered to be truly discrete and projection methods, such as scatterplots
 and dimensionality reduction techniques, are used for its analysis.  Typical
 examples include business applications, in which one is analyzing customer
-data.  The focus of this paper is different in that (2) we are focusing on
+data.  The focus here is different in that we are focusing on
 continuous multi-dimensional data spaces. For computational purposes, the data
 set is then merely a set of points sampled from a continuous phenomenon of
 study. This is rather common in simulation and engineering applications or for
@@ -42,14 +43,25 @@ dimensions though. Nevertheless, visual analysis of these multi-dimensional
 spaces has produced insights about the underlying
 behavior~\cite{Sedlmair:2014,Gleicher:2016}. The issue is how to show more than
 three dimensions on a two-dimensional screen. 
+However, any 2D or 3D view of a multi-dimensional space necessarily requires
+aggregation of that space.
+We can only ``see'' a subsection of the parameter
+space at one time.
+Therefore, one must create multiple static views, each looking at 
+the data from a different perspective.  A scatterplot matrix, for example,
+shows a 2D projection of the data for each pair of dimensions.
 
-Visualizations of multi-dimensional spaces on a 2D screen must contend with
-some sort of reduction of the information. A proper visualization must select
-visual encodings that highlight the information we want to see. Any sort of
-data reduction requires trade-offs. The best visualization choices acknowledge
-any deficiencies to a particular visual encoding. By acknowledging these
-deficiencies, we can design tools to compensate for their shortcomings while
-still maintaining their advantages. 
+By allowing for user interaction one is not limited to a
+predetermined set of views.  
+When the view selection changes then a new view of the data must be built
+on the fly.
+However, if the visualization system does not respond quickly to 
+the user's interaction then the cognitive connection with the visualization
+is lost~\cite{Shneiderman:1987} along with the advantage of adding 
+interaction in the first place.
+Arguments about what exact
+response time makes a visualization \emph{interactive} vary.  However,
+view updates somewhere between 10fps to 60fps are typically deemed acceptable.
 
 Van Wijk and
 van Liere introduced the idea of using slice-based views of multi-dimensional
@@ -60,16 +72,6 @@ multi-dimensional object. In contrast to methods like projection or dimension
 reduction, slicing does not distort the dimensions in order to display them on
 a two-dimensional screen. Since there is no distortion, distances in the visual
 representation are directly proportional to distances in the object. 
-
-However, they did not expand on what data types and tasks are involved
-in multi-dimensional continuous data analysis.  I investigate
-the usefulness of slice-based views of continuous
-multi-dimensional datasets. I also identified tasks involved in
-multi-dimensional data analysis. The task analysis informed the development of
-one- and two-dimensional slice-based views.
-
-\subsection{Multi-dimensional spaces}
-\label{sec:motivation:multi-d}
 
 There are a number of domains where one can apply the analysis of continuous
 multi-dimensional data.  As of yet, there has not been a comprehensive data and
@@ -89,7 +91,6 @@ traditionally focused on developing a specific visualization for a specific
 task. For example, topological spines extracts critical points from a scalar
 field~\cite{Correa:2011}. One goal of this thesis is to develop this task
 taxonomy for visualization of continuous multi-dimensional data.
-
 
 These domains can be broadly classified into two types based on their analysis
 tasks. One type, \emph{manifold} analysis, deals with understanding the
@@ -116,18 +117,6 @@ in global optimization algorithms ``getting stuck'' in local optima rather than
 continuing to search for the global optimum. Optimization algorithms need to be
 carefully tuned to properly detect these features and ignore them where
 necessary.
-
-Simulations can be used to run experiments that are impractical or impossible
-in the real world.  Simulation analysis is another area where the analysis
-tasks, in the abstract, are examining functions. If we look back at the weather
-simulation from before, the inputs to the function are things like the
-temperature and pressure.  The output is, for example, the likelihood of rain
-the next day. The function is the simulation itself. Computer simulations are
-deterministic.  A deterministic simulation has a fixed mapping from each unique
-input parameter configuration to an output value. This is the same as a
-functional relationship. The sensitivity and extrema are also important to
-simulation analysis.  Thus, these can all be analyzed with visualizations of a
-manifold.
 
 To date, manifold visualizations have concentrated on a particular analysis
 task or a particular application domain. For example, visualizations of the
@@ -164,45 +153,4 @@ the relationships between independent and dependent variables. Visualizations
 of shapes do not have this mapping requirement and instead focus on the 
 relationships between dimensions. With this categorization in mind, we can now
 examine the available visualization techniques to examine these.
-
-
-
-Another benefit of the direct visualization is that users do not require
-extensive training to understand the visualization. The concept of slicing
-through a three-dimensional object is a familiar one. Humans are used to this
-even from slicing fruits and vegetables with a knife. This concept of slicing
-can be extended from this well-known metaphor to cover multiple slices of
-multi-dimensional objects.
-
-Slice views use the horizontal and vertical axes for showing the effects due to
-the input parameters. These axes are the most perceptually
-uniform~\cite{Stevens:1957} and are considered the most effective
-(\autoref{tbl:visual_encodings}). One- or two-dimensional
-plots are replicated for each combination of dimensions in order to show more
-than two dimensions at once. This promotes familiarity of the visualization.
-Once the user has learned to read a single panel, they can apply this knowledge
-to the remaining panels. This approach follows the principal of small
-multiples~\cite{Archambault:2011}. 
-
-In order to produce a slice plot one needs to first pick a particular
-\emph{focus point} in the multi-dimensional space. This focus point determines
-which slices are being viewed. Selecting a good focus point a-priori is
-difficult. 
-It either requires a great deal of luck or careful analysis of the
-dataset. This is not always possible. Slice-based views require some sort of
-interactive focus point selection. Interactively browsing through the slices
-requires interaction controls to give the user control over the focus point.
-Furthermore, we need some kind of navigation map to show which focus points the
-user has selected so that they do not become lost. Neither of these navigation
-aids are well developed at this point. This need for interaction is likely one
-of the reasons that slice-based views have not developed as much as projection
-or topological techniques. Static views are much easier to include in papers
-and don't require explanation prior to use.
-
-The other implementation issue of slice-based views is ensuring that the
-visualization can remain interactive. In this case, interactive is defined as
-the rate at which the user can maintain their
-concentration~\cite{Shneiderman:1987}. This is often defined at 10 frames per
-second. It can be difficult to compute a 2D slice of an arbitrary complex
-multi-dimensional object. 
 
